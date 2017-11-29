@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面示例中，当循环变量等于4时，会停止循环体内最后一句的执行，返回for语句继续执行下一次迭代：
+for(var i=0; i<10;i++)
+{
+    alert(i);
+    if (i==4) continue; 			// 继续执行下一次迭代
+    alert(i);
+}
+
+//【示例2】下面这个循环结构被执行时，将成为死循环。
+var i=0;
+while(i<10){
+    alert(i);
+    if (i==4) continue;
+    i++
+}
+
+//【示例3】在下面示例中，利用continue语句辅助过滤掉数组a中的字符串元素：
+var a = [1, "d", 2, "a", "b", "c", 3, 4] 	// 定义并初始化数组a
+var b = [], j = 0; 							// 定义数组b和变量j
+for(var i in a){ 							// 遍历数组a
+    if(typeof a[i] == "string")	
+// 如果元素数据类型为字符串，则返回继续下一次迭代
+        continue;
+    b[j ++ ] = a[i]; 			// 把非字符串类型的元素值赋值给数组b
+}
+alert(b); 						// 返回1,2,3,4
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

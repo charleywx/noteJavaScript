@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】当调用Array()构造函数时，没有传递参数，可以创建一个空数组。
+var a = new Array();									// 空数组
+
+//【示例2】当调用Array构造函数时，明确指定数组元素的值，可以创建一个实数组。
+var a = new Array(1,true,"string",[1,2],{x:1,y:2});	// 实数组
+
+//【示例3】当调用Array构造函数时，仅给Array构造函数传递一个数值参数，该数值定义了数组的长度，即定义数组中包含元素的个数。
+var a = new Array(5); 								// 指定长度的数组
+
+//【示例4】下面示例容易产生分歧，设计定义一个仅含一个元素且元素值为1的数组，但是JavaScript误解为定义一个长度为1的数组，所以返回值为undefined。
+var a = new Array(1); 	// 到底是指元素的值，还是指定元素的个数
+alert(a[0]); 			// 返回undefined，说明JavaScript理解为元素的个数
+
+a[0] = 1; 									// 为元素赋值
+
+
+
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

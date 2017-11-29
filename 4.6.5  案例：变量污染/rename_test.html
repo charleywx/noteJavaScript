@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】应该避免使用全局变量，努力减少使用全局变量的方法：在应用程序员中创建唯一一个全局变量，并定义该变量为当前应用的容器。
+var My = {}; ，
+My.name = {
+    "first-name" : " first ",
+    "last-name" : " last "
+};
+My.work = {
+    number : 123,
+    one : {
+        name : " one ",
+        time : "2015-9-14 12:55",
+        city : "beijing"
+    },
+    two : {
+        name : "two",
+        time : "2015-9-12 12:42",
+        city : "shanghai"
+    }
+};
+
+//【示例2】在编程语言中，作用域控制着变量与参数的可见性及生命周期。这为程序开发提供了一个重要的帮助，因为它减少了名称冲突，并且提供了自动内存管理。
+var foo = function() {
+    var a = 1, b = 2;
+    var bar = function() {
+        var b = 3, c = 4;	// a=1, b =3, c=4
+        a += b + c;			// a=8, b =3, c=4
+    };						// a=1, b =2, c=undefined
+    bar();					// a=21, b =2, c=undefined
+};
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

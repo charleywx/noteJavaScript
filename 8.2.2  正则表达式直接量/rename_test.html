@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面代码中定义一个正则表达式直接量，然后就直接进行调用。
+var r = /\b\w/gi;
+var s = "javascript JAVA";
+var a = s.match(r); 					// 直接调用正则表达式直接量
+alert(a); 								// 返回数组["j", "J"]
+
+
+//【示例2】在RegExp()构造函数中可以为正则表达式传递变量，而在正则表达式直接量中是不允许的。
+var r = new RegExp("a"+ s + "b","g");	// 动态创建正则表达式
+var r = /"a"+ s + "b"/g; 				// 错误的用法
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

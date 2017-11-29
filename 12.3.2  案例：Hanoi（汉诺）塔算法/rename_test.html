@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+/*汉诺塔算法函数
+参数说明：
+n表示金片数；
+a、b、c表示柱子，注意排列顺序。
+返回说明：当指定金片数，以及柱子名称，该函数将输出整个移动的过程。
+*/
+function f( n, a, b, c ){
+    if( n == 1 ) 				// 特殊处理
+        document.write( a + " &rarr; " + c + "<br />" ); 
+		// 输出显示，直接让参数a移给c
+    else{
+        f( n - 1, a, c, b ); 	// 递归调用函数，调整参数顺序，让参数a移给b
+        document.write( a + " &rarr; " + c + "<br />" ); 
+		// 输出显示
+        f( n - 1, b, a, c ); 
+		// 如果当n等于1时，调整参数顺序，让参数b移给c
+    }
+}
+f( 3, "A", "B", "C" ); 		// 调用函数
+
+
+</script>
+<body>
+</body>
+</html>

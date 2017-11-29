@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面代码定义一个简单的函数。
+function f(a,b){ 			// 定义函数结构，传递形参a和b
+    return a+b;
+}
+var x=1,y=2; 				// 定义参数变量
+alert(f(x,y)); 				// 调用函数并传递实参
+
+
+//【示例2】针对上面的函数，使用如下方法可以获取它的形参个数。
+alert(f.length); 			// 返回2.获取函数的形参个数
+
+//【示例3】如果函数实参数量少于形参数量，那么多出来的形参的值默认为undefined。
+(function(a,b){ 			// 定义函数，包含两个形参
+    alert(typeof a); 		// 返回number
+    alert(typeof b); 		// 返回undefined
+})(1); 						// 调用函数，传递一个实参
+
+//【示例4】如果函数实参数量多于形参数量，那么多出来的实参就不能够通过形参标识符访问，函数会忽略掉多余的实参。在下面这个示例中，实参3和4就被忽略掉了。
+(function(a,b){ 			// 定义函数，包含两个形参
+    alert(a); 				// 返回1
+    alert(b); 				// 返回2
+})(1,2,3,4); 				// 调用函数，传递四个实参
+
+//【示例5】形参与函数体内使用var语句声明的变量都属于局部变量，仅在函数体内可见。当私有变量与形参发生冲突时，则私有变量拥有较大的优先权。
+function f(a){ 				//定义函数结构，传递形参a
+	var  a = 0; 				//声明私有变量a，初始值为0
+    return a;
+}
+alert(f(5)); 				// 调用函数，传递给参数值为5，则返回值为0
+
+
+
+</script>
+<body>
+</body>
+</html>

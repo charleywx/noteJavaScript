@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】为Object对象的原型定义一个属性name，则内置对象Date和自定义构造对象Me都自动继承了该原型属性。
+Object.prototype.name = "Object对象的原型属性";	// 超类的原型属性
+var d = Date.prototype;						// 内置对象的原型对象
+alert(d.name);								 	// 返回超类的原型属性值
+function Me(){									// 自定义类
+}
+var m = Me.prototype; 							// 自定义类的原型对象
+alert(m.name); 									// 返回超类的原型属性值
+
+//【示例2】在下面示例中，构建了三层类型体系。其中超类Object属于顶层，而类Me属于Object超类的子类，同时它也是Sub类的父类，即Sub是Me的子类。
+Object.prototype.name = "超类的原型属性";		// 超类的原型属性
+function Me(){									// 父类
+    this.saying =function(){					// 父类的方法
+        return "父类的方法"
+    };
+}
+function Sub(){								// 子类
+}
+Sub.prototype = new Me();						// 建立类的多层继承关系
+var m = new Sub();						// 实例化子类
+alert(m.name); 							// 继承了超类的原型属性name
+alert(m.saying());						// 继承了父类的方法saying()
+
+//【示例3】在正常情况下，子类原型对象的构造器应指向子类自身。
+function Sub(){
+}
+alert(Sub.prototype.constructor);		// 指向Sub类的引用
+
+function Sub(){
+}
+Sub.prototype = new Me();
+alert(Sub.prototype.constructor); 		// 指向Me类的引用
+
+function Sub(){
+}
+Sub.prototype = new Me();
+Sub.prototype.constructor = Sub; 
+	// 修改子类原型对象的构造器为默认值，即引用子类自身
+alert(Sub.prototype.constructor); 		// 指向Sub类的引用
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

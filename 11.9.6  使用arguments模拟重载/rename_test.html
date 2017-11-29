@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】可以通过使用arguments来模拟重载，其实现机制是通过判断arguments中实际参数的个数和类型来执行不同的逻辑。
+function sayHello() {
+    switch (arguments.length) {
+        case 0:
+            return "Hello";
+        case 1:
+            return "Hello, " + arguments[0];
+        case 2:
+            return (arguments[1] == "cn" ? " 你好，" : "Hello, ") + arguments[0];
+    };
+}
+sayHello();//"Hello"
+sayHello("Alex");// "Hello, Alex"
+sayHello("Alex", "cn");	// " 你好，Alex"
+
+//【示例2】callee是arguments对象的一个属性，其值是当前正在执行的function对象。它的作用是使匿名 function可以被递归调用。下面以一段计算斐波那契序列中第N个数的值的过程来演示arguments.callee的使用。
+function fibonacci(num) {
+    return (function(num) {
+        if( typeof num !== "number")
+            return -1;
+        num = parseInt(num);
+        if(num < 1)
+            return -1;
+        if(num == 1 || num == 2)
+            return 1;
+        return arguments.callee(num - 1) + arguments.callee(num - 2);
+    })(num);
+}
+fibonacci(100)
+
+
+</script>
+<body>
+</body>
+</html>

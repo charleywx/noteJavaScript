@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例】使用function语句声明两个相互嵌套的函数体结构。
+function f(x, y){ 							// 外层函数
+    function e(a, b){ 						// 内层函数
+        return a * b;
+    }
+    return x + y;
+}
+
+function f(x, y){
+    function e(a, b){
+        return a * b;
+    }
+    return e(3, 6) + y; 					// 内层函数参与表达式运算有效
+    alert(e(3, 6)); 						// 无效的调用
+}
+alert(f(3, 6)); 							// 调用外层函数
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

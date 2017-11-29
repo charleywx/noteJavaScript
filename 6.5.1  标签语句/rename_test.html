@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】在下面代码中，b就是标签名，而a就是对象的属性名，其中标签b就是对对象结构进行标记。
+b:{
+    a:true
+}
+
+a:{ 						// 标签语句的标记名
+    a:true					// 对象属性的标记名
+}
+
+var o={
+    a:true
+}
+alert(o.a); 				// 通过对象成员标识符可以用对象成员
+
+b:{
+    a:true
+}
+alert(b.a); 				// 不能够使用标签语句的标记名来引用被标记的语句
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

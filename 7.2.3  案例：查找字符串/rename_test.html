@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】使用charAt()把字符串中每个字符都装入一个数组中，从而可以为String对象扩展一个原型方法，用来把字符串转换为数组。
+String.prototype.toArray = function(){	// 把字符串转换为数组
+    var l = this.length, a = [];		// 获取当前字符串长度，并定义空数组
+    if( l ){ 							// 如果存在则执行循环操作
+        for( var i = 0; i < l; i ++ ){ 	// 遍历字符串，间接枚举每个字符
+            a.push( this.charAt( i ) ); 	// 把每个字符按顺序装入数组
+        }
+    }
+    return a; 							// 返回数组
+}
+
+var s = "abcdefghijklmn".toArray();	// 把字符串转换为数组
+for(var i in s){ 						// 遍历被转换的字符串，并枚举每个字符
+    alert(s[i]);
+}
+
+//【示例2】
+var s = "javascript";
+var i = s.indexOf("a",-10);
+alert(i); 							// 返回值为1，即字符串中第二个字符
+
+//【示例3】
+var s = "http:// www.mysite.cn/";
+var a = s.indexOf( "www" ); 		// 返回值为7，即第一个字符w的下标位置
+
+//【示例4】
+var s = "http:// www.mysite.cn/";
+var b = s.indexOf( "." ); 			// 返回值为10，即第一个字符.的下标位置
+var e = s.indexOf( ".", b + 1 ); 	// 返回值为15，即第一个字符.的下标位置
+
+//【示例5】
+var s = "http:// www.mysite.cn/index.html";
+var n = s.lastIndexOf( "." ); 		// 返回值为24，即第三个字符.的下标位置
+
+var s = "http:// www.mysite.cn/index.html";
+var n = s.lastIndexOf( "." , 11 ); 	// 返回值为10，而不是15
+
+var s = "http:// www.mysite.cn/index.html";
+var n = s.lastIndexOf( "www" ); 			// 返回值为7，而不是10
+
+//【示例6】
+var s = "http:// www.mysite.cn/index.html";
+var n = s.search( "// " ); 				// 返回值为5
+
+//【示例7】与search()方法相比，match()方法要强大很多，它能够找出所有匹配的子字符串，并存储在一个数组中返回。
+var s = "http:// www.mysite.cn/index.html";
+var a = s.match( /h/g ); 					// 全局匹配所有字符h
+alert( a ); 								// 返回数组[h,h]
+
+//【示例8】
+var s = "http:// www.mysite.cn/index.html";	// 匹配字符串
+var a = s.match( /(\.).*(\.).*(\.)/ ); 	// 执行一次匹配检索
+alert( a.length ); 	// 返回4，说明返回的是一个包含4个元素的数组
+alert( a[0] ); 		// 返回字符串".mysite.cn/index."
+alert( a[1] ); 		// 返回第一个字符.（点号），由第一个子表达式匹配并存储
+alert( a[2] ); 		// 返回第二个字符.（点号），由第二个子表达式匹配并存储
+alert( a[3] ); 		// 返回第三个字符.（点号），由第三个子表达式匹配并存储
+
+alert( a.index ); 	// 返回值10，说明第一个点号字符的起始下标位置
+alert( a.input ); 	// 返回被匹配字符串"http:// www.mysite.cn/index.html"
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

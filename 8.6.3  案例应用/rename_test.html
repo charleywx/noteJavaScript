@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】在下面示例中，定义正则表达式直接量，用来匹配字符串s中每个字符。在循环结构的条件表达式中反复执行匹配模式，并根据返回结果的值是否为null作为循环条件。当返回值为null时，说明字符串检测完毕。然后，读取返回数组a中包含的匹配子字符串，并调用该数组的属性index和lastIndex，其中index显示当前匹配子字符串的起始位置，而lastIndex属性显示下一次匹配操作的起始位置。
+var s = "javascript";					// 测试使用的字符串直接量
+var r = /\w/g; 							// 匹配模式
+while((a = r.exec(s)) != null){ 		// 循环执行匹配操作
+    alert(a[0] + "\n" + a.index  + "\n" +  r.lastIndex); 
+	// 显示每次匹配操作是返回的结果数组信息
+}
+
+//【示例2】
+var s = "javascript";
+var r = /\w/g; 						// 匹配字符
+var b = r.test(s); 					// 返回true
+
+var r = /javascript/g;
+var b = r.test(s); 					// 返回true
+
+var r = /\d/g; 						// 匹配数字
+var b = r.test(s); 					// 返回false
+
+//【示例3】针对exec()方法中的循环遍历匹配，可以这样设计：
+var s = "javascript";	// 测试使用的字符串直接量
+var r = /\w/g; 			// 匹配模式
+while(r.test(s)){ 		// 循环执行匹配验证，如果返回true，则连续执行验证
+    alert(RegExp.lastMatch +  "\n" +  r.lastIndex);
+ 	// 利用静态属性和实例属性，显示当前匹配信息
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

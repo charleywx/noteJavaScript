@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面这个示例中，在函数f中定义一个构造函数实例e，然后在函数体调用该实例函数，则返回值为1，而不是局部变量2：
+var a = 1; 								// 全局变量a，初始化值为1
+function f(){
+    var a = 2; 							// 局部变量a，初始化值为2
+    var e = new Function("alert(a)"); 	// 定义构造函数实例
+    e();								// 调用构造函数实例
+}
+f();									// 调用函数f，返回值为1，而不是2
+
+//【示例2】下面示例通过Function()构造函数来闭包数据不能够相互保持独立的特性。每次解析Function()构造函数时，会重新为函数实例存储数据，从而阻断了闭包数据之间的相互干扰性。如下：
+var a = [1,2,3]; 							// 定义数组
+for(i in a){ 								// 遍历数组
+    a[i] = new Function("return "+i*i);	// 通过构造函数闭包体来传递数据
+}
+alert(a[0]()); 						// 返回0
+alert(a[1]()); 						// 返回1
+alert(a[2]()); 						// 返回4
+alert(a[0]===a[1]) 					// 返回false，说明它们为不同的函数实例
+alert(a[1]===a[2]) 					// 返回false，说明它们为不同的函数实例
+alert(a[0]===a[2]) 					// 返回false，说明它们为不同的函数实例
+
+//【示例3】使用Function()构造函数可以产生多个函数实例，但是却不会产生多个闭包，从而降低系统维护多个闭包所占用的资源。如下：
+function f(x){ 						// 普通函数
+    var str = "return " + x + ";"	// 定义函数结构字符串
+    return  new Function(str); 		// 返回构造函数实例
+}
+var a = f(1); 					// 函数实例1
+var b = f(2); 					// 函数实例2
+alert(a())						// 返回1
+alert(b())						// 返回2
+alert(a===b) 					// 返回false，说明a和b属于不同的函数实例
+
+function f(x){ 					// 外部函数
+    return  function(){			// 内部函数
+        return x;
+    }
+}
+var a = f(1); 					// 函数实例1
+var b = f(2); 					// 函数实例2
+alert(a())						// 返回1
+alert(b())						// 返回2
+alert(a===b) 					// 返回false，说明a和b属于不同的函数实例
+
+
+</script>
+<body>
+</body>
+</html>

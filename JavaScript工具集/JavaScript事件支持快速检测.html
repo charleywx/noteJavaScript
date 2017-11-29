@@ -1,0 +1,278 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0043)http://yura.thinkweb2.com/isEventSupported/ -->
+<HTML lang=en><HEAD><TITLE>isEventSupported</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css media=screen>SPAN {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0.5em; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+</STYLE>
+
+<META content="MSHTML 6.00.6000.17023" name=GENERATOR></HEAD>
+<BODY>
+<SCRIPT type=text/javascript>
+/**
+ * @method isEventSupported
+ * @param {String} eventName
+ * @param {HTMLElement} element optional
+ * @return {Boolean} true if event is supported
+ *
+ * Note that `isEventSupported` can give false positives when passed augmented host objects, e.g.:
+ * 
+ *     someElement.onfoo = function(){ };
+ *     isEventSupported('foo', someElement); // true (even if "foo" is not supported)
+ *
+ * Also note that in Gecko clients (those that utilize `setAttribute` -based detection) -
+ *
+ *     `isEventSupported('foo', someElement)`;
+ *
+ * - might create `someElement.foo` property (if "foo" event is supported) which apparently can not be deleted
+ * `isEventSupported` sets such property to `undefined` value, but can not fully remove it
+ *
+ */
+var isEventSupported = (function(){
+  
+  var TAGNAMES = {
+    'select':'input','change':'input',
+    'submit':'form','reset':'form',
+    'error':'img','load':'img','abort':'img'
+  }
+  
+  function isEventSupported(eventName, element) {
+
+    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+    eventName = 'on' + eventName;
+    
+    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
+    var isSupported = (eventName in element);
+    
+    if (!isSupported) {
+      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+      if (!element.setAttribute) {
+        element = document.createElement('div');
+      }
+      if (element.setAttribute && element.removeAttribute) {
+        element.setAttribute(eventName, '');
+        isSupported = typeof element[eventName] == 'function';
+
+        // if property was created, "remove it" (by setting value to `undefined`)
+        if (typeof element[eventName] != 'undefined') {
+          element[eventName] = void 0;
+        }
+        element.removeAttribute(eventName);
+      }
+    }
+    
+    element = null;
+    return isSupported;
+  }
+  return isEventSupported;
+})();
+
+var isEventSupportedWithCache = (function(){
+  
+  var TAGNAMES = {
+    'select':'input','change':'input',
+    'submit':'form','reset':'form',
+    'error':'img','load':'img','abort':'img'
+  }, 
+  cache = { };
+  
+  function isEventSupported(eventName, element) {
+    var canCache = (arguments.length == 1);
+    
+    // only return cached result when no element is given
+    if (canCache && cache[eventName]) {
+      return cache[eventName];
+    }
+    
+    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+    eventName = 'on' + eventName;
+    
+    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
+    var isSupported = (eventName in element);
+    
+    if (!isSupported) {
+      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+      if (!element.setAttribute) {
+        element = document.createElement('div');
+      }
+      if (element.setAttribute && element.removeAttribute) {
+        element.setAttribute(eventName, '');
+        isSupported = typeof element[eventName] == 'function';
+
+        // if property was created, "remove it" (by setting value to `undefined`)
+        if (typeof element[eventName] != 'undefined') {
+          element[eventName] = void 0;
+        }
+        element.removeAttribute(eventName);
+      }
+    }
+    
+    element = null;
+    return canCache ? (cache[eventName] = isSupported) : isSupported;
+  }
+  return isEventSupported;
+})();
+
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+
+function w(name, element) {
+  document.write(name + ': ' + (
+    isEventSupported(name, element)
+      ? '<span style="background-color:green;color:white;">true</span>' 
+      : '<span style="background-color:red;color:white;">false</span>'
+    ) + '<br>');
+}
+
+document.write('<pre>' + isEventSupported + '</pre><br><br>');
+
+document.write('<h2>Mouse events:</h2>');
+
+w('click');
+w('dblclick');
+w('mousedown');
+w('mouseup');
+w('mouseover');
+w('mousemove');
+w('mouseout');
+
+document.write('<h2>Key events:</h2>');
+
+w('keypress');
+w('keydown');
+w('keyup');
+
+document.write('<h2>HTML events</h2>');
+
+w('load');
+w('unload', window);
+w('abort');
+w('error');
+
+document.write('<h2>View events</h2>');
+
+w('resize', window);
+w('scroll');
+
+document.write('<h2>Form events:</h2>');
+
+w('submit');
+w('reset');
+
+document.write('<h2>Form controls\' events:</h2>');
+
+w('select');
+w('change');
+
+document.write('<h2>Activation events:</h2>');
+
+w('focus');
+w('blur');
+
+document.write('<h2>MSHTML DOM events:</h2>');
+
+w('cut');
+w('copy');
+w('paste');
+w('beforecut');
+w('beforecopy');
+w('beforepaste');
+w('afterupdate');
+w('beforeupdate');
+w('cellchange');
+w('dataavailable');
+w('datasetchanged');
+w('datasetcomplete');
+w('errorupdate');
+w('rowenter');
+w('rowexit');
+w('rowsdelete');
+w('drag');
+w('dragstart');
+w('dragenter');
+w('dragover');
+w('dragleave');
+w('dragend');
+w('drop');
+w('selectstart');
+w('mouseenter');
+w('mouseleave');
+w('activate');
+w('beforeactivate');
+w('deactivate');
+w('beforedeactivate');
+w('focusin');
+w('focusout');
+w('stop', document);
+w('readystatechange');
+w('beforeprint', document.body);
+w('afterprint', document.body);
+w('beforeunload', window);
+
+document.write('<h2>Unexistent (most likely) events:</h2>');
+
+w('click2');
+w('foobarbaz');
+
+document.write('<h2>Unexistent in Opera <=10a</h2>');
+
+w('contextmenu');
+
+document.write('<h2>iPhone touch/gesture events</h2>');
+
+w('touchstart');
+w('touchend');
+w('touchmove');
+w('touchcancel');
+
+document.write('<br>');
+
+w('gesturestart');
+w('gesturechange');
+w('gestureend');
+
+document.write('<h2>HTML5 events</h2>');
+
+w('hashchange', document.body);
+w('online', document.body);
+w('offline', document.body);
+w('message', window);
+w('undo', document.body);
+w('redo', document.body);
+w('storage', window);
+w('popstate', window);
+
+w('canplay', document.createElement('video'));
+w('seeking', document.createElement('video'));
+w('seekend', document.createElement('video'));
+
+document.write('<br>');
+
+w('abort');
+w('beforeunload');
+w('contextmenu');
+w('drag');
+w('dragend');
+w('dragenter');
+w('dragleave');
+w('dragover');
+w('dragstart');
+w('drop');
+w('error');
+w('message');
+w('mousewheel');
+w('resize');
+w('scroll');
+w('unload');
+
+
+document.write('<h2>Proprietary</h2>');
+
+w('pageshow', window);
+w('pagehide', window);
+
+
+</SCRIPT>
+</BODY></HTML>

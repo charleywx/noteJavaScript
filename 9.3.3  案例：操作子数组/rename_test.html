@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】
+
+var a = [1,2,3,4,5]; 				// 定义数组
+a.splice(1,2,3,4,5) 				// 执行删除和插入操作
+alert(a); 							// 返回[1, 3,4,5,4,5]
+
+var a = [1,2,3,4,5]; 				// 定义数组
+a.splice(2); 						// 从第三个元素开始执行删除
+alert(a); 							// 返回[1, 2]
+
+a.splice(2,2); 						// 从第三个元素开始删除二个元素
+alert(a); 							// 返回[1, 2, 5]
+
+
+a.splice(2,0,0,0,0); 				// 执行插入多个元素操作
+alert(a); 							// 返回[1, 2, 0, 0, 0, 3, 4, 5]
+
+var a = [1,2,3,4,5]; 				// 定义数组
+var b = a.splice(2); 				// 从第三个元素开始执行删除
+alert(b); 							// 被删除的子数组是[1, 2]
+
+var b = a.splice(2,0); 			// 不执行删除操作
+alert(b.constructor == Array); 	// 返回true，说明是一个空数组
+
+var a = [1,2,3,4,5]; 				// 定义数组
+var b = a.splice(6,2,2,3); 		// 起始值大于length属性值
+alert(a); 							// 返回[1, 2, 3, 4, 5, 2, 3]
+
+var a = [1,2,3,4,5]; 				// 定义数组
+var b = a.splice(-2,-2,2,3); 		// 第一、二个参数都为负值
+alert(a); 							// 返回[1, 2, 3, 2, 3, 4, 5]
+
+
+//【示例2】
+
+var a = [1,2,3,4,5]; 		// 定义数组
+var b = a.slice(2,5); 		// 截取数组中第三个元素到第六个元素前的所有元素
+alert(b); 					// 返回[3, 4, 5]
+
+var b = a.slice(2); 		// 截取数组中第三个元素，以及后面所有元素
+alert(b); 					// 返回[3, 4, 5]
+
+var b = a.slice(-4,-2); 	
+	// 截取倒数第四个元素，直到倒数第二个元素前的所有元素
+alert(b); 					// 返回[2, 3]
+
+var b = a.slice(-2,-4); 
+	// 截取倒数第二个元素，直到倒数第四个元素前的所有元素
+alert(b); 					// 返回空集
+
+var b = a.slice(3,10); 	// 截取第四个元素，直到后面所有元素
+alert(b); 	// 返回[ 4, 5]
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

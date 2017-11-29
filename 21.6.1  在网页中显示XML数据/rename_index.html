@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title></title>
+<script type="text/javascript">
+function readXML() {
+	var url = "goodss.xml";
+	if(window.ActiveXObject) {      //IE
+		var xmldoc = new ActiveXObject("Microsoft.XMLDOM");
+		xmldoc.onreadystatechange = function() {
+			if(xmldoc.readyState == 4) createTable(xmldoc);
+		}
+		xmldoc.load(url);
+	}
+	else if(document.implementation&&document.implementation.createDocument) {   // Mozilla......
+		var xmldoc = document.implementation.createDocument("", "", null);
+		xmldoc.onload=function(){
+			xmldoc.onload =  createTable(xmldoc);
+		}
+		xmldoc.load(url);
+	}
+}
+function createTable(xmldoc) {
+	var table = document.createElement("table");
+	parentTd.appendChild(table);     //在指定位置创建表格
+	var header = table.createTHead();
+	var headerrow = header.insertRow(0);
+	headerrow.height="27";  //设置表头高度
+	headerrow.insertCell(0).appendChild(document.createTextNode("商品名称"));
+	headerrow.insertCell(1).appendChild(document.createTextNode("类别"));
+	headerrow.insertCell(2).appendChild(document.createTextNode("单位"));
+	headerrow.insertCell(3).appendChild(document.createTextNode("单价"));
+	var goodss = xmldoc.getElementsByTagName("goods");
+	for(var i=0;i<goodss.length;i++) {
+		var g = goodss[i];
+		var name = g.getAttribute("name");
+		var type = g.getElementsByTagName("type")[0].firstChild.data;
+		var goodsunit = g.getElementsByTagName("goodsunit")[0].firstChild.data;
+		var price = g.getElementsByTagName("price")[0].firstChild.data;
+		var row = table.insertRow(i+1);
+		row.insertCell(0).appendChild(document.createTextNode(name));
+		row.insertCell(1).appendChild(document.createTextNode(type));
+		row.insertCell(2).appendChild(document.createTextNode(goodsunit));
+		row.insertCell(3).appendChild(document.createTextNode(price));
+	}
+}
+window.onload =function(){
+	readXML()
+}
+</script>
+<style type="text/css">
+#parentTd table {/* 表格基本样式 */
+    table-layout: fixed; 								/* 固定表格布局，优化解析速度*/
+    empty-cells: show; 								/* 显示空单元格 */
+    margin: 0 auto; 								/* 居中显示 */
+    border-collapse: collapse; 						/* 合并单元格边框 */
+    border: 1px solid #cad9ea; 						/* 边框样式 */
+    color: #666; 									/* 灰色字体 */
+    font-size: 12px; 								/* 字体大小 */
+    width:100%;
+}
+#parentTd th {/* 列标题样式 */
+    background-repeat: repeat-x; 						/* 定义水平平铺 */
+    height: 30px; 									/* 固定高度 */
+    font-weight:bold；
+}
+#parentTd td { height: 20px; /* 固定高度 */ }/* 单元格的高度 */
+#parentTd td, th {/* 单元格的边框线和补白 */
+    border: 1px solid #cad9ea; 			/* 单元格边框线，应与表格边框线一致 */
+    padding: 0 1em 0; 					/* 单元格左右两侧的补白，一个字距 */
+}
+</style>
+</head>
+
+<body>
+<table width="777" height="482"  border="0" align="center" cellpadding="0" cellspacing="0" background="images/bg.jpg">
+    <tr>
+        <td width="204" height="229" valign="top">&nbsp;</td>
+        <td width="551" height="229" valign="top">&nbsp;</td>
+        <td width="22" valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="204" height="253" valign="top">&nbsp;</td>
+        <td valign="top" id="parentTd">&nbsp;</td>
+        <td width="22" valign="top">&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

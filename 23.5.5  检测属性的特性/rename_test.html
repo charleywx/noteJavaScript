@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】下面示例在修改属性值时，先进行检测，如果属性值可读写，则修改该属性值。
+var obj = { pasta: "spaghetti", length: 10 };
+if(!Object.isFrozen(obj)){
+	obj.pasta = 50;
+}
+Object.freeze(obj);
+document.write(obj.pasta);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

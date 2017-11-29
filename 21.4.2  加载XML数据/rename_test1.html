@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset="gb2312">
+</head>
+<body>
+<script type="text/javascript">
+
+var s = "<recordset><record><ProductID>1</ProductID><ProductName>苹果汁</ProductName></record></recordset>";
+var o = new DOMParser();
+var xmlDom = o.parseFromString(s,"text/xml");
+
+
+
+
+var e = xmlDom.documentElement.firstChild;
+
+alert(e.nodeName)
+
+
+
+
+
+</script>
+</body>
+</html>

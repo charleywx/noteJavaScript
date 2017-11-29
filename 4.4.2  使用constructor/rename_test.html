@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】下面代码可以检测对象直接量和数组直接量的类型。
+var o = {};
+var a = [];
+alert(o.constructor == Object);	// 返回true
+alert(a.constructor == Array); 	// 返回true
+
+var value = 1; 					// 输入不同类型的值（第一列）
+alert(typeof value); 			// 返回typeof运算符返回的字符串（第二列）
+alert(value.constructor); 		// 返回constructor属性返回的对象（第三列）
+
+
+
+
+//【示例2】
+var value = undefined;
+alert(typeof value); 					// 返回字符串"undefined"
+alert(value && value.constructor); 	// 返回undefined
+var value = null;
+alert(typeof value); 					// 返回字符串"object"
+alert(value && value.constructor); 	// 返回null
+
+alert(10.constructor);
+
+alert((10).constructor);
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

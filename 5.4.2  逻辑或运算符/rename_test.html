@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例】针对下面三个表达式：
+var n = 3;
+(n == 1) && alert(1);
+(n == 2) && alert(2);
+(n == 3) && alert(3);
+( ! n) && alert("null");
+
+var n = 2;
+(n == 1) && alert(1)||(n == 2) && alert(2)||(n == 3) && 
+alert(3)||( ! n) && alert("null");
+
+var n = 2;
+((n == 1) && alert(1) ) || ((n == 2) && alert(2)) || ((n == 3) && 
+alert(3) ) || (( ! n) && alert("null"));
+
+var n = 2;
+((n == 1) && alert(1) )	|| 		// 为true时，结束并返回值
+((n == 2) && alert(2)) 	|| 		// 为true时，结束并返回值
+((n == 3) && alert(3) ) 	|| 		// 为true时，结束并返回值
+(( ! n) && alert("null")); 		// 为true时，结束并返回值
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

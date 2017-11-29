@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset="gb2312">
+</head>
+
+<body>
+<script language="javascript" type="text/javascript">
+
+var s = "<recordset><record><ProductID>1</ProductID><ProductName>苹果汁</ProductName></record></recordset>";
+var o = new DOMParser();
+var xmlDom = o.parseFromString(s,"text/xml");
+
+var s = text(xmlDom.documentElement);
+alert(s);
+
+function text(o) {
+    var s = "";
+    for (var i = 0; i < o.childNodes.length; i++) {
+       if (o.childNodes[i].hasChildNodes()) {
+           s += text(o.childNodes[i]);
+       } else {
+           s += o.childNodes[i].nodeValue;
+       }
+    }
+    return s;
+}
+
+
+</script>
+</body>
+</html>

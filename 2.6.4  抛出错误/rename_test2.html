@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+function CustomError(message){
+      this.name='CustomError';
+      this.message = message;
+}
+CustomError.prototype = new Error();
+throw new CustomError("My message");
+
+</script>
+</head>
+<body>
+</body>
+</html>
+
+
+

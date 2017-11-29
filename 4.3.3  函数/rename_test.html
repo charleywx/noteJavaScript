@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】可以把函数作为一个值进行传递。
+var a = function(){				// 把函数作为值赋值给变量a
+    return 1;
+}
+alert(a());							// 计算变量a，实际上就是调用匿名函数
+
+//【示例2】下面示例演示了把函数作为值传递给对象的属性，这个属性就变成了一个方法。
+var o = {
+    alert : function(x){ 			// 把函数传递给对象属性
+        alert("温馨提示：\n\n    " + x);
+    }
+}
+o.alert("你吃饭了吗？");				// 定义你的提示对话框
+
+//【示例3】构造函数是函数的一种特殊类型，构造函数通过this关键字定义属性，然后通过运算符new创建实例。
+function f(){						// 构造函数
+    this.a =1;
+    this.b = function(){
+        return this.a + this.a;
+    };
+}
+var f1 = new f();
+var a = f1.a; 						// 返回1，即函数包含的数据
+
+//【示例4】下面是使用function语句声明的两个同名函数f，声明之后马上进行调用，代码如下：
+function f(){						// 声明函数f
+    return 1; 
+}
+alert(f());							// 返回2
+function f(){						// 声明函数f
+    return 2; 
+}
+alert(f());							// 返回2
+
+var f = function(){				// 定义匿名函数f
+    return 1; 
+}
+alert(f());							// 返回1
+function f(){						// 声明函数f
+    return 2; 
+}
+alert(f());							// 返回1
+
+function f(){						// 声明函数f
+    return 1;
+}
+alert(f());							// 返回1
+var f = function(){				// 定义匿名函数f
+    return 2;
+}
+alert(f());							// 返回2
+
+var f = function(){				// 定义匿名函数f
+    return 1;
+}
+alert(f());							// 返回1
+var f = function(){				// 定义匿名函数f
+    return 2;
+}
+alert(f());							// 返回2
+
+//【示例5】在下面代码中，把两个被声明的同名函数放在不同的代码段中，则在预编译时，不会出现相互覆盖：
+
+// JavaScript脚本段1
+function f(){						// 声明函数f
+    return 1;
+}
+alert(f());							// 返回1
+</script>
+<script>
+// JavaScript脚本段2
+function f(){						// 声明函数f
+    return 2;
+}
+alert(f());							// 返回2
+</script>
+
+<script>
+// JavaScript脚本段1
+function f(){						// 声明函数f
+    return 1;
+}
+alert(f());							// 返回1
+</script>
+<script>
+// JavaScript脚本段2
+alert(f());							// 返回1
+</script>
+
+
+
+
+</head>
+<body>
+</body>
+</html>

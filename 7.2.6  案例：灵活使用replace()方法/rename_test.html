@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】
+var s = 'script language = "javascript" type= " text / javascript"';   
+	// 定义字符串
+var f = function($1){ 
+	// 定义替换文本函数，参数为第一个子表达式匹配文本
+    return $1.substring( 0, 1 ).toUpperCase() + $1.substring( 1 ); 
+	// 把匹配文本的首字母转换为大写
+}
+var a = s.replace( /(\b\w+\b)/g, f ); 			// 匹配文本并进行替换
+alert( a ); 
+	// 返回字符串Script Language = "Javascript" Type = " Text /Javascript"
+
+//【示例2】对于上面示例，还可以进一步延伸，使用小括号以获取更多匹配文本的信息。例如，直接利用小括号传递单词的首字母，然后进行大小写转换处理：
+var s = 'script language = "javascript" type= " text / javascript"';
+var f = function($1,$2,$3){ 	// 定义替换文本函数，请注意参数的变化
+    return $2.toUpperCase()+$3 ;
+}
+var a = s.replace( /\b(\w)(\w*)\b/g, f );
+ 	// 返回字符串Script Language = "Javascript" Type = " Text /Javascript"
+
+//【示例3】把上面示例中替换文本函数改为如下形式：
+var f = function(){
+    return arguments[1].toUpperCase()+arguments[2] ;
+}
+
+//【示例4】
+var s = 'script language = "javascript" type= " text / javascript"';
+var f = function(){
+    for( var i = 0; i < arguments.length; i ++ ){
+        alert( "第" + ( i + 1 ) + "个参数的值：" + arguments[i] );
+    }
+}
+var a = s.replace( /\b(\w)(\w*)\b/g, f );
+
+//【示例5】下面代码能够自动提取字符串中的分数，并汇总、算出平均分。然后利用replace()方法提取每个分值，与平均分进行比较以决定替换文本的具体信息。
+var s = "张三56分，李四74分，王五92分，赵六84分";	// 定义字符串直接量
+var a = s.match( /\d+/g ), sum = 0; 		// 匹配出所有分值，输出为数组
+for( var i= 0 ; i<a.length ; i++){			// 遍历数组，求总分
+    sum += parseFloat(a[i]); 				// 把元素值转换为数值后递加
+};
+var avg = sum / a.length; 					// 求平均分
+function f(){
+    var n = parseFloat(arguments[1]); 
+	// 把匹配的分数转换为数值，第一个子表达式
+    return n + "分" + " ( " + (( n > avg ) ? ( "超出平均分" + ( n - avg ) ) : 
+( "低于平均分" + ( avg - n ) )) + "分 ) ";	// 设计替换文本的内容
+}
+var s1 = s.replace( /(\d+)分/g, f ); 			// 执行匹配、替换操作
+alert( s1 ); 					
+// 返回字符串“张三56 分(低于平均分20.5 分)，李四74分(低于平均分2. 5分)，王五92分( 超出平均分15 .5分 )， 赵六84分 ( 超出平均分7. 5分)”
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

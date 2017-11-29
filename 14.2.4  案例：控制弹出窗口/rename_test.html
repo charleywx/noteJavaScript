@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例】下面示例演示了如何自动弹出一个窗口，然后设置30秒之后自动关闭该窗口，同时还可以单击超链接，更换弹出窗口内显示的网页URL。
+var url = "http:// www.mysite.cn/";
+var features = "height=100, width=100, top=100, left=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no";
+document.write('<a href="http:// www.baidu.com/" target="newW" >切换到百度首页</a>');
+var me = window.open (url, "newW", features);
+setTimeout(function(){
+    me.close();
+},30000);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】先设计一个掺元类F，设想定义两个子类A和B，希望子类A和B能够继承掺元类F的通用方法getx()和gety()。代码如下：
+var F = function(x,y){ 	// 构造函数F，掺元类
+    this.x =x; 				// 本地属性x
+    this.y = y; 			// 本地属性y
+}
+F.prototype = {			// 掺元类的原型对象
+    getx : function(){		// 原型方法getx()
+        return this.x;
+    },
+    gety : function(y){ 	// 原型方法gety()
+        return this.y;
+    }
+}
+
+A = function(x,y){ 		// 子类A
+    F.call(this,x,y) 	// 类继承，把掺元类F的本地属性继承过来，并传递参数
+};
+B = function(x,y){ 		// 子类B
+    F.call(this,x,y) 	// 类继承，把掺元类F的本地属性继承过来，并传递参数
+};
+
+// 掺元类继承封装函数，其中参数Sub表示子类，参数Sup表示掺元类
+function extend(Sub,Sup){ 
+    for(m in Sup.prototype){ 		// 遍历掺元类的原型对象
+        if(!Sub.prototype[m]){ 		// 如果子类没有存在同名成员
+            Sub.prototype[m] = Sup.prototype[m]; 
+			// 则复制掺元类原型成员给子类原型对象
+        }
+    }
+}
+
+extend(A,F); 					// 继承F的子类A
+extend(B,F); 					// 继承F的子类B
+
+var a = new A(1,2); 			// 实例化A
+var b = new B(10,20); 			// 实例化B
+alert(a.getx());				// 返回1
+alert(a.gety());				// 返回2
+alert(b.getx());				// 返回10
+alert(b.gety());				// 返回20
+
+//【示例2】也可以利用这种方法，把多个子类合并到一个类中，实现多重继承。下面的示例定义了两个类A和B，并分别为它们定义两个原型方法。
+var A = function(){}			// 类A
+A.prototype = {				// 类A的原型对象
+    x : function(){				// 原型方法x()
+        return "x";
+    }
+}
+var B = function(){}			// 类B
+B.prototype = {				// 类B的原型对象
+    y : function(){				// 原型方法y()
+        return "y";
+    }
+}
+C = function(){};				// 空类C
+extend(C,A); 					// 把类A继承给类C
+extend(C,B); 					// 把类B继承给类C
+var c = new C();				// 实例化类C
+alert(c.x())					// 返回字符x
+alert(c.y())					// 返回字符y
+
+</script>
+</head>
+<body>
+</body>
+</html>

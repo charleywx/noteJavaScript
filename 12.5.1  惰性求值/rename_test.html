@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+var t; 
+function f(){
+    t = t ? t : new Date();
+    return t;
+}
+f();	// 调用函数
+
+var f =(function(){
+    var t;
+    return function(){
+        t = t ? t : new Date();
+        return t;
+    }
+})();
+f();
+
+var f = function() {
+    var t = new Date();
+    f = function() {
+        return t;
+    }
+    return f();
+};
+f();
+
+
+</script>
+
+
+<body>
+</body>
+</html>

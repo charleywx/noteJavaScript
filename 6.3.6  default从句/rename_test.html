@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】把上节示例按如下顺序调整：
+switch (a = 3){
+    default: 				// 默认不匹配所有case从句时执行该从句下的句子
+        alert(3);
+        break;
+    case 1:
+        alert(1);
+        break;
+    case 2:
+        alert(2);
+        break;
+}
+
+//【示例2】在下面结构中，switch语句会先检测case标签表达式的值，由于case从句中标签表达式值都不匹配，则跳转回来执行default从句中的子句（弹出提示3），然后继续执行case 1和case 2从句中的子句（分别弹出提示1和2）。但是如果存在相匹配的case从句，就会执行该从句中的子句，并按顺序执行下面的子句，但是不会再跳转返回执行default从句中的子句。
+switch (a = 3){
+    default:
+        alert(3);
+    case 1:
+        alert(1);
+    case 2:
+        alert(2);
+}
+
+//【示例3】default从句常用于处理所有可能性之外的情况。例如，处理异常，或者处理默认行为、默认值。但是，下面代码就存在滥用default从句问题。
+switch (opr){
+    case "add" : 				// 正常枚举
+        x = a + b;
+        break;
+    case "sub" : 				// 正常枚举
+        x = a - b;
+        break;
+    case "mul" : 				// 正常枚举
+        x = a * b;
+        break;	
+    default : 					// 异常枚举
+        x = a / b;
+        break;
+}
+
+//【示例4】显然，如果使用如下的分支结构，就会更加合理：
+switch (opr){
+    case "add" : 				// 正常枚举
+        x = a + b;
+        break;
+    case "sub" : 				// 正常枚举
+        x = a - b;
+        break;
+    case "mul" : 				// 正常枚举
+        x = a * b;
+        break;
+    case "div" : 				// 正常枚举
+        x = a / b;
+        break;
+}
+
+//【示例5
+switch (opr){
+    case "add" : 				// 正常枚举
+        x = a + b;
+        break;
+    case "sub" : 				// 正常枚举
+        x = a - b;
+        break;
+    case "mul" : 				// 正常枚举
+        x = a * b;
+        break;
+    case "div" : 				// 正常枚举
+        x = a / b;
+        break;
+    default: 					// 异常处理
+        alert("出现非预期的0pr值");
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

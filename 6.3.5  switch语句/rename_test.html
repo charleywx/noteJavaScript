@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】针对上一节示例，使用switch语句来设计：
+switch (a = 3){ 				// 指定多重条件表达式
+    case 1: 					// 从句1
+        alert(1);
+        break; 					// 停止执行，跳出switch结构
+    case 2: 					// 从句2
+        alert(2);
+        break; 					// 停止执行，跳出switch结构
+    case 3: 					// 从句3
+        alert(3);
+}
+
+//【示例2】从ECMAScript 3版本开始允许case从句后面label可以是任意的表达式。
+switch (a = 3){
+    case 3-2: 					// 表达式标签
+        alert(1);
+        break;
+    case 1+1: 					// 表达式标签
+        alert(2);
+        break;
+    case b=3: 					// 赋值表达式
+        alert(3);
+}
+
+//【示例3】针对上一个示例代码，如果把第三个case后的表达式的值设置为字符串，则最终被解析时，不会弹出提示信息。
+switch (a = 3){
+    case 3-2: 					// 表达式标签
+        alert(1);
+        break;
+    case 1+1: 					// 表达式标签
+        alert(2);
+        break;
+    case b="3":					// 改变标签值的类型，则就无法进行匹配
+        alert(3);
+}
+
+//【示例4】在下面多重条件结构中，虽然匹配了case标签1，由于该标签没有包含可执行的语句，于是就会延续执行case标签2中的子句，此时就没有与标签2的表达式值进行比较，直接弹出提示信息2。如果没有遇到break语句，还会继续执行，直到结束。如下：
+switch (a = 1){
+    case 1: 				// 空匹配
+    case 2:
+        alert(2);
+        break;
+    default:
+        alert(3);
+        break;
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

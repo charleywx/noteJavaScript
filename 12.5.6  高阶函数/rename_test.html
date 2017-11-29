@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面这一个对日期类型排序的sort()。
+// 声明3个对象，每个对象都有属性id和date  
+var a  = new Object();  
+var b  = new Object();  
+var c  = new Object();  
+a.id   = 1;  
+b.id   = 2;  
+c.id   = 3;  
+a.date = new Date(2012,3,12);  
+b.date = new Date(2012,1,15);  
+c.date = new Date(2012,2,10);  
+// 存放在arr数组中  
+var arr = [a, b, c];  
+//开始调试，留意id的排列是按1、2、3这样的顺序的  
+arr.sort(  
+  function (x,y) {  
+    return x.date-y.date;  
+  }  
+);  //已经对arr排序了，发现元素顺序发生变化，id也发生变化。排序的依据是按照日期进行的  
+
+//【示例2】除了了解函数作为参数使用外，下面再看看函数返回值作为函数的情况。定义一个wrap函数，该函数的主要用途是产生一个包裹函数。  
+function wrap(tag) {
+    var stag = '<' + tag + '>';
+    var etag = '</' + tag.replace(/s.*/, '') + '>';
+    return function(x) {
+        return stag + x + etag;
+    }
+}
+var B = wrap('B');
+document.write(B('粗粗体字')); 
+document.write('<br>');
+document.write(wrap('B')('粗体字'));
+
+//【示例3】实际上，map()函数即为一种高阶函数，在很多的函数式编程语言中均有此函数。map(array, func)的表达式已经表明，将func函数作用于array中的每一个元素，最终返回一个新的array。应该注意的是，map对array和func的实现是没有任何预先的假设的，因此称之为“高阶”函数。
+function map(array, func) {
+    var res = [];
+    for(var i = 0, len = array.length; i < len; i++) {
+        res.push(func(array[i]));
+    }
+    return res;
+}
+var mapped = map([1, 3, 5, 7, 8], function(n) {
+    return n = n + 1;
+});
+document.write(mapped);//2,4,6,8,9
+var mapped2 = map(["one", "two", "three", "four"], function(item) {
+    return "(" + item + ")";
+});
+document.write(mapped2); //one),(two),(three),(four)，为数组中的每个字符串加上括号mapped和mapped2均调用了map，但是得到了截然不同的结果，因为map的参数本身
+
+</script>
+
+
+<body>
+</body>
+</html>

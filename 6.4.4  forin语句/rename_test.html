@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例演示了如何利用for/in语句遍历数组，并读取枚举中临时变量和元素的值的方法：
+var a = [1, true, "abc", 34, false]; 	// 声明并初始化数组变量
+for(var b in a) 						// 遍历数组
+{
+    alert(b); 							// 显示枚举中临时变量值
+    alert(a[b]); 						// 显示每个元素的值
+}
+
+//【示例2】针对上面示例，可以使用如下两种结构实现相同的设计目的。
+
+var a = [1, true, "abc", 34, false];
+for(var b = 0; b < a.length; b ++ )
+{
+    alert(b);
+    alert(a[b]);
+}
+
+var a = [1, true, "abc", 34, false];
+var b = 0;
+while(b < a.length )
+{
+    alert(b);
+    alert(a[b]);
+    b ++ ;
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

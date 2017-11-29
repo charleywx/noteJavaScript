@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】break语句可以在循环结构中使用，用来退出循环结构。
+for(var i = 0; ;i++)
+{
+    if(i>=10) break; 			// 通过break语句来监测for循环操作
+    alert(i);
+}
+
+for(var i = 0; i < 10; i ++ )
+{
+    alert(i);
+}
+
+
+//【示例2】在下面示例中，设计了一个3层嵌套的循环结构。分别为每层循环定义一个标签，然后在内部通过条件结构来判断循环变量值的变化，并利用带有标签名的break语句进行跳转。
+a :for(var a = 0; a < 10; a ++ ){
+    b :for(var b = 0; b < 10; b ++ ){
+        c :for(var c = 0; c < 10; c ++ ){
+            if(c == 1){
+                alert("c=" + c);
+                break c;
+            }
+            if(b == 1){
+                alert("b=" + b);
+                break b;
+            }
+            if(a == 1){
+                alert("a=" + a);
+                break c;
+            }
+        }
+    }
+}
+
+//【示例3】在下面示例中，设计3个并列的循环结构，企图在它们之间通过break语句和标签语句来实现相互跳转，这是不允许的。此时会提示编译错误，找不到指定的标签名。因为JavaScript在运行break语句时，仅限于当前结构或当前嵌套结构中寻找标签名。
+a :for(var a = 0; a < 10; a ++ ){
+    if(a == 1){
+        alert("a=" + a);
+        break b;
+    }
+}
+b:for(var b = 0; b < 10; b ++ ){
+    if(b == 1){
+        alert("b=" + b);
+        break c;
+    }
+}
+c :for(var c = 0; c < 10; c ++ ){
+    if(c == 1){
+        alert("c=" + c);
+        break a;
+    }
+}
+
+//【示例4】在下面示例中，设计在客户端查找document对象的bgColor属性。如果完全遍历document对象，会浪费很多时间。如果在for/in结构中添加一个if结构判断所枚举的属性名是否等于“bgColor”，如果相等，则使用break语句跳出循环结构。
+for(i in document){
+    if(i.toString() == "bgColor"){
+        document.write("document." + i + "=" + document[i] + "<br />");
+        break;
+    }
+}
+
+//【示例5】在下面嵌套结构中，break语句不是退出for/in循环体，而是退出switch结构体。
+for(i in document){
+    switch(i.toString()){
+        case "bgColor":
+            document.write("document." + i + "=" + document[i] + "<br />");
+            break;
+        default:
+            document.write("没有找到");
+    }
+}
+
+//【示例6】针对上面示例，如果需要退出外层的循环结构，就需要为for语句定义一个标签outloop，然后在break语句中指定该标签名，以便从最内层的多重分支结构中跳出最外层的for/in循环结构体。
+outloop:for(i in document){
+    switch(i.toString()){
+        case "bgColor":
+            document.write("document." + i + "=" + document[i] + "<br />");
+            break outloop;
+        default:
+            document.write("没有找到");
+    }
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

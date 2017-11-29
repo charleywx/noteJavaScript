@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】对于下面语句：
+n = Math.cos(1) + Math.sin(1);
+
+with(Math)
+    n = cos(1) + sin(1);
+
+//【示例2】在实际开发中，可以把它作为代码简写的一种方法，特别是在作用域链很长的时候，使用with语句能够很明显地提高开发速度。
+//<input type="text" />
+//<input type="text" />
+//<input type="text" />
+
+document.getElementsByTagName("input")[0].value = 0;
+document.getElementsByTagName("input")[1].value = 1;
+document.getElementsByTagName("input")[2].value = 2;
+
+
+with(o=document.getElementsByTagName("input")){
+    o[0].value = 0;
+    o[1].value = 1;
+    o[2].value = 3;
+}
+
+//【示例3】考虑到with结构破坏变量的作用域，不推荐使用。如果想简化代码编写，建议使用下面方法：
+var o = document.getElementsByTagName("input");
+o[0].value = 0;
+o[1].value = 1;
+o[2].value = 3;
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

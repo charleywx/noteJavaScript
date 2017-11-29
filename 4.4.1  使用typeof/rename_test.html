@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】下面代码显示使用typeof检测数据类型的方法。
+alert( typeof 1); 				// 返回字符串"number"
+alert( typeof "a");			// 返回字符串"string"
+alert( typeof true); 			// 返回字符串"boolean"
+alert( typeof {});				// 返回字符串"object"
+alert( typeof []);				// 返回字符串"object"
+alert( typeof function(){});	// 返回字符串"function"
+alert( typeof undefined); 		// 返回字符串"undefined"
+alert( typeof null); 			// 返回字符串"object"
+alert( typeof NaN); 			// 返回字符串"number"
+
+//【示例2】由于null值返回类型为object，用户可以定义一个检测简单数据类型的一般方法。
+function type(o){ // 返回值类型数据的类型字符串
+    return (o === null) ? "null" : (typeof o); 	
+// 如果是null值，则返回字符串"null"，否则返回(typeof o)表达式的值
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>

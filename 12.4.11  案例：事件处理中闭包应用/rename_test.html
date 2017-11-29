@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例】希望为页面中特定的元素或标签绑定几个事情，使其能够在鼠标经过、离开和单击时呈现不同的背景颜色，代码如下：
+element.onclick = function(){					// 单击事件
+    element.style.backgroundColor = "red";		// 元素背景色为红色
+}
+element.onmouseover = function(){				// 鼠标经过事件
+    element.style.backgroundColor = "blue";	// 元素背景色为蓝色
+}
+element.onmouseout = function(){				// 鼠标移开事件
+    element.style.backgroundColor = "transparent";
+// 元素背景色为透明
+}
+
+
+function f( name ){ 						// 为指定标签绑定事件的函数
+    var e = document.getElementsByTagName( name );
+// 获取指定标签引用指针
+    if( e ){				// 如果指定的标签存在，则为其绑定各种事件处理函数
+        for( var i in e ){ 	// 遍历标签中每个元素
+            e[i].onclick = function(){				  // 单击事件
+                e[i].style.backgroundColor = "red";   // 元素背景色为红色
+            }
+            e[i].onmouseover = function(){			  // 鼠标经过事件
+                e[i].style.backgroundColor = "blue"; // 元素背景色为蓝色
+            }
+            e[i].onmouseout = function(){			  // 鼠标移开事件
+                e[i]..style.backgroundColor = "transparent";
+                // 元素背景色为透明
+            }
+        }
+    }
+}
+
+
+function f( name ){ 						// 关联指定标签的对象
+    var e = document.getElementsByTagName( name );
+    // 获取指定标签的引用指针
+    if( e ){ 								// 判断是否存在
+        for( var i in e ){ 					// 遍历对象集合
+            e[i].onclick = click				// 为对象绑定事件处理函数
+            e[i].onmouseover = over			// 为对象绑定事件处理函数
+            e[i].onmouseout = out			// 为对象绑定事件处理函数
+        }
+    }
+}
+f.click = function( event, element ){ 		// 事件处理函数
+    element.style.backgroundColor = "red";
+}
+f.over = function( event, element ){ 		// 事件处理函数
+    element.style.backgroundColor = "blue";
+}
+f.out = function( event, element ){ 		// 事件处理函数
+    element.style.backgroundColor = "transparent";
+}
+
+function f( o, m ){				// 实例对象与方法关联处理器
+     return function( e ) {		// 返回闭包函数，并传递事件句柄参数
+         e = e || window.event; 	// 事件对象兼容处理方法
+         return o[m]( e, this ); 
+		   // 返回一个函数调用，在该函数中把对象与事件方法进行绑定
+    };
+}
+
+
+
+
+</script>
+
+
+<body>
+</body>
+</html>

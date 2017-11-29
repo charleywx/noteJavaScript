@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】数值直接量可以细分为整型直接量和浮点型直接量。浮点数就是带有小数点的数值，而整数是不带小数点的数。
+var int = 1;					// 整型数值
+var float = 1.0; 				// 浮点型数值
+
+//【示例2】浮点数可以使用科学计数法来表示。
+var float = 1.2e3;
+//等价于：
+var float = 1.2*10*10*10;
+//或：
+var float = 1200;
+
+//【示例3】
+var float = 1.2e-3;
+//等价于：
+var float = 0.0012;
+//但不等于：
+var float = 1.2*1/10*1/10*1/10; 	// 返回0.0012000000000000001
+//或：
+var float = 1.2/10/10/10;			// 返回0.0012000000000000001
+
+//【示例4】十六进制数值直接量：以“0X”或“0x”作为前缀，后面跟随十六进制的数值直接量。
+var num = 0x1F4; 				// 十六进制数值
+alert(num); 					// 返回500
+
+//【示例5】八进制数值直接量：以数字0为前缀，其后跟随一个八进制的数值直接量。
+var num = 0764; 				// 八进制数值
+
+//【示例6】JavaScript还提供了大量的数值运算函数，这它们都是静态函数，可以直接调用。
+var a = Math.floor(20.5);				// 调用数学函数，下舍入
+var b = Math.round(20.5);				// 调用数学函数，四舍五入
+alert(a); 								// 返回20
+alert(b); 								// 返回21
+
+//【示例7】toString()是一个非常实用的方法，它可以根据所传递的参数把数值转换为对应进制的数值字符串。参数可以接受2~36之间的任意整数，也就是说，该方法可以把数值转换为2~36之间任意一种进制数值字符串。
+var a = 32;
+document.writeln(a.toString(2));		// 返回字符串100000 
+document.writeln(a.toString(4)); 		// 返回字符串200 
+document.writeln(a.toString(16)); 		// 返回字符串20 
+document.writeln(a.toString(30)); 		// 返回字符串12
+document.writeln(a.toString(32)); 		// 返回字符串10
+
+//【提示】
+document.writeln(32.toString(16)); 	// 执行错误
+document.writeln((32).toString(16)); 	// 返回20
+
+</script>
+</head>
+<body>
+</body>
+</html>

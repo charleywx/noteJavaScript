@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<body>
+
+<script>
+function f( o, m ){ 				// 事件处理封装函数
+    return function( e ){ 
+	// 返回闭包函数，将作为一个DOM元素的事件处理器
+        e = e || window.event; 		// 获取事件处理对象
+        return o[m]( e, this );
+ 		// 返回闭包函数，利用传递的必要参数，封装事件处理函数
+    }
+}
+function g( id ){ 		// 封装事件处理器函数，以实现在页面初始化事件中触发
+    return function(){	// 返回事件处理器函数
+        var e = document.getElementsByTagName( id );
+        if( e ){ 		// 判断是否存在指定对象集合
+            for( var i in e ) {						// 变量对象集合
+                e[i].onclick = f( g, "click" ); 
+				// 调用关联处理器，把对象与方法捆绑到事件属性中
+                e[i].onmouseover = f( g, "over" ); 	// 调用关联处理器
+                e[i].onmouseout = f( g, "out" ); 	// 调用关联处理器
+            }
+        }
+    }
+}
+g.click = function( event, element ){
+ 	// 为事件处理封装函数定义额外的事件处理方法
+    element.style.backgroundColor = "red";
+}
+g.over = function( event, element ){ 
+	// 为事件处理封装函数定义额外的事件处理方法
+    element.style.backgroundColor = "blue";
+}
+g.out = function( event, element ){ 
+	// 为事件处理封装函数定义额外的事件处理方法
+    element.style.backgroundColor = "transparent";
+}
+window.onload = g( "p" );		 	// 在页面初始化事件中绑定事件处理函数
+</script>
+<p>p1</p>
+<p>p2</p>
+<p>p3</p>
+
+
+</body>
+</html>

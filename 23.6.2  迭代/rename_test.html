@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例使用forEach迭代数组letters，然后把每个元素的值和下标索引输出显示，如图23-4所示。
+function ShowResults(value, index, ar) {
+    document.write("value: " + value);
+    document.write(" index: " + index);
+    document.write("<br />");
+}
+var letters = ['a', 'b', 'c'];
+letters.forEach(ShowResults);
+ 
+
+//【示例2】下面示例使用forEach迭代数组numbers，然后计算数组元素的和并输出。
+var numbers = [10, 11, 12];
+var sum = 0;
+numbers.forEach(
+    function addNumber(value) { sum += value; }
+);
+document.write(sum);				//33
+
+//【示例3】下面示例演示如何使用thisArg参数，该参数指定可对其引用 this 关键字的对象。
+var obj = {
+    showResults: function(value, index) {
+        var squared = this.calcSquare(value);
+        document.write("value: " + value);
+        document.write(" index: " + index);
+        document.write(" squared: " + squared);
+        document.write("<br />");
+    },
+    calcSquare: function(x) { return x * x }
+};
+var numbers = [5, 6];
+numbers.forEach(obj.showResults, obj);
+numbers.forEach(function(value, index) { this.showResults(value, index) }, obj);
+
+//【示例4】下面示例检测数组numbers中元素是否都为偶数，并进行提示。
+function CheckIfEven(value, index, ar) {
+    document.write(value + " ");
+    if (value % 2 == 0)
+        return true;
+    else
+        return false;
+}
+var numbers = [2, 4, 5, 6, 8];
+if (numbers.every(CheckIfEven))
+    document.write("都是偶数。");
+else
+    document.write("不全为偶数。");// 2 4 5不全为偶数。
+
+//【示例5】下面示例检测数组numbers中元素的值是否在指定范围内。范围值通过一个对象直接量obj来设置。通过本示例演示thisArg参数的用法，该参数指定对其引用 this 关键字的对象。
+var checkNumericRange = function(value) {
+    if (typeof value !== 'number')
+        return false;
+    else 
+        return value >= this.minimum && value <= this.maximum;
+}
+var numbers = [10, 15, 19];
+var obj = { minimum: 10, maximum: 20 }
+if (numbers.every(checkNumericRange, obj))
+    document.write ("都在指定范围内。");
+else
+    document.write ("部分不在范围内。");
+
+//【示例6】下面示例检测数组numbers中元素的值是否都为奇数。如果some方法检测到偶数，则返回true，并提示不全是偶数，如果没有检测到偶数，则提示全部是奇数。
+function CheckIfEven(value, index, ar) {
+    if (value % 2 == 0)
+        return true;
+}
+var numbers = [1, 15, 4, 10, 11, 22];
+var evens = numbers.some(CheckIfEven);
+if(evens)
+    document.write("不全是奇数。");
+else
+    document.write("全是奇数。");
+
+//【示例7】下面示例使用map方法映射数组radii，把数组中每个元素的值平方，乘以PI值，把返回的圆的面积值作为新数组的元素值，最后返回这个新数组。
+function AreaOfCircle(radius) {
+    var area = Math.PI * (radius * radius);
+    return area.toFixed(0);
+}
+var radii = [10, 20, 30];
+var areas = radii.map(AreaOfCircle);
+document.write(areas);				//314,1257,2827
+
+//【示例8】下面示例使用map方法映射数组numbers，把数组中每个元素的值除以divisor的值，然后返回这个新数组。其中回调函数和divisor都作为对象obj的属性存在，通过这种方法演示如何在map中使用thisArg参数。
+var obj = {
+    divisor: 10,
+    remainder: function (value) {
+        return value % this.divisor;
+    }
+}
+var numbers = [6, 12, 25, 30];
+var result = numbers.map(obj.remainder, obj);
+document.write(result);		// 6,2,5,0
+
+//【示例9】下面示例演示如何使用JavaScript内置方法作为回调函数。
+var numbers = [9, 16];
+var result = numbers.map(Math.sqrt);
+document.write(result);  		//3,4
+
+//【示例10】下面示例演示如何使用map方法应用于一个非数组类型上。在示例中通过动态调用的方法（call）把map作用于一个字符串上，则map将遍历字符串中每个字符，并调用回调函数threeChars，把每个字符左右3个字符截取出来，映射到一个新数组中。
+function threeChars(value, index, str) {
+    return str.substring(index - 1, index + 2);
+}
+var word = "Thursday";
+var result = [].map.call(word, threeChars);
+// var result = Array.prototype.map.call(word, threeChars);
+document.write(result);		//Th,Thu,hur,urs,rsd,sda,day,ay
+
+//【示例11】下面示例演示如何使用filter方法筛选出数组中的素数。
+function CheckIfPrime(value, index, ar) {
+    high = Math.floor(Math.sqrt(value)) + 1;
+    for (var div = 2; div <= high; div++) {
+        if (value % div == 0) {
+            return false;
+        }
+    } 
+    return true;
+}
+var numbers = [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53];
+var primes = numbers.filter(CheckIfPrime);
+document.write(primes);			//31,37,41,43,47,53
+
+//【示例12】下面示例演示如何使用filter方法过滤数组中字符串的元素。
+var arr = [5, "element", 10, "the", true];
+var result = arr.filter(
+    function (value) {
+        return (typeof value === 'string');
+    }
+);
+document.write(result);			// element, the
+
+//【示例13】下面示例演示如何使用filter方法过滤window对象包含的以字母css开头的属性名，演示效果如图23-5所示。
+var filteredNames = Object.getOwnPropertyNames(window).filter(IsC);
+for (i in filteredNames)
+    document.write(filteredNames[i] + "<br/>");
+function IsC(value) {
+    var firstChar = value.substr(0, 3);
+    if (firstChar.toLowerCase() == "css")
+        return true;
+    else
+        return false;
+}
+ 
+
+//【示例14】下面示例演示如何使用filter方法过滤数组numbers中值在minimum和maximum范围的元素。
+var checkNumericRange = function(value) {
+    if (typeof value !== 'number')
+        return false;
+    else 
+        return value >= this.minimum && value <= this.maximum;
+}
+
+var numbers = [6, 12, "15", 16, "the", -12];
+var obj = { minimum: 10, maximum: 20 }
+var result = numbers.filter(checkNumericRange, obj);
+document.write(result);			//12,16
+
+//【示例15】下面示例演示如何使用filter方法过滤字符串中每个单词的首字母。
+function CheckValue(value, index, ar) {
+    if (index == 0)
+        return true;
+    else
+        return ar[index - 1] === " ";
+}
+var sentence = "The quick brown fox jumps over the lazy dog."; 
+var subset = [].filter.call(sentence, CheckValue); 
+document.write(subset);			// T,q,b,f,j,o,t,l,d
+
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

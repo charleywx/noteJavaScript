@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+o = {							// 创建对象，并引用该对象给变量o
+    x:1,
+    y:true
+}
+o1 = o; 						// 复制变量o
+alert(delete o); 				// 删除变量o，返回值为true，说明删除成功
+alert(o1.x); 					// 再次读取对象内数据，显示为1，说明对象依然存在
+alert(o.x); 					// 利用o来读取对象内的数据，提示没有定义对象
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

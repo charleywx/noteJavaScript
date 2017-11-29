@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+
+//【示例1】看看下面这3行代码：
+alert(n=5-2*2);					// 返回1
+alert(n=(5-2)*2); 					// 返回6
+alert((n=5-2)*2); 					// 返回6
+
+alert((1+n=5-2)*2); 				// 返回异常
+
+//【示例2】根据运算符的运算顺序，下面代码是按着先右后左的顺序执行运算的。typeof 5运算结果是number，而返回结果“number”又是一个字符串，所以typeof typeof 5最终返回string。同理，1?2:3运算结果为2，而1?0:2就返回0。
+alert(typeof typeof 5); 			// 返回string
+
+alert(typeof (typeof 5));		 	// 返回string
+
+1+2+3+4
+//就等于：
+((1+2)+3)+4
+
+//【示例3】下面代码中，两个运算数都是字符串，但是JavaScript会自动把两个操作数转换为数字，并执行减法运算，返回数字结果。
+alert("10"-"20");					// 返回-10
+
+alert(0?1:2); 						// 返回-2
+
+alert(3>"5"); 						// 返回false
+alert(3>"2"); 						// 返回true
+
+alert("string">5); 					// 返回false
+
+alert(10+20); 						// 返回30
+alert("10"+"20"); 					// 返回"1020"
+
+alert(true*"5"); 					// 返回5
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

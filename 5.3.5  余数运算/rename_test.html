@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+
+//【示例】特殊运算数的运算结果比较特殊，需要特别留意。
+var n = 5; 						// 定义并初始化任意一个数值
+alert(Infinity % n); 			// 返回NaN
+alert(Infinity % Infinity); 	// 返回NaN
+alert(n % Infinity); 			// 返回5
+alert(0 % n); 					// 返回0
+alert(0 % Infinity); 			// 返回0
+alert(n % 0); 					// 返回NaN
+alert(Infinity % 0); 			// 返回NaN
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

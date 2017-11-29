@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】针对上节示例，可以使用for循环结构来设计：
+for(var n = 1; n < 11; n ++ )
+{
+    alert(n);
+}
+
+//【示例2】在下面for结构中，第一个表达式中声明并初始化3个变量。在第二个表达式中为变量m和l执行递加运算，而检测变量n的值是否小于11。在第三个表达式中同时为3个变量执行递加运算。如下：
+for(var n = 1, m = 1, l = 1; m ++ , l ++ , n < 11;  m ++ , l ++ , n ++ )
+{
+    alert(n);
+}
+
+//【示例3】下面的test表达式的逻辑顺序将会导致for循环结构成为死循环，因为m ++ , n < 11, l ++表达式的最后返回值始终是true。
+for(var n = 1, m = 1, l = 1; m ++ , n < 11, l ++ ;  m ++ , l ++ , n ++ )
+{
+    alert(n);
+}
+
+initialization; 				// 声明并初始化循环变量
+while(test) 					// 循环条件
+{
+    statement					// 可执行的循环语句
+    increment; 					// 递增循环变量
+}
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

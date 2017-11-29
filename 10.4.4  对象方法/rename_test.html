@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】由于函数是一类数据，它可以被赋值给对象属性，于是该属性就是对象的一个方法。
+var o = {
+    x:function(){					// 定义对象的方法
+        alert("method");
+    }
+}
+
+var o = {}
+o.x = function(){					// 定义对象的方法
+    alert("method");
+}
+
+o.x();								// 调用对象的方法
+
+//【示例2】对象的方法内部都包含一个this关键字，它总是引用调用该方法的对象。例如，在对象o的x()方法中访问当前对象的y属性值。当使用不同对象调用时，则返回值也不相同。
+var o = {	
+    x:function(){					// 定义对象的方法
+        alert(this.y); 				// 访问当前对象的属性y的值
+    }
+}
+o.x();								// 返回undefined，此时this指向对象o
+var f = o; 							// 复制对象o为f
+f.y = 2; 							// 为对象f单独定义属性y，赋值为2
+f.x();								// 返回2，此时this指向对象f
+
+//【示例3】对象方法与普通函数用法完全相同，可以在方法中传递参数，可以设计返回值。
+var o = {}
+o.x = function(a){					// 定义对象的方法
+    return 10*a;
+}
+var f = o.x(5); 					// 调用方法，设置参数为5
+alert(f);							//返回值50
+
+var o = new Object();			// 对象实例化
+o.name = "o";					// 声明并初始化对象属性
+o.who = function(){			// 定义对象方法
+    alert(this.name); 			// 显示当前对象的名称
+}
+o.who();						// 返回字符o
+
+var o = new Object();			// 对象实例化
+o.name = "o";					// 声明并初始化对象属性
+o.who = function(){			// 定义对象方法
+    alert(o.name); 				// 显示对象o的名称
+}
+o.who();						// 返回字符o
+
+function who(){					// 定义一个抽象化方法
+    alert(this.name);
+}
+var o = new Object();				// 实例化对象o
+o.name = "o";						// 命名为o
+o.who = who; 						// 引用抽象化方法who
+var f = new Object();				// 实例化对象f
+f.name = "f";						// 命名为f
+f.who = who; 						// 引用抽象化方法who
+o.who();							// 调用对象o的方法who，返回字符o
+f.who();							// 调用对象f的方法who，返回字符f
+
+
+function f(){				// 定义方法
+    return this.x + this.y;
+}
+function MyClass(x,y){ 	// 自定义类
+    this.x= x;
+    this.y = y;
+    this.add = f; 		// 把方法封装在类中，这样每个示例都拥有了该方法
+}
+var o = new MyClass(10,20); 	// 实例化类，并初始化参数值
+alert(o.add());				// 调用方法，返回值30
+
+</script>
+</head>
+
+<body>
+</body>
+</html>
