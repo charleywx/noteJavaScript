@@ -1,0 +1,31 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="UTF-8">  
+<title>Insert title here</title>  
+</head>  
+<body>  
+    <p>计数结果:<output id="result"></output></p>  
+    <button onclick="start()">开始worker</button>  
+    <button onclick="stop()">停止worker</button>    
+    <script type="text/javascript">  
+       var w;         
+       function start(){  
+           if(typeof(Worker)!="undefined"){
+               if(typeof(w)=="undefined"){      
+                   w = new Worker("webworker.js");
+               }  
+               w.onmessage = function(e){ 
+                   document.getElementById("result").innerHTML=e.data;  
+               };  
+           }else{  
+               document.getElementById("result").innerHTML="sorry,your browser does not support web workers";  
+           }  
+       }    
+       function stop(){  
+          w.terminate();
+          w=undefined;  
+       }  
+    </script>  
+</body>  
+</html> 

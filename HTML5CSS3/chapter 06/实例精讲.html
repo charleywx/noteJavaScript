@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML5重现QQ邮箱附件拖拽上传</title>
+        <style>
+        	*{
+				margin:0;
+				padding:0;
+				word-wrap: break-word;
+				font-family:"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei",
+				font-style:normal;
+				font-size:100%;
+				list-style:none;
+			}
+			#uploadbox{
+				margin:100px auto; 
+				width:800px; 
+				height:150px; 
+				line-height:150px; 
+				text-align:center; 
+				font-size:24px; 
+				color:#999; 
+				border:3px #c0c0c0 dashed; 
+				position:relative;
+			}
+        </style>
+        <script>
+        	var $ = function(id){return document.getElementById(id);};
+
+			window.onload = function()
+			{
+				var uploadbox = $("uploadbox");
+				
+				uploadbox.ondragover = function(e)
+				{
+					e.preventDefault();
+					this.innerHTML = "ÊÍ·ÅÊó±ê£¬Á¢¼´ÉÏ´«£¡";
+					this.style.background = "#eee";
+					return false;
+				};
+				
+				uploadbox.ondragleave = function()
+				{
+					this.innerHTML = "½«ÎÄ¼þÍÏ×§ÖÁ´ËÇøÓò£¬¼´¿ÉÉÏ´«£¡";
+					this.style.background = "#fff";
+					return false;
+				};
+				
+				uploadbox.ondrop = function(e)
+				{
+					e.preventDefault();
+					var fd = new FormData();
+					for(var i = 0, j = e.dataTransfer.files.length; i < j; i++)
+					{
+						fd.append("files[]", e.dataTransfer.files[i]);
+					}
+					upload(fd);
+					return false;
+				};
+				
+				var upload = function(f)
+				{
+					var xhr = new XMLHttpRequest();
+					xhr.open("POST", "up.php", true);
+					xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest', 'Content-Type', 'multipart/form-data;');
+					xhr.upload.onprogress = function(e)
+					{
+						var percent = 0;
+						if(e.lengthComputable)
+						{
+							percent = 100 * e.loaded / e.total;
+							uploadbox.innerHTML = percent + "%";
+						}
+					};
+					xhr.send(f);
+				};
+			};
+        </script>
+    </head>
+    
+    <body>
+    	<div id="uploadbox">将文件拖拽至此区域，即可上传！</div>
+    </body>
+</html>

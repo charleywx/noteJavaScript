@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#content{
+			margin:20px auto;
+			width: 300px;
+			height: 300px;
+			border:2px red solid;
+		}
+		#content span{
+			display:block;
+			width: 260px;
+			height: 50px;
+			margin:20px;
+			background:#ccc;
+			text-align:center;
+			line-height:50px;
+			font-size:20px;
+		}
+		#content2{
+			margin:0 auto;
+			width: 300px;
+			height: 300px;
+			border:2px solid blue;
+			list-style:none;
+		}
+		#content2 span{
+			display:block;
+			width: 260px;
+			height: 50px;
+			margin:20px;
+			background:#ccc;
+			text-align:center;
+			line-height:50px;
+			font-size:20px;
+		}
+	</style>
+<style>
+	p{
+		color:red;
+		font-size: 20px;
+	}
+	ul{
+		list-style-type:none; 
+	}
+</style>
+	<script>
+	window.onload = function(){
+var cont = document.getElementById("content");	
+var cont2 = document.getElementById("content2");	
+var aSpan = document.getElementsByTagName("span");
+
+for(var i=0;i<aSpan.length;i++){
+	aSpan[i].draggable = true;
+	aSpan[i].flag = false;
+	aSpan[i].ondragstart = function(){
+		this.flag = true;
+	}
+	aSpan[i].ondragend = function(){
+		this.flag = false;
+	}
+}
+//投放区域事件
+cont.ondragenter = function(e){
+	e.preventDefault();
+}
+cont.ondragover = function(e){
+	e.preventDefault();
+}
+cont.ondragleave = function(e){
+	e.preventDefault();
+}
+cont.ondrop = function(e){
+	e.preventDefault();
+	for(var i=0;i<aSpan.length;i++){
+		if(aSpan[i].flag){
+			cont.appendChild(aSpan[i]);	
+		}
+	}
+}
+
+cont2.ondragenter = function(e){
+	e.preventDefault();
+}
+cont2.ondragover = function(e){
+	e.preventDefault();
+}
+cont2.ondragleave = function(e){
+	e.preventDefault();
+}
+cont2.ondrop = function(e){
+	e.preventDefault();
+	for(var i=0;i<aSpan.length;i++){
+		if(aSpan[i].flag){
+			cont2.appendChild(aSpan[i]);	
+		}
+	}
+}
+	}
+	</script>
+</head>
+<body>
+<div id="content"></div>
+<div id="content2">
+	<span>item1</span>
+	<span>item2</span>
+	<span>item3</span>
+	<span>item4</span>
+</div>
+</body>
+</html>

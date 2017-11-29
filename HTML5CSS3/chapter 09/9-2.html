@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var sup = document.getElementById("support");
+			if(typeof Worker!=="undefined"){
+				sup.innerHTML = "您的浏览器支持Web Workers";
+			}else{
+				sup.innerHTML = "您的浏览器不支持Web Workers";
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>检测您的浏览器是否支持Web Workers</h1>
+	<p id="support"></p>
+</body>
+</html>

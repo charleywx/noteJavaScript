@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>webStorage</title>
+	<script>
+		function writeStorage(){
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+
+			// 存储到storage中
+			localStorage.username = username;
+			localStorage.password = password;
+		}
+
+		function updateStorage(){
+			localStorage.username = "李四";
+		}
+		// 输出所有的Storage
+		function readStorage(){
+			console.log(localStorage);
+		}
+	</script>
+</head>
+<body>
+	用户名：<input type="text" id="username" /><br/>
+	密码：<input type="text" id="password" /><br/>
+	<input type="button" value="写入webStorage" onclick="writeStorage()" />
+	<input type="button" value="输出所有的Storage" onclick="readStorage()">
+</body>
+</html>

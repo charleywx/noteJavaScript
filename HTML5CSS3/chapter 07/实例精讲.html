@@ -1,0 +1,79 @@
+﻿<!doctype html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>地理定位</title> 
+<style> 
+#map{  
+width:600px;  
+height:600px; 
+Border:2px solid red; 
+}  
+</style> 
+<!--set the api --> 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"> 
+</script> 
+<script> 
+function findYou(){  
+if(!navigator.geolocation.getCurrentPosition(showPosition,  
+noLocation, {maximumAge : 1200000, timeout : 30000})){  
+document.getElementById("lat").innerHTML=  
+"This browser does not support geolocation.";  
+}  
+}  
+function showPosition(location){  
+var latitude = location.coords.latitude;  
+var longitude = location.coords.longitude;  
+var accuracy = location.coords.accuracy;  
+//创建地图  
+var position = new google.maps.LatLng(latitude, longitude);  
+//创建地图选项  
+var myOptions = {  
+zoom: 18,  
+center: position,  
+mapTypeId: google.maps.MapTypeId.HYBRID  
+};  
+//显示地图  
+var map = new google.maps.Map(document.getElementById("map"),  
+myOptions);  
+document.getElementById("lat").innerHTML=  
+"Your latitude is " + latitude;  
+document.getElementById("lon").innerHTML=  
+"Your longitude is " + longitude;  
+document.getElementById("acc").innerHTML=  
+"Accurate within " + accuracy + " meters";  
+}  
+function noLocation(locationError)  
+{  
+var errorMessage = document.getElementById("lat");  
+switch(locationError.code)  
+{  
+case locationError.PERMISSION_DENIED:  
+errorMessage.innerHTML=  
+"You have denied my request for your location.";  
+break;  
+case locationError.POSITION_UNAVAILABLE:  
+errorMessage.innerHTML=  
+"Your position is not available at this time.";  
+break;  
+case locationError.TIMEOUT:  
+errorMessage.innerHTML=  
+"My request for your location took too long.";  
+break;  
+default:  
+errorMessage.innerHTML=  
+"An unexpected error occurred.";  
+}  
+} 
+ findYou();
+</script> 
+</head> 
+<body> 
+<h1>Your Location</h1> 
+<p id="lat">&nbsp;</p> 
+<p id="lon">&nbsp;</p> 
+<p id="acc">&nbsp;</p> 
+<div id="map"> 
+</div> 
+</body> 
+</html> 

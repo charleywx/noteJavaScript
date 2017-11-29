@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function loadState(){
+			if(navigator.online){
+				console.log("在线");
+			}else{
+				console.log("离线");
+			}
+			//添加事件监听器，实时监听
+			window.addEventListener("在线"function(){
+				console.log("在线");
+			},true);
+			window.addEventListener("离线"function(){
+				console.log("离线");
+			},true);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

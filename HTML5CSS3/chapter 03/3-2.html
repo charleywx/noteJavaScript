@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas矩形</title>
+	
+</head>
+<body>
+	<canvas id="demo" width="300" height="300"></canvas>
+</body>
+<script>    
+    var canvas = document.getElementById("demo");    
+    var context = canvas.getContext("2d");    
+   
+    //使用rect方法    
+    context.rect(10,10,190,190);    
+    context.lineWidth = 2;    
+    context.fillStyle = "#3EE4CB";    
+    context.strokeStyle = "#F5270B";    
+    context.fill();    
+    context.stroke();    
+   
+    //使用fillRect方法    
+    context.fillStyle = "#1424DE";    
+    context.fillRect(210,10,190,190);    
+   
+    //使用strokeRect方法    
+    context.strokeStyle = "#F5270B";    
+    context.strokeRect(410,10,190,190);    
+   
+    //同时使用strokeRect方法和fillRect方法    
+    context.fillStyle = "#1424DE";    
+    context.strokeStyle = "#F5270B";    
+    context.strokeRect(610,10,190,190);    
+    context.fillRect(610,10,190,190);    
+	context.clearRect(100,60,600,100);
+</script> 
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.d1{
+			width: 200px;
+			height: 200px;
+			background: blue;
+			animation:myFirstAni 5s;
+			transform: rotate(0deg);
+			margin:20px;
+		}
+		@keyframes myFirstAni{
+			0%{margin-left: 0px;background: blue;transform: rotate(0deg);}
+			50%{margin-left: 500px;background: red;transform: rotate(720deg);}
+			100%{margin-left: 0px;background: blue;transform: rotate(0deg);}
+		}
+		.d2{
+			width: 200px;
+			height: 200px;
+			background: red;
+			animation:mySecondtAni 5s;
+			transform: rotate(0deg);
+			margin:20px;
+		}
+		@keyframes mySecondtAni{
+			0%{margin-left: 0px;background: red;transform: rotateY(0deg);}
+			50%{margin-left: 500px;background: blue;transform: rotateY(720deg);}
+			100%{margin-left: 0px;background: red;transform: rotateY(0deg);}
+		}
+	</style>
+</head>
+<body>
+	<div class="d1"></div>
+	<div class="d2"></div>
+</body>
+</html>

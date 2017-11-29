@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas三角形</title>
+
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+</body>
+<script>
+	var canvas=document.getElementById("canvas");
+	var cxt=canvas.getContext("2d");
+	cxt.beginPath();
+	cxt.moveTo(250,50);
+	cxt.lineTo(200,200);
+	cxt.lineTo(300,300);
+	cxt.closePath();//填充或闭合 需要先闭合路径才能画
+	//空心三角形
+	cxt.strokeStyle="red";
+	cxt.stroke();
+	//实心三角形
+	cxt.beginPath();
+	cxt.moveTo(350,50);
+	cxt.lineTo(300,200);
+	cxt.lineTo(400,300);
+	cxt.closePath();
+	cxt.fill();
+</script>
+</html>

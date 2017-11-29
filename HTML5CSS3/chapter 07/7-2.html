@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function(){
+		show();
+		function show(){
+			if(navigator.geolocation){
+				document.getElementById("text").innerHTML = "您的浏览器支持HTML5Geolocation！";
+			}else{
+				document.getElementById("text").innerHTML = "您的浏览器不支持HTML5Geolocation！";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<h1 id="text"></h1>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<audio id="player" controls>
+		<source src="Sleep Away.mp3"/>
+		<source src="Sleep Away.ogg"/>
+	</audio>
+<hr/>
+	<!--为audio元素添加四个按钮，分别是播放、暂停、增加声音和减小声音-->
+	<input type="button" value="播放" onclick="document.getElementById('player').play()">
+	<input type="button" value="暂停" onclick="document.getElementById('player').pause()">
+	<input type="button" value="增加声音" onclick="document.getElementById('player').volume+=0.1">
+	<input type="button" value="减小声音" onclick="document.getElementById('player').volume-=0.1">
+</body>
+</html>

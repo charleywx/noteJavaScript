@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;padding:0;
+		}
+		ul{
+			list-style: none;
+		}
+		#nav{
+			width: 800px;
+			height: 50px;
+			margin:20px auto;
+		}
+		#nav>li{
+			width: 25%;
+			height: 50px;
+			float:left;
+			background: #ccc;
+			line-height: 50px;
+			text-align: center;
+		}
+		#nav>li ul{
+			width: 100%;
+		}
+		#nav>li ul li{
+			width: 100%;
+			height: 50px;
+			background: #ccc;
+		}
+		#nav>li ul{
+			display:none;
+		}
+		#nav>li:hover ul{
+			display:block;
+		}
+		#nav li:hover{
+			background: #333;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<ul id="nav">
+		<li>第1项
+			<ul>
+				<li>first</li>
+				<li>second</li>
+				<li>third</li>
+				<li>fourth</li>
+			</ul>
+		</li>
+		<li>第2项
+			<ul>
+				<li>first</li>
+				<li>second</li>
+				<li>third</li>
+				<li>fourth</li>
+			</ul>
+		</li>
+		<li>第3项
+			<ul>
+				<li>first</li>
+				<li>second</li>
+				<li>third</li>
+				<li>fourth</li>
+			</ul>
+		</li>
+		<li>第4项
+			<ul>
+				<li>first</li>
+				<li>second</li>
+				<li>third</li>
+				<li>fourth</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

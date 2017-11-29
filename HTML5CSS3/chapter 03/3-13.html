@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="myCanvas" width="300" height="300" style="border:2px solid red"></canvas>
+</body>
+<script>
+	var myCanvas = document.getElementById("myCanvas");
+	var context = myCanvas.getContext("2d");
+	//obj.x/y为长方形在canvas中的位置
+	//obj.width/height为长方形的宽高
+	var obj = {
+		x:50,
+		y:50,
+		width:200,
+		height:200
+	}
+	//画出一个长方形
+	function rotate(){
+		context.clearRect(0,0,800,800);
+		context.fillStyle = "blue";
+		context.rotate(Math.PI/20);//给出旋转角度
+		context.strokeRect(obj.x,obj.y,obj.width,obj.height);
+		context.fillRect(obj.x,obj.y,obj.width,obj.height);
+	}
+	rotate();
+</script>
+</html>

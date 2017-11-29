@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transition样式3</title>
+	<style type="text/css">	
+	body{
+		background:url('风景.jpg') no-repeat;
+		background-size: 100% 1020px;/*100% 768px*/
+	}	
+	#dock{
+		width: 100%;		position: fixed;
+		bottom: 10px;		text-align: center;
+	}
+	ul{
+		padding: 0;	
+		margin: 0;
+		list-style-type: none;
+	}
+	ul li{
+		display: inline-block;
+		width: 50px;		
+		height: 50px;
+		transition: margin 1s linear;
+	}
+	/*鼠标移上去时的变化*/
+	ul li:hover{
+		margin-left: 25px;
+		margin-right: 25px;
+		/*z-index: 999;*/
+	}
+
+	ul li img{
+		width: 100%;		
+		height: 100%;
+		transition: transform 1s linear;
+		transform-origin: bottom center;
+	}
+	ul li span{
+		display: none;		
+		height:80px;
+		vertical-align: top;		
+		text-align: center;
+		font:14px  宋体 ;		
+		color:#ddd;
+	}	
+	/*鼠标移上去时图标的变化，放大*/
+	ul li:hover img{
+		transform: scale(2, 2);
+	}
+	ul li:hover span{
+		display: block;
+	}
+	
+	</style>
+</head>
+<body>		
+	<div id="dock">
+		<ul>
+			<li><span>ASTY</span><img src="images/as.png"></li>
+			<li><span>Google</span><img src="images/google.png" alt=""></li>
+			<li><span>Inst</span><img src="images/in.png" alt=""></li>
+			<li><span>Nets</span><img src="images/nota.png" alt=""></li>
+			<li><span>Zurb</span><img src="images/zurb.png" alt=""></li>
+			<li><span>FACE</span><img src="images/facebook.png" alt=""></li>
+			<li><span>OTH</span><img src="images/as.png" alt=""></li>
+			<li><span>UYTR</span><img src="images/in.png" alt=""></li>
+		</ul>
+
+	</div> 	
+	
+</body>
+</html>

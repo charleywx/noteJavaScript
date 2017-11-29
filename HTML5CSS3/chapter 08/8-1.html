@@ -1,0 +1,61 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <title>简易数据库示例</title>  
+    <script>
+    //用于保存数据
+    function saveStorage(){  
+    //saveStorage函数的处理流程  
+    //1、从个输入文本框中获取数据  
+    //2、创建对象，将获取的数据作为对象的属性进行保存  
+    //3、将对象转换成JSON格式的文本框  
+    //4、将文本数据保存到localStorage中  
+    var data = new Object;  
+    data.name = document.getElementById('name').value;  
+    data.email = document.getElementById('email').value;  
+    data.tel = document.getElementById('tel').value;  
+    data.memo = document.getElementById('memo').value;  
+    var str = JSON.stringify(data);  
+    localStorage.setItem(data.name,str);  
+    alert("数据已保存。");  
+}  
+
+//用于检索数据  
+function findStorage(id){  
+    //findStorage函数的处理流程  
+    //1、在localStorage中，将检索用的姓名作为键值，获取对应的数据  
+    //2、将获取的数据转换成JSON对象  
+    //3、取得JSON对象的各个属性值，创建要输出的内容  
+    //4、在页面上输出内容  
+    var find = document.getElementById('find').value;  
+    var str = localStorage.getItem(find);  
+    var data = JSON.parse(str);  
+    var result = "姓名：" + data.name + '<br>';  
+    result +="Email:" + data.email + '<br>';  
+    result +="电话号码：" +data.tel + '<br>';  
+    result +="备注：" + data.memo + '<br>';  
+    var target = document.getElementById(id);  
+    target.innerHTML = result;  
+}  
+    </script>  
+</head>  
+<body>  
+    <h1>使用webStorage来做简易数据库示例</h1>  
+    <table>  
+        <tr><td>姓名：</td><td><input type="text" id="name"></td></tr>  
+        <tr><td>Email:</td><td><input type="text" id="email"></td></tr>  
+        <tr><td>电话号码：</td><td><input type="text" id="tel"></td></tr>  
+        <tr><td>备注：</td><td><input type="text" id="memo"></td></tr>  
+        <tr>  
+            <td></td>  
+            <td><input type="button" value="保存" onclick="saveStorage();"></td>  
+        </tr>  
+    </table>  
+    <hr>  
+    <p>检索：<input type="text" id="find">  
+            <input type="button" value="检索" onclick="findStorage('msg');">  
+    </p>  
+    <p id="msg"></p>  
+</body>  
+</html>  

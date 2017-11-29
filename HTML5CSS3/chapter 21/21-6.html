@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transform样式综合示例</title>
+	<style type="text/css">
+	div.box{width:500px;
+		height: 500px;
+		border:1px solid darkgray;}
+	div , div img{
+		width:180px;
+		height: 180px;
+		border:1px solid darkgray;
+	}
+	#d1{
+		transform: translate(90px, 0) rotate(30deg) skew(-30deg, 0deg) translate(38px, 32px) scaleX(1.16);
+		/*X轴平移90px,旋转30度，倾斜X轴-30度，再平移X轴38px，Y轴32px，缩放X轴1.16倍*/
+	}
+	#d2{		
+		float: left;
+		transform: skewY(30deg);
+	}
+	#d3{
+		float: left;	
+		transform: skewY(-30deg);
+	}	
+	
+	</style>
+</head>
+<body>	
+	<div class="box">
+	
+	<div id="d1"><img src="top.jpg"></div> 
+	<div id="d2"><img src="left.jpg"></div> 
+	<div id="d3"><img src="right.jpg"></div>
+	</div>
+</body>
+</html>

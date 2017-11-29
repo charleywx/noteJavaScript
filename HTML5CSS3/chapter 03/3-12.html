@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas{
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="300" height="150"></canvas>
+</body>
+<script>
+    var myCanvas = document.getElementById("myCanvas");
+    var context = myCanvas.getContext("2d");
+    var rectWidth = 150;
+    var rectHeight = 75;
+    //把绘制的对象移动到花不的中心位置
+    context.translate(myCanvas.width/2,myCanvas.height/2);
+    //把图像缩小成原来的一半
+    context.scale(1,0.5);
+    context.fillStyle="blue";
+    context.fillRect(-rectWidth/2,rectHeight/2,rectWidth,rectHeight);
+       
+</script>
+</html>

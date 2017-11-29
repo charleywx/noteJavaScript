@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#d1{
+			width: 500px;
+			height: 500px;
+				border:blue 2px solid;
+			}
+		#d2{
+			width: 200px;
+			height: 200px;
+			border: red solid 2px;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2" draggable="true">请拖拽我</div>
+	<script>
+		var d1 = document.getElementById("d1");
+		var d2 = document.getElementById("d2");
+		d2.ondragstart = function(){
+			d1.innerHTML = "开始！";
+		}
+		d2.ondragend = function(){
+			d1.innerHTML += "结束！";
+		}
+		d1.ondragenter = function (e){
+			d1.innerHTML += "进入";
+			e.preventDefault();
+		}
+		d1.ondragover = function(e){
+			e.preventDefault();
+		}
+		d1.ondragleave = function(e){
+			d1.innerHTML += "离开";
+			e.preventDefault();
+		}
+		d1.ondrop = function(e){
+			// alert("成功！");
+			e.preventDefault();
+			d1.appendChild(d2);
+		}
+		d2.ondragstart = function(e){
+			e.dataTransfer.setData("myFirst","我的第一个拖拽小案例！");
+			d1.innerHTML = "开始！";
+		}
+		d1.ondrop = function(e){
+			// alert("成功！");
+			e.preventDefault();
+			alert(e.dataTransfer.getData("myFirst"));
+			d1.appendChild(d2);
+		}
+	</script>
+</body>
+</html>

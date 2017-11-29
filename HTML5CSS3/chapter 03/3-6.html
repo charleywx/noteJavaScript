@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="demo" width="300" height="300"></canvas>
+</body>
+<script>
+function createCanopyPath(context) {  
+// 绘制树冠  
+context.beginPath();  
+context.moveTo(-25, -50);  
+context.lineTo(-10, -80);  
+context.lineTo(-20, -80);  
+context.lineTo(-5, -110);  
+context.lineTo(-15, -110);  
+// 树的顶点  
+context.lineTo(0, -140);  
+context.lineTo(15, -110);  
+context.lineTo(5, -110);  
+context.lineTo(20, -80);  
+context.lineTo(10, -80);  
+context.lineTo(25, -50);  
+// 连接起点，闭合路径  
+context.closePath();  
+} 
+drawTrails();
+function drawTrails() {  
+var canvas = document.getElementById('demo');  
+var context = canvas.getContext('2d');  
+context.save();  
+context.translate(130, 250);  
+// 创建表现树冠的路径  
+createCanopyPath(context);  
+// 绘制当前路径  
+context.stroke();  
+context.restore();
+// 加宽线条
+context.lineWidth = 4;
+// 平滑路径的接合点
+context.lineJoin = 'round';
+// 将颜色改成棕色
+context.strokeStyle = '#663300';
+// 最后，绘制树冠
+context.stroke(); 
+// 将填充色设置为绿色并填充树冠
+context.fillStyle = '#339900';
+context.fill(); 
+} 
+
+</script>
+
+</html>
