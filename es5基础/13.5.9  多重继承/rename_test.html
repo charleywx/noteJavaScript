@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例】设计3个类型A、B、C，现在希望C能够同时继承A和B的属性和方法。
+function A(x){ 					// 构造函数A
+    this.x = x; 				// 构造函数A的本地属性x
+}
+A.prototype.getx = function(){		// 构造函数A的原型方法getx()
+    return this.x;
+}
+function B(y){ 						// 构造函数B
+    this.y = y; 					// 构造函数B的本地属性y
+}
+B.prototype.gety = function(){		// 构造函数B的原型方法gety()
+    return this.y;
+}
+function C(x,y){					// 构造函数C
+}
+
+Function.prototype.extend = function(o){ 
+	// 为Function扩展复制继承的方法
+    for(var i in o){ 				// 遍历参数对象
+        this.constructor.prototype[i] = o[i]; 
+	// 把参数对象成员复制给当前对象的构造函数原型对象
+    }
+}
+
+function C(x,y){ 					// 类继承
+    A.call(this,x);
+    B.call(this,y);
+}
+
+C.extend(new A(10)); 				// 复制继承
+C.extend(new B(20)); 				// 复制继承
+
+alert(C.x); 						// 返回10
+alert(C.y); 						// 返回20
+alert(C.getx());					// 返回10
+alert(C.gety());					// 返回20
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

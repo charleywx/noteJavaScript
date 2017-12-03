@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面示例中，先声明一个空构造函数，并利用构造函数的prototype属性为该构造函数定义原型属性title和pages，以及原型方法what()。构造函数的原型成员将会被所有实例对象继承。这样当使用new运算符实例化对象时，所有对象都拥有原型属性。
+function Book(){					// 使用构造函数定义一个空类
+}
+Book.prototype.title = "JavaScript设计大法";
+	// 为原型声明一个属性并初始化
+Book.prototype.pages = 200; 		// 为原型声明一个属性并初始化
+Book.prototype.what = function(){	// 为原型声明一个方法
+    alert(this.title +this.pages);
+};
+var book1 = new Book();			// 实例化对象book1
+var book2 = new Book();			// 实例化对象book2
+var book3 = new Book();			// 实例化对象book2
+alert(book1.title); 				// 返回字符串"JavaScript设计大法"
+alert(book2.pages); 				// 返回值200
+book3.what();						// 调用对象的方法what()
+
+//【示例2】prototype是构造函数的属性，而不是对象属性。例如，下面的用法是错误的，因为对象o是一个实例，它没有原型属性：
+var o =new Object()				// 实例化对象
+o.prototype.title = "JavaScript设计大法";	// 试图为该对象定义原型属性
+alert(o.title); 					// 返回错误信息
+
+Object.prototype.title = "JavaScript设计大法";
+	// 为Object对象类声明原型属性，并初始化
+var o = new Object();				// 实例化对象
+alert(o.title); 					// 继承属性
+
+</script>
+</head>
+<body>
+</body>
+</html>

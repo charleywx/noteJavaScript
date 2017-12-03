@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】下面是一些特殊运算数的比较。
+alert("1" == 1) 				// 返回true。字符串被转换为数字
+alert(true == 1) 				// 返回true。true被转换为1
+alert(false == 0) 				// 返回true。false被转换为0
+alert(null == 0) 				// 返回false
+alert(undefined == 0) 			// 返回false
+alert(undefined == null) 		// 返回true
+alert(NaN == "NaN")			// 返回false
+alert(NaN == 1) 				// 返回false
+alert(NaN == NaN) 				// 返回false
+alert(NaN != NaN) 				// 返回true
+
+//【示例2】下面两个变量的值虽然是通过计算得到，但是它们的值是相等的。
+var a = "abc" + "d";
+var b = "a" + "bcd";
+alert(a == b); 					// 返回true
+
+//【示例3】下面是特殊运算数的全等比较。
+alert(null === undefined) 		// 返回false
+alert(0 === "0")				// 返回false
+alert(0 === false)			 	// 返回false
+
+//【示例4】下面是两个对象的比较，由于它们都引用相同的地址，所以返回true。
+var a = {};
+var b = a;
+alert(a === b) ; 				// 返回true
+
+var a = {};
+var b = {};
+alert(a === b) ; 				// 返回false
+
+
+//【示例5】对于引用类型的值进行比较，主要比较引用的地址是否相同，而不是比较它们的值。
+var a = new String("abcd") 			// 定义字符串"abcd"对象
+var b = new String("abcd") 			// 定义字符串"abcd"对象
+alert(a === b); 						// 返回false
+alert(a == b); 							// 返回false
+
+//【示例6】对于值类型而言，只要类型相同，值相等，它们就应该完全全等，这里不需要考虑比较运算数的表达式数据类型变化，也不用考虑变量的引用地址。
+var a = "1" + 1; 
+var b = "11" ; 
+alert(a === b); 						// 返回true
+
+
+//【示例7】表达式(a > b || a == b)与表达式(a >= b)并不完全相等。
+var a = 1;
+var b = 2;
+alert((a > b || a == b) == (a >= b)) 	// 返回true，此时似乎相等
+
+var a = null;
+var b = undefined;
+alert((a > b || a == b) == (a >= b)) 	// 返回false，表达式的值并非相等
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

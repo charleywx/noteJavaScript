@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面的代码中，先在try从句中制造一个语法错误，即字符串没有加引号，然后在catch从句中利用参数变量b获取Error对象的引用，然后提示错误的详细信息，最后在finally从句中弹出正确的信息。
+try{							// 测试代码
+    alert(a); 					// 制作语法错误
+}
+catch(b){ 						// 捕获错误
+    alert(b.message); 			// 提示错误信息
+}
+finally{						// 异常后期处理
+   alert("a");					// 提示正确值
+}
+
+//【示例2】在异常处理结构中，catch和finally从句是可选项目，可以根据需要省略，但在正常情况下必须包含try和catch从句。把上面示例可以精简为：
+try{
+    alert(a);
+}
+catch(b){}
+
+//【示例3】下面代码就是一个多层嵌套的异常结构，在处理一系列的异常时，内层的catch子句通过将异常抛出，就可以将异常抛给外层的catch子句来处理。
+try{									// 外层异常处理结构
+    try{								// 内层异常处理结构
+        alret("Hi");						// 错误引用方法
+    }
+    catch(exception){
+        var e;
+        if ( ! exception.description){ 	// 兼容非IE浏览器
+            e = exception.name; 			// 获取错误名称
+        }
+        else{	// 兼容IE浏览器
+            e = exception.description; 	// 获取错误描述信息
+        }
+        if (e == "Object expected" || e == "ReferenceError"){
+			// 如果是此类错误信息，则提示这样信息
+            alert("内层try/catch能够处理这个错误");
+        }
+        else{							// 否则再一次抛出一个异常
+            throw exception;
+        }
+    }
+}
+catch(exception){ 						// 获取内层异常处理结构中抛出的异常
+    alert("内层try/catch不能够处理这个错误");
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

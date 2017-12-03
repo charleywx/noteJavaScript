@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】下面两个句子，是相互独立的。当脚本被执行时，它们会按顺序被执行：
+alert("Hello");
+alert("World"); 
+
+if(false)
+    alert("Hello");
+    alert("World");
+
+if(false)
+{
+    alert("Hello");
+    alert("World");
+};
+
+//【示例2】即使没有条件结构，一样可以使用大括号把多个句子括起来作为一个复合语句来使用，此时该复合语句与多个独立单句在最终执行结果上都是一样的。
+{
+    alert("Hello");
+    alert("World");
+};
+
+//【示例3】复合语句的结构比较复杂，它可以不包含子句，也可以包含复句，形成结构嵌套。对于复句内的子句可以通过缩排增强代码的可读性。
+{
+    // 空复句
+}
+{
+    alert("单复句");
+}
+{
+    alert("Hello，World！");
+    {
+        alert("复句嵌套");
+    }
+}
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】可以在声明中为变量赋值。未赋值的变量，则初始值为undefined（未定义）值。
+var a; 							// 声明但没有赋值
+var b = 1; 						// 声明并赋值
+alert(a); 						// 返回undefined
+alert(b); 						// 返回1
+
+
+//【拓展】
+var a = 1;
+var a = 2;
+var a = 3;
+alert(a); 						// 返回3
+
+
+//【示例2】当在函数中不声明就直接为变量赋值时，JavaScript会把它视为全局变量进行处理。由于是全局变量，函数外代码可以访问该变量的值。
+function f(){
+    a = 1; 						// 未声明直接赋值
+    var b = 2; 					// 声明并赋值
+}
+f();							// 调用函数，实现变量初始化
+alert(a); 						// 返回1
+alert(b); 						// 提示语法错误，找不到该变量
+
+//【示例3】下面示例设计：如果变量a不存在，就为其赋值为0。但是变量a在未声明前就直接读取，将会抛出语法错误。
+
+if(!a) {						// 如果变量a不存在
+   a = 0; 						// 则为变量a赋值为0
+}
+alert(a);
+
+if(!window.a) {					// 如果window对象的属性a不存在
+   a = 0; 							// 则为变量a赋值为0
+}
+alert(a);
+
+(function f(){
+    if(typeof a == "undefined"){	// 如果变量a的类型为不可知
+        a = 0; 						// 则为变量a赋值为0
+    }
+    alert(a);
+})()
+
+</script>
+</head>
+<body>
+</body>
+</html>

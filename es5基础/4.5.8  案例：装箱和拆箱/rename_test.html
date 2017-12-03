@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】在下面这个示例中，变量a和b的值都是1，但是它们属于不同数据类型，其中a为数值，而b为对象。
+var a = 1; 							// 直接赋值
+var b = new Number(1); 			// 通过Number构造函数装箱后赋值
+alert(typeof a); 					// 返回number，说明其值为值类型的数值
+alert(typeof b); 					// 返回object，说明其值为引用类型的对象
+
+//【示例2】在下面这个示例中，为Object对象定义一个扩展方法test()，该方法能够检测当前对象的数据类型是否为Object对象的实例，当前对象的构造器是否为Number或String。
+Object.prototype.test = function(){	// 扩展Object构造器的方法f()
+alert(typeof this); 					// 显示当前对象的数据类型
+alert(this instanceof Object); 		// 显示当前对象是否为对象的实例
+alert(this.constructor == Number);	// 显示当前对象的构造器是否为Number
+alert(this.constructor == String); 	// 显示当前对象的构造器是否为String
+}
+
+//【示例3】在JavaScript中实现把引用类型的对象拆箱为数值对象，还可以使用toString()等方法来实现。
+var a = new Number(1);
+var b =new String("1");
+alert(typeof a); 						// 返回object类型
+alert(typeof b); 						// 返回object类型
+alert(typeof a.valueOf());				// 返回number数值类型
+alert(typeof b.valueOf());				// 返回string字符串类型
+alert(typeof a.toString());			// 返回string字符串类型
+alert(typeof b.toString());			// 返回string字符串类型
+
+//【示例4】在下面示例中，当加号运算符准备计算变量a和b的和时，先把引用类型的变量b借助valueOf()方法转换为值类型，然后再进行计算，最后返回值为2。
+var a = 1; 								// 值类型
+var b = new Number( 1 ); 				// 引用类型
+alert( a + b ); 						// 返回值为2
+alert( typeof (a + b) ); 				// 返回类型为number
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

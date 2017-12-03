@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】this代表当前操作对象。
+
+//<input type="button" value="主人是谁？" onclick = "this.value =
+//'是我呀，我就是主人'" />
+
+//【示例2】this代表构造函数的当前实例。
+
+function F(){
+    this.name = "我就是主人";
+}
+var f = new F();
+alert(f.name);
+
+//【示例3】this代表当前对象直接量。
+
+var o = {
+    name : "我是对象o",
+    me : function(){
+        return this;
+    }
+}
+var who = o.me();	// 调用对象o的方法me()
+alert(who.name); 	// 读取this所代表对象的属性name，返回字符串"我是对象o"
+
+//【示例4】this代表全局对象
+
+function f(){
+    this.name = "我是谁？";
+}
+f();				// 调用方法f()
+alert(name); 		// 直接读取属性name，返回值为"我是谁？"
+
+window.f = function(){
+    this.name = "我是谁？"
+}
+window.f();
+alert(window.name); 
+	// 读取客户端全局对象window的属性name，返回值为"我是谁？"
+
+var window = {
+    f : function(){
+        this.name = "我是谁？";
+    }
+}
+window.f();
+alert(window.name); 
+	// 读取对象直接量window的属性name，返回值为"我是谁？"
+
+//【示例5】this代表当前作用域对象。
+
+var f = function(){
+    alert(this);
+}
+f();						// 直接调用函数f()
+new f();					// new运算符调用函数f()，即实例化对象
+
+//【示例6】再看一个示例：
+<input type="button" value="主人是谁？" onclick = 
+"this.value ='是我呀，我就是主人'" />
+<input type="button" value="主人是谁？" onclick = "f()" />
+<script language="javascript" type="text/javascript">
+function f(){
+    this.value = "我在哪儿？";
+}
+
+//<input type="button" value="主人是谁？" />
+//<script language="javascript" type="text/javascript">
+//var btn2 = document.getElementsByTagName("input")[1];
+//btn2.onclick = f;
+//function f(){
+//    this.value = "我回来了";
+//}
+///script>
+
+function f(){
+    return this;
+}
+var o ={
+    name : "对象o",
+    me : f,
+    o1 : {
+        name : "对象o1",
+        me : f,
+        o2 : {
+            name : "对象o2",
+            me : f
+        }
+    }
+}
+var who = o.o1.o2.me();
+alert(who.name);		// 返回字符串"对象o2"，说明当前this代表对象o2
+var who = o.o1.me();
+alert(who.name); 		// 返回字符串"对象o1"，说明当前this代表对象o1
+var who = o.me();
+alert(who.name); 		// 返回字符串"对象o"，说明当前this代表对象o
+
+//【示例8】如果不是以值的方式传递函数f()，而是直接调用，则它们所包含的this都代表Window对象。也就是说，this的执行作用域并没有发生变化，仍然根据定义它的作用域来确定，即全局作用域。
+var name = "我是Window对象";
+function f(){
+    return this;
+}
+var o ={
+    name : "对象o",
+    me : f(),
+    o1 : {
+        name : "对象o1",
+        me : f(),
+        o2 : {
+            name : "对象o2",
+            me : f()
+        }
+    }
+}
+var who = o.o1.o2.me;
+alert(who.name); 	// 返回字符串"我是Window对象"，说明this代表对象Window
+var who = o.o1.me;
+alert(who.name); 	// 返回字符串"我是Window对象"，说明this代表对象Window
+var who = o.me;
+alert(who.name); 	// 返回字符串"我是Window对象"，说明this代表对象Window
+
+//【示例9】在JavaScript中，闭包扮演着非常重要的角色，它能够改变this的指向。下面示例在一个对象中（如o1）引用或调用另一个对象（如o）的方法时，该方法中的this指针是变化的。当引用对象o的方法f()时，它的this就会根据执行对象而定，但是如果调用对象o的方法f()时，它的this还是指向原定义的对象o。
+var name = "this = window";
+var o ={
+    name : "this = o",
+    f : function(){
+        return this;
+    }
+};
+var o1 = {
+    name : "this = o1",
+    f : o.f						// 引用对象o中的方法f()
+}
+var a = o1.f();
+alert(a.name); 					// this实际指向对象为o1
+
+
+var o1 = {
+    name : "this = o1",
+    f : function(){				// this使用闭包封装方法的引用
+        return o.f; 
+    }
+}
+var a = o1.f()();
+alert(a.name);				 	// this实际指向对象为Window
+
+</script>
+<body>
+</body>
+</html>

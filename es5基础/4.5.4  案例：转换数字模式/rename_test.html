@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//（1）如果采用默认模式，则toString()方法会直接把数值转换为数字字符串。例如：
+var a = 1.000;
+var b = 0.0001;
+var c = 1e-4;
+alert(a.toString());				// 返回字符串"1"
+alert(b.toString());				// 返回字符串"0.0001"
+alert(c.toString());				// 返回字符串"0.0001"
+
+var a = 010; 						// 八进制数值10
+var b = 0x10; 						// 十六进制数值10
+alert(a.toString());				// 返回字符串"8"
+alert(b.toString());				// 返回字符串"16"
+
+//（2）如果设置参数，则toString()方法会根据参数把数值转换为对应进制的值之后再输出。例如：
+var a = 10; 						// 十进制数值10
+alert(a.toString(2)); 				// 返回二进制数字字符串"1010"
+alert(a.toString(8)); 				// 返回八进制数字字符串"12"
+alert(a.toString(16)); 			// 返回二进制数字字符串"a"
+
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

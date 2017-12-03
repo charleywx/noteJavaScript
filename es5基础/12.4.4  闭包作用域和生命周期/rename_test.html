@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例中参数变量x是函数f的私有变量，该变量将在函数f内部所有内嵌函数中都是可见的。
+function f(x){
+    return function(){
+        return function(){
+            return function(){
+                return x;
+            }
+        }
+    }
+}
+var a = f(1); 					// 调用函数
+alert(a()()())					// 返回1
+
+//【示例2】下面示例中，内部函数的同名局部变量会逐层覆盖，并显示最里层的变量值。
+function f(){					// 普通函数
+    var x =1 					// 局部变量
+    return  function(){
+        var x = 2; 				// 覆盖上一级变量x
+        return function(){
+            var x = 3; 			// 覆盖上一级变量x
+            return function(){
+                return x;
+            }
+        }
+    }
+}
+var a = f();					// 调用函数
+alert(a()()())					// 返回3，而不是2或1
+
+//【示例3】
+function f( x ){
+    return  function(){
+        var x					// 声明的局部变量，则将覆盖外部同名参数变量
+        return x;
+    }
+}
+
+var a = f( 1 ); 				// 调用函数
+alert( a())						// 返回undefined，而不是1
+
+//【示例4】在下面示例中，调用外部函数f，在执行环境中所创建的调用对象就不会被当做垃圾收集，因为该调用对象被一个全局变量b所引用，而且仍然是可以访问的，甚至可以通过b(n)来执行。同时，在这个被变量b引用的内部函数对象的作用域链中，包含属于创建该内部函数对象的执行环境的活动对象。
+function f(x,y){ 				// 外部函数
+    var a = 1; 					// 声明和初始化局部变量
+    function e(z){ 				// 内部函数
+        return x+y+z+a;
+    }
+    return e; 					// 返回内部函数
+}
+var b = f(2, 3); 				// 调用外部函数
+
+//【示例5】对于闭包结构来说，主要依赖于函数实例被引用、释放引用和销毁的周期情况。
+function f( ){
+    var a = 1;
+    var e = function(){
+        return a;
+    }
+    function g(x){
+        var y =x +1;
+        e();
+    }
+    g(a); 
+}
+
+//【示例6】除了在闭包体内通过标识符显式引用外部函数的变量值，从而导致闭包与闭包的生存周期发生关联以外，还有一种情况会导致闭包之间相互关联。
+function f( ){
+    var e = function(){
+        return 1;
+    }
+    function g(x){
+        var y =x;
+        function h(){
+            e();
+        } 
+    }
+    g(e);
+}
+
+</script>
+<body>
+</body>
+</html>

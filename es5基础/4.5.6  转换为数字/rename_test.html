@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//1．使用parseInt()
+alert(parseInt("123abc")); 		// 返回数字123
+alert(parseInt("1.73")); 			// 返回数字1
+alert(parseInt(".123")); 			// 返回值NaN
+
+var d = "010";						// 八进制数字字符串
+var e = "0x10";					// 十六进制数字字符串
+alert(parseInt(d));			 	// 返回十进制数字8
+alert(parseInt(e)); 				// 返回十进制数字16
+
+//【示例1】下面代码把十六进制数字字符串"123abc"转换为十进制整数：
+var a = "123abc";
+alert(parseInt(a,16)); 			// 返回值十进制整数1194684
+
+//【示例2】下面代码把二进制、八进制和十进制数字字符串转换为整数：
+alert(parseInt("10",2)); 			// 把二进制数字10转换为十进制整数为2
+alert(parseInt("10",8)); 			// 把八进制数字10转换为十进制整数为8
+alert(parseInt("10" ,10)); 		// 把十进制数字10转换为十进制整数为10
+
+//【示例3】如果第一个参数是十进制的值，包含0前缀，为了避免被误解为八进制的数字，则应该指定第二个参数值为10，即显式定义基，而不是采用默认基。
+alert(parseInt("010")); 			// 把八进制数字10转换为十进制整数为8
+alert(parseInt("010",8)); 			// 把八进制数字010转换为十进制整数为8
+alert(parseInt("010",10)); 		// 把十进制数字010转换为十进制整数为10
+
+//2．使用parseFloat()函数
+
+alert(parseFloat("123"));			// 返回数值124
+alert(parseFloat("123abc"));		// 返回数值123
+alert(parseFloat("010"));			// 返回数值10
+alert(parseFloat("0x10"));			// 返回数值0
+alert(parseFloat("x10"));			// 返回数值NaN
+
+//3．使用乘号运算符
+
+var a = 1; 							// 数值
+var b = "1";						// 数字字符串
+alert(a+b); 						// 返回字符串"11"
+
+var a = 1; 							// 数值
+var b = "1";						// 数字字符串
+alert(a + (b * 1)); 				// 返回数值2
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

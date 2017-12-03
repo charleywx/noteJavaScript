@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例是一个简单的函数结构，具有返回值，但是使用new运算符实例化该函数之后，实例对象a却无法访问：
+function f(){					// 普通函数
+    var x =5;
+    return x; 					// 函数返回值
+}
+var a = new f();				// 实例化函数
+alert(a.x)					 	// 返回undefined
+alert(a.x)						// 不是函数，无法访问
+
+function f(){					// 函数对象
+   this.x =5; 					// 对象属性
+}
+var a = new f();				// 实例化函数
+alert(a.x) 						// 返回5
+
+//【示例2】下面分析函数实例与闭包函数的关系。
+function F(x){ 					// 定义函数对象
+    this.y = function(){		// 定义对象方法
+        return x;
+    }
+}
+var a = new F(5); 				// 实例化函数
+var b = new F(5); 				// 实例化函数
+alert(a===b) 					// 返回false，说明是不同的实例
+alert(a.y===b.y) 				// 返回false，说明是不同的实例
+
+//【示例3】使用不同的方法创建的函数对象，它们是否包含闭包结构还需要具体分析，这里主要观察函数对象被实例化之后，是否生成了实例化的方法。
+function F(){}					// 定义函数对象
+F.prototype.y = function(){	// 定义对象的原型方法
+    return 5;
+}
+var a = new F();				// 实例化函数
+var b = new F();				// 实例化函数
+alert(a===b) 					// 返回false，说明是不同的实例
+alert(a.y===b.y) 				// 返回true，说明是对原型方法的引用
+
+//【示例4】下面示例说明了a和b是两个不同的闭包结构。但是如果从本质来分析，它们实际上也是两个具体的函数实例，而不是对函数的引用。
+function f(x){
+    return function(){
+        return x
+    }
+}
+var a = f(5);
+var b = f(5);
+alert(a===b) 					// 返回false，说明是不同的实例
+
+//【示例5】在下面示例中，a和b看起来似乎是两个不同的实例，实际上它们都是对同一个函数F()的引用，因此这里也就没有闭包环境了。
+function F(){}					// 定义一个空函数对象结构
+F.y = function(){				// 为对象定义具体的方法
+    return 5;
+}
+var a = F;
+var b = F;	
+alert(a===b) 					// 返回true，说明是对函数的引用
+alert(a.y===b.y) 				// 返回true，说明是对函数的引用
+
+//【示例6】下面示例是一个多层嵌套的函数结构，函数f内部嵌套了两层函数。调用函数f()会返回一个双层的闭包结构，且变量a和b分别引用的是不同函数实例，因此它们都属于不同的闭包结构。
+function f( x ){ 				// 普通函数
+    return function(){			// 返回匿名函数体
+        return function(){		// 返回匿名函数体
+            return x; 			// 返回局部变量值
+        }
+    }
+}
+var a = f(5);
+var b = f(5);
+alert( a === b ) 			// 返回false，说明它们是不同的实例
+
+//【示例7】如果把上面结构调整一下，把函数f()修改为匿名函数并在表达式中直接调用，同时把内部的多层嵌套的函数分拆开来，则会发现a等于b。
+var f = function( x ){ 	// 复杂函数表达式
+    var e = function(){
+        return x;
+    }
+    return function(){
+        return e;
+    }
+}( 5 );
+var a = f();				// 调用表达式的返回实例
+var b = f();				// 调用表达式的返回实例
+alert( a === b ) 			// 返回true，说明它们引用相同的函数，即实例函数
+
+//【示例8】调整上面示例的结构：
+function f( x ){ 					// 普通函数
+    var e = function(){				// 内部匿名函数
+        return x;
+    }
+    return function(){				// 返回嵌套函数体
+        return e;
+    }
+}
+var a = f(5)(); 					// 连续调用函数f，而不是表达式的值
+var b = f(5)(); 					// 连续调用函数f，而不是表达式的值
+alert( a === b ) 					// 返回false，说明它们是不同的实例
+
+//【示例9】下面改进示例可以帮助理解上面的两个条件：
+function f( x ){ 			// 普通函数
+    var e = function(){		// 内部匿名函数
+        return x;
+    }
+    return function(){		// 返回嵌套函数体
+        return e;
+    }
+}
+var f = f( 5 ); 			// 调用函数f，定义内部函数，生成实例
+var a = f();				// 调用表达式的返回实例
+var b = f();				// 调用表达式的返回实例
+alert( a === b ) 			// 返回true，说明它们引用相同函数，即实例函数
+</script>
+<body>
+</body>
+</html>

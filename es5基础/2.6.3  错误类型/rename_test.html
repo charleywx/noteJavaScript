@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+new eval();				//抛出EvalError
+eval=foo;				//抛出EvalError
+
+
+var itemsl =new Array(-20);      				//抛出RangeError
+var itemsl =new Array (Number.MAX_VALUE);     	//抛出RangeError
+
+
+var obj=x;     		//在x并未声明的情况下抛出ReferenceErro
+
+
+eval("a ++ b")   	//抛出SyntaxErrorr
+
+
+
+
+var o = new 10;    								//抛出TypeError
+alert("name" in true);  						//抛出TypeError
+Function.prototype.toString.call('name') ;  	//抛出TypeError
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
+
+
+

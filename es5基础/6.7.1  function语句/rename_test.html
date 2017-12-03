@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】function语句必须包含函数名称、小括号和大括号，其他的都可省略，因此最简单的函数体是一个空函数。
+function f(){					// 空函数
+}
+
+function(){						// 匿名空函数
+}
+
+//【示例2】与其他结构不同，function结构是静态的，不会立即执行，只有调用函数时，才能被执行。因此，一般把函数单独放在代码的顶部或尾部，很少在分支结构或循环结构中定义函数。
+if(true)
+{
+    function f()
+    {
+    }
+}
+
+//【示例3】当为var语句声明变量初始化时，这个初始化过程发生在执行期，而function语句声明的函数发生在预编译期。因此，当使用var语句和function语句定义同名变量时，就会发生冲突，且最终var语句声明的变量将覆盖function语句定义的同名函数。
+f();							// 调用函数，返回2
+var f = 1; 						// 声明并初始化变量f
+function f(){					// 声明函数变量f，并定义它的函数体结构
+    alert(2);
+}
+f();							// 调用函数，返回语法错误，不存在该函数
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

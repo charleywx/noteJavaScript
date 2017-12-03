@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//1. 编写函数输出1~10000之间的所有对称数。
+
+function symmetry(num) {
+    var arr = [];
+        while(--num > 10) {
+            //依次把每个值劈开为多个数字组成的数组，然后颠倒顺序，再重新连接为一个数字字符串
+            var reverseNum = num.toString().split('').reverse().join('');
+            //比较颠倒后的值是否与原值相等，如果相等则存储到临时数组中
+            (reverseNum == num) && (arr.push(num));
+        }
+    return arr;
+}
+var result = symmetry(10000);
+console.log(result);
+
+//2. 实现乱序函数randomSort(array)，能够将数组元素打乱存储，如[1,2,3,4,5]，输出为[3,2,4,5,1]。要求N次以内数组元素顺序不重复。
+
+function randomSort(array) { 
+    var n = array.length, t, i;
+    while (n) {
+        i = Math.random() * n-- | 0;//获取数组长度内一个随机数
+        t = array[n];				//依次取出数组元素的值
+        array[n] = array[i];		//与数组随机位置的元素值进行互换
+        array[i] = t;
+    }
+    return array;
+}
+
+//3. 实现随机选取10~100之间的10个数字，存入一个数组，并排序。
+
+var iArray = []; 
+function getRandom(istart, iend){//随机选取函数
+    var iChoice = istart - iend +1;
+    return Math.floor(Math.random() * iChoice) + istart;
+}
+for(var i=0; i<10; i++){//调用随机选取函数获取10个随机值，然后存入一个数组中
+    iArray.push(getRandom(10,100));
+}
+iArray.sort();//数组排序
+
+//4. 分别用while语句和for语句编写1+2+··+100的求和程序？
+//while
+var sum = 0, i = 1;
+while(i <= 100){ 
+    sum += i++;		//等价于 sum = sum + i; i = i +1;
+}
+document.write('1+2+3+...+100=' + sum); //5050
+//for
+var sum = 0;
+for(i = 1; i <= 100; i++){
+    sum += i;
+}
+document.write('1+2+3+...+100=' + sum); //5050
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】把递归程序转换成非递归程序时，可以有固定的模式，将这个模式抽象成通用的模板，就有可能实现递归至非递归程序的自动转换。根据前面的分析，将递归计算用树形结构来表达，计算父节点时，会要求计算出其子节点的值。如果用一个堆栈来表示，则计算父节点时，会先将该父节点压入堆栈，待到其依赖的所有子节点的值都计算出时，再将其弹出并计算其值。在计算其子节点时依照相同的原理，直至遇到叶子节点。
+function memoizer( fundamental, cache ){
+    cache = cache || {}
+    var shell = function( arg ){
+        if ( ! ( arg in cache ) ){
+            cache[arg] = fundamental( shell, arg );
+        }
+        return cache[arg];
+    };
+    return shell;
+}
+
+//【示例2】在斐波纳契数列中：
+function f( n ){
+    if( n == 1 || n == 2 )
+        return 1;
+    else
+        return f( n - 1 ) + f( n - 2 );
+}
+var fibonacci = memoizer( 
+function( f, n ){
+    return f( n - 1 ) + f( n - 2 );
+},
+{
+    "0" : 0, "1" : 1
+} );
+alert(fibonacci(40))
+
+
+</script>
+<body>
+</body>
+</html>

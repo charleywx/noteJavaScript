@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】如果把this作为参数值来调用函数，这样就可以避免了this多变的问题，因为this始终与当前对象保持一致。
+
+//<input type="button" value="按钮1" onclick="f()" />
+//<input type="button" value="按钮2" onclick="f()" />
+//<input type="button" value="按钮3" onclick="f()" />
+//<script language="javascript" type="text/javascript">
+//function f(){
+//    alert(this.value);
+//}
+///script>
+
+//<input type="button" value="按钮1" onclick="f(this)" />
+//<input type="button" value="按钮2" onclick="f(this)" />
+//<input type="button" value="按钮3" onclick="f(this)" />
+//<script language="javascript" type="text/javascript">
+function f(o){
+    alert(o.value);
+}
+///script>
+
+//【示例2】设计静态的this指针。
+
+function Base(){			// 基类
+    var _this = this;		// 存储初始化时对象的引用指针
+    this.m = function(){
+        return _this; 		// 返回初始化时对象的引用指针
+    };
+    this.name = "Base";
+}
+function F(){				// 子类
+    this.name = "F";
+}
+F.prototype = new Base();	// 继承基类
+var f = new F();			// 实例化子类
+var n = f.m();
+alert(n.name); 				// this始终指向原型对象，而不再是子类的实例对象
+
+var o = {
+    name : "this = o",
+    b : function(){
+        return o;			// 返回对象直接量名称，而不是this
+    }
+}
+var o1 = {
+    name : "this = o1",
+    b : o.b
+}
+var a = o1.b();
+alert(a.name);
+
+//【示例2】设计静态的this扩展方法。
+
+// 把this转换为静态指针
+// 参数：o表示预设置this所指代的对象
+// 返回值：返回一个闭包函数
+Function.prototype.pointTo = function(o){
+    var _this = this; 					// 存储当前函数对象
+    return function(){					// 返回一个闭包函数
+        return  _this.apply(o, arguments); 
+	// 返回执行当前函数，并把当前函数的作用域强制设置为指定对象
+    }
+}
+
+var o ={
+    name : "this = o"
+}
+o.b = (function(){
+    return this;
+}).pointTo(o); 							// 把this绑定到对象o身上
+var o1 ={
+    name : "this = o1",
+    b : o.b
+}
+var a = o1.b();
+alert(a.name);
+	// 返回字符串"this=o"，说明this的值没有发生变化，始终指向对象，而不是对象o1
+
+// 把构造函数转换为实例对象
+// 参数：f表示构造函数
+// 返回值：返回构造函数f()的实例对象
+function instanceFrom(f){
+    var a = [].slice.call(arguments, 1);	// 获取构造函数的参数
+    f.prototype.constructor = f;		
+	// 手工设置构造函数的原型构造器
+    f.apply(f.prototype, a);
+	// 在原型对象上强制指定构造函数，则原型对象就成为了构造函数的实例，
+
+
+    return f.prototype;						// 返回该原型对象
+}
+
+function F(){
+    this.name = "F";
+}
+var f = instanceFrom(F);
+alert(f.name);
+
+
+</script>
+<body>
+</body>
+</html>

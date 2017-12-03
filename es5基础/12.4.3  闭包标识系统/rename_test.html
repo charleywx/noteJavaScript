@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例将在函数结构内显示函数结构的字符串。
+function f(){					// 定义函数
+    alert(f) 					// 提示函数结构
+}
+// 调用函数，返回函数f结构的字符串，等于f.toString()
+f()
+
+//【示例2】如果在函数f中定义形参f，则同名情况下参数变量的优先权会大于函数的优先权。
+function f(f){ 					// 定义形参与函数同名
+    alert(f) 					// 提示标识符f的值
+}
+f(true); 						// 返回true，而不是函数f的结构字符串
+
+//【示例3】比较形参与arguments属性的优先级。
+function f(arguments){ 		// 函数形参名与参数属性arguments同名
+    alert(typeof arguments) 	// 提示参数的类型
+}
+f(true); 		// 返回boolean，而不是属性arguments的类型object
+
+//【示例4】比较arguments属性与函数名的优先级。
+function arguments(){			// 定义函数名与arguments属性名同名
+    alert(typeof arguments) 	// 返回arguments的类型
+}
+arguments();	// 返回arguments属性的类型object，而不是函数的类型function
+
+//【示例5】比较局部变量和形参变量的优先级。
+function f(x){ 					// 定义普通函数
+    var x = 10; 				// 定义局部变量并赋值
+    alert(x); 					// 显示变量x的值
+}
+f(5); 							// 传递参数值为5，返回提示为10
+
+//【示例6】如果局部变量没有赋值，则会选择形参变量。例如：
+function f(x){				 	// 定义普通函数
+    var x; 						// 定义局部变量
+    alert(x); 					// 显示变量x的值
+}
+f(5); 							// 传递参数值为5，返回提示为5
+
+//【示例7】下面示例说明了当局部变量与形参变量混在一起使用时，它们之间存在的微妙关系。
+function f(x){
+    var x = x; 					// 把形参x传递给局部变量x
+    alert(x);
+}
+f(5); 							// 返回提示为5
+
+</script>
+<body>
+</body>
+</html>

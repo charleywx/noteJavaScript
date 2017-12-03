@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】下面看一个示例：
+function f(a,b){ 						// 定义函数
+    return function(){					// 返回闭包函数
+        a(b);
+    }
+}
+var c = f(alert,"Hello,World");		// 调用函数f
+var d = setTimeout(c,1000); 			// 把闭包作为参数进行传递
+
+function f(a,b){
+    a(b);
+}
+var c = f(alert,"Hello,World");
+var d = setTimeout(c,1000); 			// 返回第一个参数为非法的错误
+
+//【示例2】再看一个示例，该示例演示了如何使用闭包作为值来进行传递。当文档加载完毕后，会自动弹出一个提示对话框。其中正是利用闭包来实现向Window对象的onload属性传递一个闭包函数的，从而实现动态调用的效果。如下：
+function f(a,b){
+    return function(){
+        a(b);
+    }
+}
+var c = f(alert,"Hello,World");		// 调用函数f
+window.onload = c; 						// 把闭包作为值进行传递
+
+//【示例3】通过闭包可以使作为缓冲器的数组与依赖它的函数关联起来，实施优雅的打包，同时也能够维持在全局命名空间外指定的缓冲数组的属性名，免除了名称冲突和意外交互的危险。代码如下：
+var f = function(){					// 函数表达式
+    var a = [1,2,3,4,5,6,7,8,9,0] 		// 数组初始值
+    return function(a1,a2,a3,a4,a5){ 	// 返回的闭包函数
+        a[0] = a1;
+        a[1] = a2;
+        a[2] = a3;
+        a[3] = a4;
+        a[4] = a5; 
+        return a.join("-");				// 返回的数组字符串
+    };
+}(); 									// 执行函数表达式，生成执行环境
+var a = f(11,12,13,14,15); 			// 动态更新的值
+var b = f("a","b","c","d","e"); 		// 动态更新的值
+alert(a); 							// 返回11-12 -13-14 -15- 6-7-8 -9-0
+alert(b); 							// 返回a-b-c -d-e- 6-7-8 -9-0
+
+
+</script>
+
+
+<body>
+</body>
+</html>

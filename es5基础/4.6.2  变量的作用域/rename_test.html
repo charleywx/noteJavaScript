@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//1．变量优先级
+var a = 1; 							// 全局变量
+(function f(){
+    var a = 2; 						// 局部变量
+    alert(a); 						// 返回2
+})();								// 直接在函数体上调用函数
+
+var a = 1; 							// 全局变量
+(function f(a){ 					// 参数变量
+    alert(a); 						// 返回3
+})(3); 								// 直接调用函数，并传递参数值为3
+
+var a = 1; 							// 全局变量
+(function f(a){ 					// 参数变量
+    var a = 2; 						// 局部变量
+    alert(a); 						// 返回2
+})(3); 								// 直接调用函数，并传递参数值为3
+
+//2．局部作用域嵌套
+var a = 1; 							// 全局变量
+(function(){
+    var a = 2; 						// 第1层局部变量
+    (function(){
+        var a = 3; 					// 第2层局部变量
+        (function(){
+            var a = 4; 				// 第3层局部变量
+            alert(a); 				// 返回4
+        })()							// 直接调用函数
+    })()							// 直接调用函数
+})()								// 直接调用函数
+
+
+//【示例1】
+(function(){						// 定义封装的独立作用域
+    var jQuery = window.jQuery = window.$ = function( selector, context ){
+        return new jQuery.fn.init( selector, context );
+    };
+    jQuery.fn = jQuery.prototype ={
+        // 详细代码
+    }
+    jQuery.fn.init.prototype = jQuery.fn;
+    jQuery.extend = jQuery.fn.extend = function(){
+        // 详细代码
+    }
+})()								// 直接调用函数
+
+(function(){						// 定义封装的独立作用域
+    var jQuery=window.jQuery=window.$=function(selector, context ){ };
+})()								// 直接调用函数
+var jQuery = 1;
+var $ = 2;
+
+
+//【示例2】下面示例演示了如果不显式声明局部变量所带来的后果。
+var jQuery = 1;
+(function(){
+    jQuery = window.jQuery = window.$ = function(){};
+})()
+alert(jQuery); 						// 结果读取了函数内部封装的代码
+
+//【拓展】
+function f(){
+    a = 1; 							// 全局变量a赋值为1
+    var b = 2; 						// 局部变量b赋值为2
+}
+try{
+    alert(a); 						// 尝试读取全局变量a
+}
+catch(e){
+    alert(e.message); 				// 显示错误信息：变量a未定义
+}
+f();								// 调用函数
+alert(a); 							// 读取全局变量a，返回值为1
+
+//【示例3】根据JavaScript解析过程，再看下面这个示例：
+var a = 1; 							// 声明并初始化全局变量
+(function f(){
+    alert(a); 						// 返回undefined
+    var a = 2; 						// 声明并初始化局部变量
+    alert(a); 						// 返回2
+})()
+
+</script>
+</head>
+<body>
+</body>
+</html>

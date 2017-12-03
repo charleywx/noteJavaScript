@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】特殊运算数的运算结果比较特殊，需要特别留意。
+var n = 5; 					// 定义并初始化任意一个数值
+alert(NaN - n);			// 返回NaN。NaN与任意运算数相减，结果都是NaN
+alert(Infinity - n); 
+//返回Infinity。Infinity与任意运算数相减，结果都是Infinity
+alert(Infinity - Infinity);
+//返回NaN。Infinity与Infinity相减，结果是NaN
+alert(( - Infinity) - ( - Infinity)); 
+//返回NaN。负Infinity相减，结果是NaN
+alert(( - Infinity) - Infinity); 
+//返回-Infinity。正负Infinity相减，结果是-Infinity
+//【示例2】在减法运算中，如果有一个运算数不是数字，则返回值为NaN；如果数字为字符串，则会把它转换为数值之后，再进行运算。
+alert(2 - "1");				// 返回1
+alert(2 - "a");				// 返回NaN
+
+//【示例3】对于字符串来说，减法运算符能够完全匹配进行转换，如果字符串是非数字的值，则返回NaN；而parseFloat()方法则通过逐字符解析并努力转换为数值。
+
+alert(parseFloat("100aaa"));	// 返回100
+alert(parseFloat("aaa100"));	// 返回NaN
+alert("100aaa" - 0); 			// 返回NaN
+alert("100" - 0); 				// 返回100
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

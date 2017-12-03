@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】下面是阶乘的一种普通线性递归运算：
+function f( n ){
+    return ( n == 1 ) ? 1 : n * f( n - 1 );
+}
+alert(f(5));
+
+function f( n ){
+    return ( n == 1 ) ? 1 : e( n, 1 );
+}
+function e( n, a ){
+    return( n == 1 ) ? a : e( n - 1, a * n );
+}
+alert( f(5) );
+
+ 
+/*
+f(5) = {5 * f(4)}
+   = {5 * {4 * f(3)}}
+   = {5 * {4 * {3 * f(2)}}}
+   = {5 * {4 * {3 * {2 * f(1)}}}}
+   = {5 * {4 * {3 * {2 * 1}}}}
+   = {5 * {4 * {3 * 2}}}
+   = {5 * {4 * 6}}
+   = {5 * 24}
+   = 120 
+
+f(5) = f(5, 1)
+   = f(4, 5)
+   = f(3, 20)
+   = f(2, 60)
+   = f(1, 120)
+   = 120
+*/
+//【示例2】从理论上来分析，尾递归也是递归的一种类型，不过它的算法具有迭代算法的特征。上面的阶乘尾递归可以改写为下面的迭代循环：
+var n = 5
+var w = 1;
+for( var i = 1; i <= 5; i ++ ){
+    w = w * i;
+}
+alert( w );
+
+</script>
+<body>
+</body>
+</html>

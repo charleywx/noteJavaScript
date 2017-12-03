@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】一个典型的数组处理循环可采用用三种循环的任何一种。
+//方法1
+for (var i=0; i < items.length; i++){ 
+    process(items[i]);
+}
+//方法2
+var j=0;
+while (j < items.length){
+    process(items[j++]);
+}
+//方法3
+var k=0;
+do {
+    process(items[k++]);
+} while (k < items.length);
+
+
+//【示例2】可以简单地将此值存入一个局部变量中，在控制条件中使用这个局部变量，从而提高了循环性能：
+for (var i=0, len=items.length; i < len; i++){ 
+    process(items[i]);
+}
+var j=0, count = items.length;
+while (j < count){
+    process(items[j++]);
+}
+var k=0, num = items.length;
+do {
+    process(items[k++]);
+} while (k < num);
+
+//【示例3】在JavaScript 中，倒序循环可以略微提高循环性能：
+for (var i=items.length; i--; ){
+    process(items[i]);
+}
+var j = items.length;
+while (j--){
+    process(items[j]);
+}
+var k = items.length-1;
+do {
+    process(items[k]);
+} while (k--);
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

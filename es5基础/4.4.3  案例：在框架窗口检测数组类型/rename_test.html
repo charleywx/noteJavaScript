@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+var iframe = document.createElement("iframe");	// 创建一个浮动框架
+document.body.appendChild(iframe); 		// 在文档中插入该框架
+var A = window.frames[0].Array; 			// 获取该浮动框架窗口包含的Array构造函数
+var a = new A();		// 利用该浮动框架的Array构造函数初建一个数组对象
+alert(a.constructor == Array); 			// 返回false
+alert(a.constructor); 						// 返回Array对象的字符串提示
+
+//（1）检测该数组中是否包含数组特有的方法或属性。
+function isArray(o){
+    return o!=null && typeof o==="object"&&"splice" in o &&"join"in o;
+}
+alert(isArray(a)); 					// 返回true
+
+//（2）匹配toString()方法返回的字符串。
+
+function isArray(o) {
+    return Object.prototype.toString.call(o) ==="[object Array]";
+}
+alert(isArray(a)); 					// 返回true
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】调用构造函数的过程也是类实例化的过程。
+function F(x,y){ 				// 构造函数
+    this.x = x;
+    this.y = y;
+}
+
+var f = new F(1,2); 			// 初始化对象，
+alert(f.constructor == F); 	// 返回true，说明F是f对象的构造函数
+
+function F(x,y){ 				// 构造函数
+    this.x = x;
+    this.y = y;
+    return [];					// 返回空的数组直接量
+}
+var f = new F(1,2); 			// 实例化对象
+alert(f.constructor == F); 	// 返回false，说明F不再是f的构造函数
+
+function Array () {			// 返回被封闭的Array核心结构
+    [ native code ]
+}
+
+alert(f.constructor == Array);	// 返回true，说明Array是f的构造函数
+
+//【示例2】在下面示例中，构造函数A、B和C相互之间通过call()方法关联在一起，当构造对象c时，将调用构造函数C，而在执行构造函数C中，会先调用构造函数B。调用构造函数B之前，会自动调用构造函数C，从而实现动态构造对象的效果。这种多个构造函数相互关联在一起，也称为多重构造，它显示了构造对象的动态性。
+function A(x){ 						// 构造函数A
+    this.x = x || 0;
+}
+function B(x){ 						// 构造函数B
+    A.call(this,x); 				// 动态构造A
+    this.a = [x];
+}
+function C(x){ 						// 构造函数C
+    B.call(this,x); 				// 动态构造B
+    this.y = function(){
+        return this.x;
+    }
+}
+var c = new C(3); 					// 实例化构造函数C
+alert(c.y());						// 返回3
+
+//【示例3】根据动态构造的这种特性，用户可以设计类的多态处理。
+function F( x, y ){ 				// 多态类型
+    function A( x, y ){ 			// 包含类A，计算两个字符串相连接
+        this.add = function(){		// 字符串连接的方法
+            return x + "" + y;
+        }
+    }
+    function B( x, y ){ 			// 包含类B，计算两个数值相加
+        this.add = function(){		// 数值相加的方法
+            return x + y;
+        }
+    }
+    if( typeof x == "string" || typeof y == "string" ){ 
+	// 如果参数中包含有字符串型数值
+        A.call( this, x, y ); 		// 则动态构造类A，让类F继承A的方法
+    }
+    else{
+        B.call( this, x, y ); 		// 否则，动态构造类B，让类F继承B的方法
+    }
+}
+var f1 = new F( 3,4 ); 			// 实例化类F，传递数值
+alert( f1.add() ); 					// 调用对象方法add()，返回数值7
+var f2 = new F( "3","4" ); 		// 实例化类F，传递字符串
+alert( f2.add() ); 					// 调用对象方法add()，返回字符串34
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】下面可以通过例子来帮助理解。
+function adder(num) {
+    return function(x) {
+        return num + x;
+    }
+}
+var add5 = adder(5);
+var add6 = adder(6);
+print(add5(1));// 6
+print(add6(1)); //7
+
+function curry(fn) {
+    var args = [].slice.call(arguments, 1);
+    return function() {
+        return fn.apply(null, args.concat([].slice.call(arguments, 0)));
+    }
+}
+function add(num1, num2) {
+    return num1 + num2;
+}
+var newAdd = curry(add, 5);
+alert(newAdd(6));//    11
+
+function bind(fn, context) {
+    var args = Array.prototype.slice.call(arguments, 2);
+    return function() {
+        var innerArgs = Array.prototype.slice.call(arguments);
+        var finalArgs = args.concat(innerArgs);
+        return fn.apply(context, finalArgs);
+    };
+}
+
+function curry(fn) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return function() {
+        var innerArgs = Array.prototype.slice.call(arguments);
+        var finalArgs = args.concat(innerArgs); retrun
+        fn.apply(null, finalArgs);
+    };
+}
+
+
+</script>
+
+
+<body>
+</body>
+</html>

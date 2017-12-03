@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title></title>
+<script type="text/javascript">
+var http_request = false;
+function createRequest(url) {
+	//初始化对象并发出XMLHttpRequest请求
+	http_request = false;
+	if (window.XMLHttpRequest) { // Mozilla......
+		http_request = new XMLHttpRequest();
+		if (http_request.overrideMimeType) {
+			http_request.overrideMimeType("text/xml");
+		}
+	} else if (window.ActiveXObject) { // IE浏览器
+		try {
+			http_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_request = new ActiveXObject("Microsoft.XMLHTTP");
+		   } catch (e) {}
+		}
+	}
+	if (!http_request) {
+		alert("不能创建XMLHTTP实例!");
+		return false;
+	}
+	http_request.onreadystatechange = dealresult;    //指定响应方法
+	//发出HTTP请求
+	http_request.open("GET", url, true);
+	http_request.send(null);
+}
+function dealresult() {    //处理服务器返回的信息
+	if (http_request.readyState == 4) {
+		if (http_request.status == 200) {
+		　　var xmldoc = http_request.responseXML;
+			createTable(xmldoc);
+		} else {
+			alert('您请求的页面发现错误');
+		}
+	}
+}
+
+
+function createTable(xmldoc) {
+	var table = document.createElement("table");
+	parentTd.appendChild(table);     //在指定位置创建表格
+	var header = table.createTHead();
+	var headerrow = header.insertRow(0);
+	headerrow.insertCell(0).appendChild(document.createTextNode("客户名称"));
+	headerrow.insertCell(1).appendChild(document.createTextNode("联系地址"));
+	headerrow.insertCell(2).appendChild(document.createTextNode("电话"));
+	headerrow.insertCell(3).appendChild(document.createTextNode("邮政编码"));
+	headerrow.insertCell(4).appendChild(document.createTextNode("开户银行"));
+	headerrow.insertCell(5).appendChild(document.createTextNode("银行账号"));	
+	var customers = xmldoc.getElementsByTagName("customer");
+	for(var i=0;i<customers.length;i++) {
+		var cus = customers[i];
+		var name = cus.getAttribute("name");
+		var address = cus.getElementsByTagName("address")[0].firstChild.data;
+		var tel = cus.getElementsByTagName("tel")[0].firstChild.data;
+		var postcode = cus.getElementsByTagName("postcode")[0].firstChild.data;
+		var bank = cus.getElementsByTagName("bank")[0].firstChild.data;
+		var bankcode = cus.getElementsByTagName("bankcode")[0].firstChild.data;		
+		var row = table.insertRow(i+1);
+		row.insertCell(0).appendChild(document.createTextNode(name));
+		row.insertCell(1).appendChild(document.createTextNode(address));
+		row.insertCell(2).appendChild(document.createTextNode(tel));
+		row.insertCell(3).appendChild(document.createTextNode(postcode));
+		row.insertCell(4).appendChild(document.createTextNode(bank));
+		row.insertCell(5).appendChild(document.createTextNode(bankcode));		
+	}
+}
+window.onload =function(){
+	createRequest("customers.xml");
+}
+</script>
+<style type="text/css">
+#parentTd table {/* 表格基本样式 */
+    table-layout: fixed; 								/* 固定表格布局，优化解析速度*/
+    empty-cells: show; 								/* 显示空单元格 */
+    margin: 0 auto; 								/* 居中显示 */
+    border-collapse: collapse; 						/* 合并单元格边框 */
+    border: 1px solid #cad9ea; 						/* 边框样式 */
+    color: #666; 									/* 灰色字体 */
+    font-size: 12px; 								/* 字体大小 */
+    width:100%;
+}
+#parentTd th {/* 列标题样式 */
+    background-repeat: repeat-x; 						/* 定义水平平铺 */
+    height: 30px; 									/* 固定高度 */
+    font-weight:bold；
+}
+#parentTd td { height: 20px; /* 固定高度 */ }/* 单元格的高度 */
+#parentTd td, th {/* 单元格的边框线和补白 */
+    border: 1px solid #cad9ea; 			/* 单元格边框线，应与表格边框线一致 */
+    padding: 0 1em 0; 					/* 单元格左右两侧的补白，一个字距 */
+}
+</style>
+</head>
+<body>
+<table width="777" height="172"  border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="777"  border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img src="images/tiring-room_01.gif" width="777" height="125"></td>
+      </tr>
+      <tr>
+        <td height="47" valign="top" background="images/tiring-room_02.gif"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="777"  border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="44" height="380" valign="top"><img src="images/tiring-room_03.gif" width="44" height="248"></td>
+    <td valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="68" colspan="2" background="images/H_customer.gif">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="4%">&nbsp;</td>
+        <td width="96%" id="parentTd">
+		</td>
+      </tr>
+    </table></td>
+    <td width="35" valign="top"><img src="images/tiring-room_05.gif" width="35" height="248"></td>
+  </tr>
+</table>
+</body>
+</html>

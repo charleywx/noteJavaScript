@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】
+function a(){				// 构造函数a
+    this.x = [];			// 本地属性x值为数组
+}
+function b(){				// 构造函数b
+}
+b.prototype = new a();		// 构造函数b的原型指向a的实例（即引用a的实例）
+var f1 = new b();			// 实例化b为f1
+var f2 = new b();			// 实例化b为f2
+f1.x.push(1); 				// 修改实例f1中属性x的值
+alert(f2.x); 				// 返回1，说明实例f2的x属性值也受到影响
+
+</script>
+</head>
+<body>
+</body>
+</html>

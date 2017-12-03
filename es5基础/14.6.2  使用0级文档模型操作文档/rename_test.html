@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+【示例1】下面示例使用0级DOM访问文档元素。
+<img name="img" src = "bg.gif" />
+<form name="form" method="post" action="http:// www.mysite.cn/navi/">
+</form>
+<script language="javascript" type="text/javascript">
+alert(document.img.src);				// 返回图像的地址
+alert(document.form.action);			// 返回表单提交的路径
+</script>
+【示例2】使用文档对象集合可以快速索引，此时不需要name属性。
+<img src = "bg.gif" />
+<form method="post" action="http:// www.mysite.cn/navi/">
+</form>
+<script language="javascript" type="text/javascript">
+alert(document.images[0].src); 		// 返回图像的地址
+alert(document.forms[0].action); 		// 返回表单提交的路径
+</script>
+【示例3】如果元素对象定义有name属性，也可以使用文本下标来引用对应的元素对象。
+<img name="img" src = "bg.gif" />
+<form name="form" method="post" action="http:// www.mysite.cn/navi/">
+</form>
+<script language="javascript" type="text/javascript">
+alert(document.images["img"].src); 	// 返回图像的地址
+alert(document.forms["form"].action); 	// 返回表单提交的路径
+</script>
+
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

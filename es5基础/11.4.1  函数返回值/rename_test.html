@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面代码定义函数的返回值为函数。
+function f(){
+    return function(x, y){ 			// 返回值为函数
+        return x + y;
+    }
+}
+
+//【示例2】函数的参数没有限制，但是返回值只能是一个，如果要输出多个值，可以通过数组或对象进行设计。
+function f(){
+    var a = [];
+    a[0] = true;
+    a[1] = function(x, y){
+      return x + y;
+   }
+   a[2] = 123;
+   return a; 						// 返回多个值
+}
+
+//【示例3】在函数体内可以包含多个return语句，但是仅能执行一个return语句，因此在函数体内可以使用分支结构或条件结构决定函数返回值。
+function f(x, y){ 					// 根据条件返回值
+    if(x > y) return x - y;
+    if(x < y) return y - x;
+    if(x * y <= 0) return x + y;
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

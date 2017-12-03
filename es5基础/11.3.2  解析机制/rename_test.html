@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】在下面示例中，分别把function语句定义的空函数和Function构造函数定义的空函数放在一个循环体内，让它们空转十万次，则比较发现使用function语句定义的空函数运行效率高。
+// 测试function语句定义的空函数执行效率
+var a = new Date();			// 定义当前时间对象实例
+var x = a.getTime();			// 获取当前时间的毫秒数
+for(var i=0;i<100000;i++){		// 定义的循环结构体
+    function(){					// 使用function语句定义的空函数
+        ;
+    }
+}
+var b = new Date();			// 定义当前时间对象实例
+var y = b.getTime();			// 获取当前时间的毫秒数
+alert(y-x); 					// 返回62，不同环境和浏览器会存在差异
+// 测试Function构造函数定义的空函数执行效率
+var a = new Date();			// 定义当前时间对象实例
+var x = a.getTime();			// 获取当前时间的毫秒数
+for(var i=0;i<100000;i++){		// 定义的循环结构体
+    new Function();				// 使用Function构造函数定义的空函数
+}
+var b = new Date();			// 定义当前时间对象实例
+var y = b.getTime();			// 获取当前时间的毫秒数
+alert(y-x); 					// 返回2390，不同环境和浏览器会存在差异
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

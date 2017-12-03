@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】在IE浏览器的CSS中支持expression运算函数，该函数能够实现CSS技术的脚本化控制。
+//<div style="width:expression(document.body.offsetWidth - 200);height:expression(document.body.offsetHeight - 20);border:solid 1px red"></div>
+
+//【示例2】下面示例是一个连续运算的表达式，该表达式是一个逻辑复杂的分支结构，并在分支结构中包含函数结构体，以判断两种表达式的大小，并输出提示信息。可以看到，整个代码是在无命令语句的情况下完成的任务，与命令式语言风格迥然不同：
+( ( function f( x, y ){
+    return ( x + y ) * ( x + y );
+})( 25, 36 )>
+( function f( x, y ){
+    return x * x + y * y;
+})( 25, 36 ) ) ?
+alert( "( x + y )^2" ) : alert( "x ^2+ y^2" ) 
+	// 返回提示信息"( x + y )^2"
+
+//【示例3】下面示例使用函数封装复杂的循环结构，并让它直接参与到表达式运算。
+alert(( function( x, y ){
+    var c=0,a =[]
+    for( var i = 0; i < x; i ++ ){
+        for( var j = 0; j < y; j ++ ) {
+            a[c] = i.toString() + j.toString();
+            document.write(++c + " ");
+        }
+        document.write( "<br />");
+    }
+    return a;
+}
+)( 10, 10 ) );
+
+//【示例4】这种连续运算的表达式也存在一定的调试风险，对于如此复杂结构的表达式，阅读和调试将是一个极大挑战。例如，在没有上面代码的提示下，很难简单看明白下面一行表达式的逻辑和语义。
+alert(( function( x, y ){var c=0,a =[];for( var i = 0; i < x; i ++ )
+{for( var j = 0; j < y; j ++ )
+{a[c] = i.toString() + j.toString();document.write
+(++c + " ");}document.write
+( "<br />");}return a;} )( 10, 10 ) );
+//
+
+
+</script>
+<body>
+</body>
+</html>

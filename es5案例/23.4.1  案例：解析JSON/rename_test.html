@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面代码使用JSON.parse将JSON字符串转换成对象。
+var jsontext = '{"name":"张三","qq":"111111111","phone":["010-66666666","010-88888888"]}';
+var contact = JSON.parse(jsontext);
+document.write(contact.name + ", " + contact.qq);// 输出：张三, 111111111
+
+//【示例2】可选参数reviver是一个带有key和value两个参数的函数，其作用于结果，让过滤和转换返回值成为可能。例如，下面示例将把字符串'{"a": "1.5", "b": "2.3"}';转换为对象，然后通过int()函数对转换的对象成员值进行处理，确保每个值都为整数。
+var n = '{"a": "1.5", "b": "2.3"}';
+var result = JSON.parse(n,int );
+document.write(result.a); 					//输出：1
+function  int(key, value){
+    if (typeof value == 'string'){
+        return parseInt(value);
+    } else {
+        return value; 
+    }
+}
+
+//【示例3】下面示例使用JSON.parse序列化ISO格式的日期字符串，在序列化过程中调用dateReviver()函数把每个成员的值进行转换，并返回Date格式的对象。
+var jsontext2 = '{ "hiredate": "2015-01-01T12:00:00Z", "birthdate": "2015-12-25T12:00:00Z" }';  
+var dates = JSON.parse(jsontext2, dateReviver);  
+document.write(dates.birthdate.toUTCString());  //输出：Fri, 25 Dec 2015 12:00:00 UTC
+function dateReviver(key, value) {  
+    var a;  
+    if (typeof value === 'string') {  
+        a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/.exec(value);  
+        if (a) {  
+            return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]));  
+        }  
+    }  
+    return value;  
+};
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

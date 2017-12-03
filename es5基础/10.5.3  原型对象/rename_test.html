@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】JavaScript构造对象都有个prototype属性，它引用一个原型对象，当实例化构造对象后，所有实例对象被允许访问这个原型对象。下面代码使用函数的prototype属性为构造函数Point定义了一个原型属性和原型方法。
+function Point(x, y){						// 构造函数
+    this.x = x;
+    this.y = y;
+}
+Point.prototype.name = "原型对象的属性";		// 定义原型对象的属性
+Point.prototype.sum = function(){			// 定义原型对象的方法
+    return this.x + this.y; 	// 计算实例属性x和y的和，并返回
+}
+var p1 =new Point(1,2); 		// 实例对象
+alert(p1.sum());				// 调用实例对象的原型方法sum()，返回值为3
+alert(p1.name); 				// 读取实例对象的原型属性
+
+Point.prototype = {			// 原型对象
+    name : "原型对象的属性",		// 原型对象的属性
+    sum : function(){			// 原型对象的方法
+        return this.x + this.y;
+    }
+}
+
+//【示例2】创建实例对象之后，用户可以继续为对象添加原型属性和原型方法，所有实例对象都能够继承这些动态添加的原型属性和原型方法。
+var p1 = new Point(1, 2);
+Point.prototype.name = "原型对象的属性";
+Point.prototype.sum = function(){
+    return this.x + this.y;
+}
+alert(p1.sum());				// 调用实例对象的原型方法sum()，返回值为3
+alert(p1.name); 				// 读取实例对象的原型属性
+
+//【示例3】实例化后，下面添加原型的方法是错误的，因为它覆盖了prototype属性对原型对象的引用。
+var p1 = new Point(1, 2);
+Point.prototype = {
+    name : "原型对象的属性",
+    sum : function()
+    {
+        return this.x + this.y;
+    }
+}
+
+//【示例4】
+function Point(x, y){				// 构造函数
+    this.x = x;						// 对象属性
+    this.y = function(){			// 对象方法
+        return y;
+    }
+}
+Point.prototype.x = "a";			// 原型属性
+Point.prototype.y = function(){	// 原型方法
+    return "b";
+}
+var p1 = new Point(1, 2);
+p1.x = true; 						// 自定义实例属性
+p1.y = function(){					// 自定义实例方法
+    return false;
+}
+alert(p1.x);
+alert(p1.y());
+
+//【示例5】使用delete运算符可以删除实例对象的本地属性x和y，但是原型属性是不能够被删除的。因此，利用这个特性可以使用原型属性设计本地属性的初始值。
+var p1 = new Point(1, 2);
+p1.x = true;
+p1.y = function(){
+    return false;
+}
+delete p1.x;						// 删除属性x
+delete p1.y; 						// 删除属性y
+alert(p1.x);						// 返回原型属性值
+alert(p1.y());						// 调用原型方法
+
+//【示例6】在JavaScript中，所有构造对象都拥有原型对象，如Function、Date、Object等，用户可以利用原型方法为JavaScript内置对象扩展方法。例如，valueOf()方法是Object对象的一个默认方法，但是它的作用域是对象，而不是全局，因此必须按如下方法进行调用：
+var a = "string";
+alert(a.valueOf());
+
+var a = "string";
+alert(valueOf(a));
+
+var valueOf = Object.prototype.valueOf = function(x){
+    return x.valueOf();
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

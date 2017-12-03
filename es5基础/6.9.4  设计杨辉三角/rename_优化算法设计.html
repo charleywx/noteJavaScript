@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>优化算法设计</title>
+<script type="text/javascript">
+
+function print(v)
+{
+    if(typeof v == "number")
+    {
+        var w = 40;
+        if(n > 30) w = (n - 30) + 40;
+        var s = '<span style="padding:4px 2px;display:inline-block;text-align:center;width:'+ w +'px;">' + v + '</span>';
+        document.write(s);
+    }
+    else
+    {
+        document.write(v);
+    }
+}
+
+var n = prompt("请输入幂数：", 9);
+n = n - 0;
+
+var t1 = new Date();
+
+var a1 = [1, 1], a2 = [1, 1];
+print('<div style="text-align:center;">');
+print(1);
+print("<br />");
+for(var i = 2; i <= n; i ++ )
+{
+    print(1);
+    for(var j = 1; j < i - 1 ; j ++ )
+    {
+        a2[j] = a1[j - 1] + a1[j];
+        print(a2[j]);
+    }
+    a2[j] = 1;
+    for(var k = 0; k <= j; k ++ )
+    {
+        a1[k] = a2[k];
+    }
+    print(1);
+    print("<br />");
+}
+print("</div>");
+
+var t2 = new Date();
+print("<p style='text-align:center;'>耗时为（毫秒）：" + ( t2 - t1) + "</p>" );
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

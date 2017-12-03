@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例演示将数组值连接成字符串，各个值用“::”分隔开。由于未向reduce 方法提供初始值，第一次调用回调函数时会将“abc”作为 previousValue 参数并将“def”作为currentValue 参数。
+function appendCurrent (previousValue, currentValue) {
+    return previousValue + "::" + currentValue;
+}
+var elements = ["abc", "def", 123, 456];
+var result = elements.reduce(appendCurrent);
+document.write(result);  //abc::def::123::456
+
+//【示例2】下面示例向数组中添加值。 currentIndex和array 参数用于回调函数。
+function addDigitValue(previousValue, currentDigit, currentIndex, array) {
+    var exponent = (array.length - 1) - currentIndex;
+    var digitValue = currentDigit * Math.pow(10, exponent);
+    return previousValue + digitValue;
+}
+var digits = [4, 1, 2, 5];
+var result = digits.reduce(addDigitValue, 0);
+document.write (result);			//4125
+
+//【示例3】下面示例获取一个数组，该数组仅包含另一个数组中的介于 1 和 10 之间值， 提供给reduce 方法的初始值是一个空数组。
+function Process(previousArray, currentValue) {
+    var nextArray;
+    if (currentValue >= 1 && currentValue <= 10)
+        nextArray = previousArray.concat(currentValue);
+    else
+        nextArray = previousArray;
+    return nextArray;
+}
+var numbers = [20, 1, -5, 6, 50, 3];
+var emptyArray = new Array();
+var resultArray = numbers.reduce(Process, emptyArray);
+document.write(resultArray);//1,6,3
+
+//【示例4】下面示例使用reduceRight方法，以"::"为分隔符，从右到左把数组元素的值连接在一起。
+function appendCurrent (previousValue, currentValue) {
+    return previousValue + "::" + currentValue;
+}
+var elements = ["abc", "def", 123, 456];
+var result = elements.reduceRight(appendCurrent);
+document.write(result);		//456::123::def::abc
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

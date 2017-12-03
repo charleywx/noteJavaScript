@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】
+var f = function(){}		// 定义函数
+f.prototype = {			// 函数的原型对象
+    a : 1,
+    b : function(){
+        return 2;
+    }
+}
+alert(f.prototype.a); 		// 读取函数的原型对象的属性a，返回1
+alert(f.prototype.b());	// 读取函数的原型对象的属性b，返回2
+
+var o = new f();			// 实例对象
+alert(o.a); 				// 访问原型对象的属性
+alert(o.b());				// 访问原型对象的属性
+
+//【示例2】针对下面的示例，可以判断f.prototype就是对象o的原型对象，因为其返回值为true。
+var b = f.prototype.isPrototypeOf(o);
+alert(b);
+
+//【示例3】下面示例演示了各种特殊对象的原型对象。
+
+var f = function(){}
+alert(Object.prototype.isPrototypeOf(f)); 			// 返回true
+alert(Function.prototype.isPrototypeOf(f)); 		// 返回true
+
+alert(Function.prototype.isPrototypeOf(Object)); 	// 返回true
+alert(Object.prototype.isPrototypeOf(Function)); 	// 返回true
+
+alert(Object.prototype.isPrototypeOf(Object.prototype)); 
+	// 返回true
+alert(Object.prototype.isPrototypeOf(Function.prototype)); 
+	// 返回true
+alert(Function.prototype.isPrototypeOf(Function.prototype));
+ 	// 返回true
+alert(Function.prototype.isPrototypeOf(Object.prototype)); 
+	// 返回false
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

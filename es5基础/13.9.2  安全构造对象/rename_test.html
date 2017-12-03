@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+}
+var person = new Person("Nicholas", 34, 'software Engineer');
+
+function Person(name, age, job) {
+    //检测this对象是否是Person的实例
+    if(this instanceof Person) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    } else {
+        return new Person(name, age, job);
+    }
+}
+
+function Polygon(sides) {
+    if(this instanceof Polygon) {
+        this.sides = sides;
+        this.getArea = function() {
+            return 0;
+        }
+    } else {
+        return new Polygon(sides);
+    }
+}
+function Rectangle(width, height) {
+    Polygon.call(this, 2);
+    this.width = width;
+    this.height = height;
+    this.getArea = function() {
+        return this.width * this.height;
+    };
+}
+var rect = new Rectangle(5, 10);
+alert(rect.sides);//undefined
+
+function Polygon(sides) {
+    if(this instanceof Polygon) {
+        this.sides = sides;
+        this.getArea = function() {
+            return 0;
+        }
+    } else {
+        return new Polygon(sides);
+    }
+}
+function Rectangle(width, height) {
+    Polygon.call(this, 2);
+    this.width = width;
+    this.height = height;
+    this.getArea = function() {
+        return this.width * this.height;
+    };
+}
+//使用原型链
+Rectangle.prototype = new Polygon();
+var rect = new Rectangle(5, 10);
+alert(rect.sides);    //2
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

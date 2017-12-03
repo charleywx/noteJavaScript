@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】
+function A(x){ 						// 构造函数A
+    this.x = x; 					// 本地属性x
+    this.say = function(){			// 本地方法say()
+        alert(this.x);
+    }
+}
+function B(x,y){ 		// 构造函数B
+    this.m = A; 		// 把构造函数A作为一个普通函数引用给临时方法m()
+    this.m(x); 			// 把当前构造函数参数x作为值传递给构造函数A，并执行
+    delete this.m; 		// 清除临时方法
+    this.y = y; 					// 本地属性y
+    this.call = function(){			// 本地方法call()
+        alert(this.y);
+    }
+}
+var a = new A(1); 		// 实例化A
+var b = new B(2,3); 	// 实例化B
+a.say();				// 调用实例化A的方法say()，返回1
+b.say();				// 在B类中调用A类的方法say()，返回2，说明继承成功
+b.call();				// 用实例化B的方法call()，返回3
+
+//【示例2】在上面示例中，函数之间的引用和传递正是类继承的基础，还可以设计为一个类继承多个类，下面示例中类C继承了类A和类B的所有成员。
+function A(x){ 					// 构造函数A
+    this.x = function(){		// 本地方法x()
+        alert(x);
+    }
+}
+function B(y){ 					// 构造函数B
+    this.y = function(){		// 本地方法y()
+        alert(y);
+    }
+}
+function C(x,y){ 				// 构造函数C
+    this.m = A; 				// 引用构造函数A
+    this.m(x); 					// 传递参数x，并进行调用
+    this.m = B; 				// 引用构造函数B
+    this.m(y); 					// 传递参数y，并进行调用
+}
+var c = new C(2,3); 			// 实例化类C
+c.x();							// 调用继承类A的方法x()，返回2
+c.y();							// 调用继承类B的方法y()，返回3
+
+//【示例3】上面示例的设计模式太随意，缺乏严密性。严谨的设计模式应该考虑到各种可能存在的情况和类继承关系中的相互耦合性。为了更直观地说明，先看一个示例：
+function A(x){ 						// 构造函数A
+    this.x = x; 					// 构造函数A的本地属性x
+}
+A.prototype.getx = function(){		// 构造函数A的原型方法getx ()
+    return this.x;
+}
+
+var a1 = new A(1); 					// 实例化类A为对象a1
+
+alert(a1.x); 						// 继承类A的属性x
+alert(a1.getx());					// 引用类A的方法getx()
+
+function B(x,y){ 					// 构造函数B
+    this.y = y; 					// 构造函数B的本地属性
+    A.call(this,x); 				// 在构造函数B中调用超类A，实现绑定
+}
+B.prototype = new A(); 			// 设置原型链，建立继承关系
+B.prototype.constructor = B; 		// 恢复B的原型对象的构造函数为B
+B.prototype.gety = function(){		// 构造函数B的原型方法
+    return this.y;
+}
+
+var f2 = new B(10,20); 	// 实例化子类B
+alert(f2.getx());			// 在实例中调用超类的方法getx()，返回10
+alert(f2.gety());			// 在实例中调用子类自己的方法gety()，返回20
+
+//【示例4】再看一个更复杂的多重继承的实例。
+// 基类A
+function A( x ){ 						// 构造函数A
+    this.getl = function(){				// 本地方法，获取参数值
+        return x;
+    }
+}
+A.prototype.has = function(){
+	// 原型方法，判断getl()方法返回值是否为0（false）
+    return ! ( this.getl() == 0 );
+}
+// 超类B
+function B(){							// 构造函数B
+    var a = [];							// 私有数组a
+    a = Array.apply( a, arguments ); 	// 把参数数组传入数组a中
+    A.call( this, a.length ); 
+	// 在当前对象中调用A类，并把参数数组长度传递给它
+    this.add = function(){		// 本地方法，把参数数组补加到数组a中，并返回
+        return a.push.apply( a, arguments ); 
+    }
+    this.geta = function(){		// 本地方法，返回数组a
+        return a; 	 
+    }
+}
+B.prototype = new A();		
+	// 设置B类的原型为A类的实例，从而建立原型链
+B.prototype.constructor = B; 	// 恢复B类原型对象的构造器
+B.prototype.str = function(){	// 原型方法，把数组转换为字符串并返回
+    return this.geta().toString();
+}
+// 子类C
+function C(){					// 构造函数
+    B.apply( this, arguments ); 
+	// 在当前对象中调用B类，并把参数数组长度传递给它
+    this.sort = function(){		// 本地方法，以字符顺序对数组进行排序
+        var a = this.geta();	// 获取数组的值
+        a.sort.apply( a, arguments ); 
+		// 调用数组排序方法sort()对数组进行排序
+    }
+}
+C.prototype = new B();		
+	// 设置C类的原型为B类的实例，从而建立原型链
+C.prototype.constructor = C; 	// 恢复C类原型对象的构造器
+// 超类B的实例继承类A的成员
+var b  = new B( 1, 2, 3, 4 ); 	// 实例化B类
+alert( b.getl() ); 				// 返回4，调用A类的方法getl()
+alert( b.has() ); 				// 返回true，调用A类的方法has()
+// 子类C的实例继承类B和类A的成员
+var c  = new C( 30, 10, 20, 40 ); 	// 实例化C类
+c.add( 6, 5 ); 						// 调用B类方法add()，补加数组
+alert( c.geta() ) 					// 返回数组30,10 ,20,40 ,6,5
+c.sort()							// 排序数组
+alert( c.geta() ) 					// 返回数组10,20 ,30,40 ,5,6
+alert( c.getl() ) 					// 返回4，调用A类的方法getl()
+alert( c.has() ); 					// 返回true，调用A类的方法has()
+alert( c.str() ); 					// 返回10,20 ,30,40 ,5,6
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

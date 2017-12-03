@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】下面代码分别以不同形式声明多个变量并赋值。
+var a;							// 声明一个变量
+var a = 0; 						// 声明一个变量并赋值
+var a, b; 						// 同时声明两个变量
+var a = 0, b = true, c, d; 	// 声明4个变量，并部分赋值
+
+//【示例2】如果var语句声明变量时，没有赋值，则JavaScript会默认变量初始值为undefined。
+var a;
+alert(a);						// 返回undefined
+
+//【示例3】var语句是通过在当前调用对象中创建同名属性来实现定义每个变量的。
+var a=1;
+function f(){
+    var a=2;
+    alert(a); 					// 返回2
+}
+alert(window.a); 				// 返回1
+f();							// 调用函数对象
+
+//【示例4】var语句的使用是有限制的，它不能在循环或条件结构内条件表达式中使用。例如，下面的用法都是错误的：
+while(var i = 0, (i ++) < 10){
+    alert(i);
+}
+
+if(var i = false){
+    alert(i);
+}
+
+for(var i = 0; i<10;i++){
+    alert(i);
+}
+for(var i in document){
+    alert(i);
+}
+
+//【示例5】
+function f(){
+    alert("声明并初始化函数变量");
+}
+
+//【示例6】
+function语句可以转换为var语句，例如，上面的函数声明语句可以转换为：
+var f = function(){
+    alert("声明并初始化函数变量");
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

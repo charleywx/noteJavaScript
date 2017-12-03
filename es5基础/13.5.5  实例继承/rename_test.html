@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】使用类继承法继承Date对象：
+function D(){					// 自定义构造函数
+    Date.apply(this,arguments); 
+	// 调用Date对象，对其进行引用，实现继承的目的
+}
+var d = new D();				// 实例化自定义构造函数
+alert(d.toLocaleString());		// 返回[object Object]
+
+//【示例2】使用原型继承法继承Date对象：
+function D(){					// 自定义空构造函数
+}
+D.prototype = new Date();		// 把Date对象的实例赋值给D的原型对象
+var d = new D();				// 实例化D
+alert(d.toLocaleString());		// 返回错误提示
+
+//【示例3】在下面的示例中，把Date对象的实例化过程和方法调用封装在一个函数中，然后返回实例对象，这样就可以解决了核心静态对象无法继承的问题。如下：
+function D(){					// 封装函数
+    var d = new Date();			// 实例化Date对象
+    d.get = function(){
+	// 定义本地方法，间接调用Date对象的toLocaleString()方法
+        alert(d.toLocaleString());
+    }
+    return d; 					// 返回实例对象
+}
+var d = new D();				// 实例化封装函数
+d.get();						// 调用本地方法，返回当前本地的日期和时间
+
+alert(d instanceof Date); 		// 返回true，说明对象d是对象Date的实例
+alert(d instanceof D); 		// 返回false，说明对象d不是对象D的实例
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

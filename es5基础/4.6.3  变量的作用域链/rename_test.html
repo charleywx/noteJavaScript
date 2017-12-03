@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例】
+var a = 1; 							// 全局变量
+(function(){
+    var b = 2; 						// 第1层局部变量
+    (function(){
+        var c = 3; 					// 第2层局部变量
+        (function(){
+            var d = 4; 				// 第3层局部变量
+            alert(a+b+c+d); 			// 返回10
+        })()							// 直接调用函数
+    })()							// 直接调用函数
+})()								// 直接调用函数
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

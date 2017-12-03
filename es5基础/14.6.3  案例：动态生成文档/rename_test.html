@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+
+
+//【示例1】
+document.write('Hello',',','World');
+//实际上，上面代码与下面的用法是相同的：
+document.write('Hello,World');
+
+//【示例2】下面示例演示了write()和writeln()方法的混合使用。
+function f(){
+    document.write('<p>调用事件处理函数时动态生成的内容</p>');
+}
+document.write('<p onclick="f()">文档解析时动态生成的内容</p>');
+
+//【示例3】使用open()方法可以为某个框架创建文档，也可以使用write()方法为其添加内容。在下面框架集文档中。左侧框架的文档为left1.htm，而右侧框架还没有文档内容。
+/*<!DOCTYPE html PUBLIC "-// W3C// DTD XHTML 1.0 Frameset// EN" 
+"http:// www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http:// www.w3.org/1999/xhtml">
+<head>
+</head>
+<frameset cols="*,*">
+    <frame src="left1.htm" name="leftFrame" id="leftFrame" />
+    <frame src="" name="mainFrame" id="mainFrame" />
+</frameset>
+<noframes><body></body></noframes>
+</html>
+//然后，在左侧框架文档中定义如下脚本：
+window.onload = function(){
+    document.body.onclick = f;
+}
+function f(){
+    parent.frames[1].document.open();
+    parent.frames[1].document.write('<h2>动态生成右侧框架的标题</h2>')
+    parent.frames[1].document.close();
+}*/
+
+
+
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

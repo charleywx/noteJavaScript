@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】针对上节示例中定义的三级嵌套对象，使用下面代码可以访问最里层对象属性y的值。
+alert(o.y.y.y) ,				// 读取第三层对象的属性y的值，返回false
+
+//【示例2】从结构上分析，对象与数组相似，因此可以使用中括号来访问对象属性。针对上面示例，可以使用如下方式来读取最内层的对象属性y的值。
+alert(o["y"]["y"]["y"]),		// 读取第三层对象的属性y的值，返回false
+
+//【示例3】对象是属性的集合，因此可以使用for/in语句来遍历对象属性。这对于无法确定对象包含属性时，是非常有用的。
+o = {						// 定义对象
+    x:1,
+    y:2,
+    z:3
+}
+for(var i in o){ 				// 遍历对象属性
+    alert(o[i]); 				// 读取对象的属性值
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面代码中，定义了一个函数对象，并把这个函数对象赋值给变量f。实际上，函数名仅是一个变量，存储着指向函数结构的地址，因此可以把这个函数赋值给其他变量，函数依然是函数，而变量无非就是一个标识符。
+function f(x){ 					// 全局函数
+    return x*x;
+}
+
+//【示例2】上面示例中的函数仅是一个普通函数，如果把函数赋值给对象的属性，那么函数就被称为方法，当然不管是函数，还是方法，它的数据结构依然是相同的，本质上没有发生变化。
+var o = new Object();			// 构造一个空对象结构
+o.f = function(x){ 				// 对象的方法
+    return x*x;
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

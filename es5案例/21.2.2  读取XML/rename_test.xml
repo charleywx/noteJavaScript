@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GB2312"?>
+<recordset>
+    <record>
+        <ProductID>1</ProductID>
+        <ProductName>苹果汁</ProductName>
+        <SupplierID>1</SupplierID>
+        <CategoryID>1</CategoryID>
+        <QuantityPerUnit>每箱24瓶</QuantityPerUnit>
+        <UnitPrice>18</UnitPrice>
+        <UnitsInStock>39</UnitsInStock>
+        <UnitsOnOrder>0</UnitsOnOrder>
+        <ReorderLevel>10</ReorderLevel>
+        <Discontinued>-1</Discontinued>
+    </record>
+    <record>
+        <ProductID>2</ProductID>
+        <ProductName>牛奶</ProductName>
+        <SupplierID>1</SupplierID>
+        <CategoryID>1</CategoryID>
+        <QuantityPerUnit>每箱24瓶</QuantityPerUnit>
+        <UnitPrice>19</UnitPrice>
+        <UnitsInStock>17</UnitsInStock>
+        <UnitsOnOrder>40</UnitsOnOrder>
+        <ReorderLevel>25</ReorderLevel>
+        <Discontinued>0</Discontinued>
+    </record>
+    <record>
+        <ProductID>3</ProductID>
+        <ProductName>蕃茄酱</ProductName>
+        <SupplierID>1</SupplierID>
+        <CategoryID>2</CategoryID>
+        <QuantityPerUnit>每箱12瓶</QuantityPerUnit>
+        <UnitPrice>10</UnitPrice>
+        <UnitsInStock>13</UnitsInStock>
+        <UnitsOnOrder>70</UnitsOnOrder>
+        <ReorderLevel>25</ReorderLevel>
+        <Discontinued>0</Discontinued>
+    </record>
+</recordset>

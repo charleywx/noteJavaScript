@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面示例中，通过在函数中调用函数的方法实现多重调用，也就是把函数调用做为一个表达式的值直接作为参数进行传递，这样节省了两个临时变量。
+function f(x,y){ 					// 定义函数
+    return x*y; 					// 返回值
+}
+alert(f(f(5,6),f(7,8))); 			// 返回1680。重复调用函数
+
+function f(x,y){ 					// 定义函数
+    return x*y; 					// 返回值
+}
+var a = f(5, 6); 					// 返回30，调用函数
+var b = f(7, 8); 					// 返回56，调用函数
+alert(f(a, b)); 					// 返回1680，调用函数
+
+//【示例2】如果函数返回值为一个函数，则在调用时可以使用多个小括号运算符反复调用。
+function f(x, y){ 					// 定义函数
+    return function(){				// 返回函数类型的数据
+        return x * y;
+    }
+}
+alert(f(7, 8)()); 					// 返回值56，反复调用函数
+
+//【示例3】在下面代码中，定义函数的返回值为函数自身，设计一种递归返回函数自身的操作，这样就可以通过无数个小括号运算符反复调用，但是最终返回值都是函数结构体自身。
+function f(){						// 定义函数
+    return f; 						// 返回函数自身
+}
+alert(f()()()()()()()()()()()());	// 返回函数结构体
+
+//【示例4】在嵌套函数中，JavaScript遵循从内到外的原则就近调用函数，但是不会从外到内调用函数。这样就避免了嵌套函数中调用同名函数可能引发的冲突。
+function f(){						// 顶级函数f
+    return 1;
+}
+function o(){						// 函数作用域
+    return o()						// 调用内部函数o
+    function o(){					// 函数内部作用域
+        return f();					// 嵌套函数内部函数f
+        function f(){				// 嵌套函数内部函数f
+            return 3;
+        }
+    }
+    function f(){					// 嵌套函数f
+        return 2;
+    }
+}
+alert( f() ); 						// 返回数值1
+alert( o() ); 						// 返回数值3
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

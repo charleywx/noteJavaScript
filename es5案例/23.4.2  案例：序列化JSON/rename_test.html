@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例演示了如何使用JSON.stringify将数组转换成JSON字符串，然后使用JSON.parse将该字符串重新转换成数组。 
+var arr = ["a", "b", "c"]; 
+var str = JSON.stringify(arr); 
+document.write(str); 			// ["a","b","c"]
+document.write ("<br/>"); 
+var newArr = JSON.parse(str); 
+while (newArr.length > 0) { 
+    document.write(newArr.pop() + "<br/>"); 
+}
+
+
+//【示例2】下面示例把对象nums转换为JSON字符串，然后传入replacer()函数过滤出即将被字符串化的对象中值为13的属性。
+var nums = {
+    "first": 7,
+    "second": 14,
+    "third": 13
+}
+var luckyNums = JSON.stringify(nums,replacer);
+document.write(luckyNums); 			//{"first":7,"second":14}
+function replacer(key, value){
+    if (value == 13) {
+        return undefined;
+    } else {
+        return value;
+    }
+} 
+
+
+//【示例3】下面示例是在上面示例基础上，设置space参数值为4，格式化JSON字符串，设置水平缩进为4个空格数，显示效果如图23-2左图所示。如果不传递space参数值，则显示效果如图23-2右图所示。
+var nums = {
+    "first": 7,
+    "second": 14,
+    "third": 13
+}
+var luckyNums = JSON.stringify(nums,replacer,4);
+document.write("<pre>" + luckyNums + "</pre>");
+function replacer(key, value){
+    if (value == 13) {
+        return undefined;
+    } else {
+        return value;
+    }
+}
+     
+
+//【示例4】下面示例使用JSON.stringify将contact对象转换为JSON 文本，定义memberfilter数组以便只转换name、sex和tel成员，同时排序显示为name、sex和tel，显示效果如图23-3所示。
+var contact = {
+    qq : "111111111",
+	name : "张三",
+	tel : "13555556666",
+	sex : "men",
+	url : "http://www.mysite.cn/"
+}
+var memberfilter = ["name","sex","tel"];
+var jsonText = JSON.stringify(contact, memberfilter, "\t");
+document.write("<pre>" + jsonText + "</pre>");
+ 
+
+//【示例5】下面示例使用JSON.stringify将一个数组进行转换，调用replaceToUpper 函数将数组中的每个字符串转换为大写形式。
+var continents = ["Europe","Asia","Australia","Antarctica","North America","South America","Africa"];
+var jsonText = JSON.stringify(continents, replaceToUpper);
+function replaceToUpper(key, value) {
+    return value.toString().toUpperCase();
+}
+document.write(jsonText);		//输出："EUROPE,ASIA,AUSTRALIA,ANTARCTICA,NORTH AMERICA,SOUTH AMERICA,AFRICA"
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

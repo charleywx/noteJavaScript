@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】在下面示例中，使用arguments.callee获取匿名函数，然后通过函数的length属性获取函数形参个数，最后比较实参与形参个数以检测用户传递的参数是否符合要求。
+function f(x, y, z){
+    var a = arguments.length; 			// 获取函数实参的个数
+    var b = arguments.callee.length; 	// 获取函数形参的个数
+    if (a != b){ 				// 如果形参和实参个数不相等，则提示错误信息
+        throw new Error("传递的参数不匹配");
+    }
+    else{						// 如果形参和实参数目相同，则返回它们的和
+        return x + y + z;
+    }
+}
+alert(f(3, 4, 5)); 				// 返回值为12
+
+//【示例2】如果不是匿名函数，则arguments.callee等价于函数名，对于上面示例可以改为如下形式。
+function f(x, y, z){
+    var a = arguments.length; 	// 获取函数实参的个数
+    var b = f.length; 			// 在函数体内通过函数名获取函数形参的个数
+    if (a != b){ 				// 如果形参和实参个数不相等，则提示错误信息
+        throw new Error("传递的参数不匹配");
+    }
+    else{						// 如果形参和实参数目相同，则返回它们的和
+        return x + y + z;
+    }
+}
+alert(f(3, 4, 5)); 				// 返回值为12
+
+
+</script>
+<body>
+</body>
+</html>

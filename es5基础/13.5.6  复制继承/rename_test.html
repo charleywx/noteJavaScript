@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】在下面示例中，定义一个F类，其包含4个成员。然后实例化并把它的所有属性和方法都复制给一个空对象o，这样对象o就拥有了F类的所有属性和方法。
+function F(x,y){ 				// 构造函数F
+    this.x = x; 				// 本地属性x
+    this.y = y; 				// 本地属性y
+    this.add = function(){		// 本地方法add()
+        return this.x + this.y;
+    }
+}
+F.prototype.mul = function(){	// 原型方法mul()
+    return this.x * this.y;
+}
+var f = new F(2,3) 			// 实例化构造函数，并进行初始化
+var o = {} 					// 定义一个空对象o
+for(var i in f){ 			// 遍历构造函数的实例，把它的所有成员赋值给对象o
+    o[i] = f[i]; 
+}
+alert(o.x); 				// 返回2
+alert(o.y); 				// 返回3
+alert(o.add());			// 返回5
+alert(o.mul());			// 返回6
+
+Function.prototype.extend = function(o){ 
+	// 为Function扩展复制继承的方法
+    for(var i in o){ 								// 遍历参数对象
+        this.constructor.prototype[i] = o[i]; 
+	// 把参数对象成员复制给当前对象的构造函数原型对象
+    }
+}
+
+var o = function(){};						// 新建空白构造函数
+o.extend(new F(2,3)); 						// 调用复制继承方法
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】
+var Card = function(name,sex,work,detail){ 	// 公共类
+    if(name == undefined) throw new Error("name是必须的")
+	// 为空则抛出错误
+    this.name = name;
+    this.sex = sex || "男";						// 为空，则输入默认值"男"”
+    this.work = work; 							// 没有限制
+    this.detail = detail; 						// 没有限制
+}
+
+//【示例2】为了安全，代码中适当增加了一些条件限制，避免非法侵入。用户可以增加更完善的监测方法，以保护输入数据的完整性。
+var Card = function( name, sex, work, detail ){// 较安全的公共类
+    if( ! checkName( name ) ) throw new Error( "name值非法" )
+    this.name = name;
+    this.sex = checkSex( sex );
+    this.work = checkWork( work );
+    this.detail = checkDetail( detail );
+}
+Card.prototype = { 								// 类内部数据检测方法
+    checkName : function( name ){
+ 	// 检测name，参数为name，返回布尔值，是否合法
+    },
+    checkSex : function( sex ){ 
+	// 检测sex，参数为sex，返回sex，检测是否符合约定
+    },
+    checkWork : function( work ){ 
+	// 检测work，参数为work，返回work，检测是否符合约定
+    },
+    checkDetail : function( detail ){ 
+	// 检测detail，参数为detail，返回detail，检测是否符合约定
+    }
+}
+
+//【示例3】一般习惯使用命名规范来区别公共与私有成员。命名规范：在一些方法和属性的名称前后加下画线表示私有特性。
+Card.prototype = { 						// 类内部数据检测方法
+    _checkName : function( name ){ 
+	// 检测name，参数为name，返回布尔值，是否合法
+    },
+    _checkSex : function( sex ){ 
+	// 检测sex，参数为sex，返回sex，检测是否符合约定
+    },
+    _checkWork : function( work ){
+	// 检测work，参数为work，返回work，检测是否符合约定
+    },
+    _checkDetail : function( detail ){ 
+	// 检测detail，参数为detail，返回detail，检测是否符合约定
+    }
+}
+</script>
+</head>
+<body>
+</body>
+</html>

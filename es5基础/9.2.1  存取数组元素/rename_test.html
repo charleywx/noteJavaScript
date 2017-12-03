@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】
+var a = [];					// 声明一个空数组直接量，并把它引用给变量a
+a[0] = 1; 					// 为数组第1个元素赋值为1
+a[2] = 2; 					// 为数组第3个元素赋值为2
+alert( a[0] ); 				// 读取数组第1个元素的值，返回值为1
+alert( a[1] ); 				// 读取数组第2个元素的值，返回值为undefined
+alert( a[2] ); 				// 读取数组第3个元素的值，返回值为2
+
+//【示例2】
+var a = new Array();				// 创建一个空数组
+for( var i = 0; i < 10; i ++ ){ 	// 循环为数组赋值
+    a[i ++ ] = ++ i; 				// 不按顺序为数组元素赋值
+}
+alert( a ); 						// 返回2,,,5 ,,,8,,, 11
+
+//【示例3】在下面示例中，数组下标true将不会被强制转换为数值1，JavaScript会把变量a视为对象，true作为字符串被视为对象的属性名。
+var a = [1, 2, 3]; 	// 声明数组直接量
+alert( a[true] ); 	//返回undefined，说明a不是指向数组a，而是指向对象a
+var a = {						// 声明对象直接量
+    "true" : 1					// 属性true的值为1
+}
+alert( a[true] );//返回值为1，说明a确实是指向对象a，并读取属性名为true的值
+
+//【示例4】在下面示例中，a是一个指向对象的变量，当使用数组下标为其赋值时，JavaScript不再把它看做是数组下标，而是把它看做对象的属性名。
+var a = {};						// 声明对象直接量
+a[0] = 1; 						// 赋值
+alert(a["0"]);					// 返回1，读取对象a中名称为0的属性值
+
+var a = {
+    0 : 1
+};
+
+alert(a.0);
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

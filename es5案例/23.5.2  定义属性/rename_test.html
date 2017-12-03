@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】下面示例先创建一个对象直接量obj，然后使用Object.defineProperty函数将数据属性添加到用户定义的obj对象中。定义属性newDataProperty，值为101，可写，可枚举，可修改特性。
+var obj = {};
+Object.defineProperty(obj, "newDataProperty", {
+    value: 101,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+obj.newDataProperty = 102;
+document.write(obj.newDataProperty );	//102
+
+//【示例2】在下面示例中，使用Object.defineProperty函数将访问器属性添加到用户定义对象obj。定义当为对象obj的newAccessorProperty属性传递新值时，设置其值为赋值的平方，而当读取该属性值时，会以一级标题的形式显示，即输出值为HTML字符串。
+var obj = {};
+Object.defineProperty(obj, "newAccessorProperty", {
+    set: function (x) {
+        this.newaccpropvalue = x*x;
+    },
+    get: function () {
+        return "<h1>" + this.newaccpropvalue + "</h1>" ;
+    },
+    enumerable: true,
+    configurable: true
+});
+obj.newAccessorProperty = 30;
+document.write( obj.newAccessorProperty ); //<h1>900</h1>
+
+//【示例3】在下面示例中，使用Object.defineProperties函数将数据属性和访问器属性添加到用户定义的对象obj上。代码使用对象文本创建具有 newDataProperty 和 newAccessorProperty描述符对象的descriptors对象。
+var obj = {};
+Object.defineProperties(obj, {
+    newDataProperty: {
+        value: 101,
+        writable: true,
+        enumerable: true,
+        configurable: true
+    },
+    newAccessorProperty: {
+        set: function (x) {
+            this.newaccpropvalue = x;
+        },
+        get: function () {
+            return this.newaccpropvalue;
+        },
+        enumerable: true,
+        configurable: true
+    }});
+obj.newAccessorProperty = 10;
+document.write ( obj.newAccessorProperty ); //10
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例1】在下面示例中，构造一个类型Pasta，使用new运算符实例化Pasta，然后使用Object.getPrototypeOf函数获取实例对象spaghetti的原型，最后使用该实例对象的原型属性（Pasta.prototype）与Object.getPrototypeOf返回值比较，返回值为true。
+function Pasta(grain, width) {
+    this.grain = grain;
+    this.width = width;
+}
+var spaghetti = new Pasta("wheat", 0.2);
+var proto = Object.getPrototypeOf(spaghetti);
+document.write(proto === Pasta.prototype);		//true
+
+//【示例2】在下面示例中创建一个对象，该对象包含三个属性和一个方法。然后使用 getOwnPropertyNames获取该对象的私有属性（包括方法）。
+function Pasta(grain, width, shape) {
+    this.grain = grain;
+    this.width = width;
+    this.shape = shape;
+    this.toString = function () {
+        return (this.grain + ", " + this.width + ", " + this.shape);
+    }
+}
+var spaghetti = new Pasta("wheat", 0.2, "circle");
+var arr = Object.getOwnPropertyNames(spaghetti);
+document.write (arr);			//grain,width,shape,toString
+
+//【示例3】在下面示例中创建一个对象obj，添加属性newDataProperty，然后使用Object.getOwnPropertyDescriptor获取该数据属性描述符，并使用该描述符将属性设置为只读。最后，再调用Object.defineProperty函数，使用descriptor描述符修改属性newDataProperty的特性。遍历修改后的对象，可以发现只读特性writable为false，如图23-3所示。
+var obj = {};
+obj.newDataProperty = "abc";
+var descriptor = Object.getOwnPropertyDescriptor(obj, "newDataProperty");
+descriptor.writable = false;
+Object.defineProperty(obj, "newDataProperty", descriptor);
+var desc2 = Object.getOwnPropertyDescriptor(obj, "newDataProperty");
+for (var prop in desc2) {
+    document.write(prop + ': ' + desc2[prop]);
+    document.write("<br />");
+}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

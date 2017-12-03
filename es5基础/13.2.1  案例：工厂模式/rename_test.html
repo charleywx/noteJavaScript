@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】对象的属性可以在对象创建后动态定义，因此在 JavaScript 最初引入时，用户可以创建类似下面的对象。
+var oCar = new Object;
+oCar.color = "blue";
+oCar.doors = 4;
+oCar.mpg = 25;
+oCar.showColor = function() {
+  alert(this.color);
+};
+
+//【示例2】上面示例存在一个问题：无法快速创建多个 car 的实例。解决方案：创造能创建并返回特定类型的对象的工厂函数。
+
+function createCar() {
+    var oTempCar = new Object;
+    oTempCar.color = "blue";
+    oTempCar.doors = 4;
+    oTempCar.mpg = 25;
+    oTempCar.showColor = function() {
+        alert(this.color);
+    };
+    return oTempCar;
+}
+var oCar1 = createCar();
+var oCar2 = createCar();
+
+//【示例3】还可以修改 createCar() 函数，给它传递各个属性的默认值，而不是简单地赋予属性默认值。
+function createCar(sColor,iDoors,iMpg) {
+  var oTempCar = new Object;
+  oTempCar.color = sColor;
+      oTempCar.doors = iDoors;
+      oTempCar.mpg = iMpg;
+      oTempCar.showColor = function() {
+            alert(this.color);
+  };
+      return oTempCar;
+}
+var oCar1 = createCar("red",4,23);
+var oCar2 = createCar("blue",3,25);
+oCar1.showColor();		//输出 "red"
+oCar2.showColor();		//输出 "blue"
+
+//【示例4】在上面示例中，每次调用函数 createCar()，都要创建新函数 showColor()，意味着每个对象都有自己的 showColor() 版本。而事实上，每个对象都共享同一个函数。因此可以在工厂函数外定义对象的方法，然后通过属性指向该方法，从而避免这个问题：
+function showColor() {
+    alert(this.color);
+}
+function createCar(sColor,iDoors,iMpg) {
+    var oTempCar = new Object;
+    oTempCar.color = sColor;
+    oTempCar.doors = iDoors;
+    oTempCar.mpg = iMpg;
+    oTempCar.showColor = showColor;
+    return oTempCar;
+}
+var oCar1 = createCar("red",4,23);
+var oCar2 = createCar("blue",3,25);
+oCar1.showColor();		//输出 "red"
+oCar2.showColor();		//输出 "blue"
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】使用闭包结构能够跟踪动态环境中数据的实时变化，并即时存储。
+function f(){ 					// 定义普通函数f
+    var a = 1; 					// 定义局部变量a，初始值为1
+    var b = function(){			// 定义一个闭包，并赋值给局部变量b
+        return a; 				// 返回函数参数x
+    }
+    a++; 						// 动态更新函数内局部变量a的值
+    return b; 					// 返回闭包结构
+}
+var c = f(); 					// 调用函数
+alert(c());						// 返回2。而不是返回1 
+
+//【示例2】闭包不会因为外部函数环境的注销而消失，并始终存在。
+/*
+<script language="javascript" type="text/javascript">
+function f(){					// 定义普通函数f，包含多个闭包的外部环境
+    var a = 1; 					// 定义函数内局部变量a，并设置初始值为1
+    b = function(){				// 闭包b
+        alert( a ); 				// 寄存函数内局部变量a的值，并进行提示
+    }
+    c = function(){				// 闭包c
+        a ++ ; 					// 递增并寄存函数内局部变量a的值
+    }
+    d = function( x ){ 			// 闭包d
+        a = x; 					// 传递并寄存函数内局部变量a的值
+    }
+}
+</script>
+<button onclick="f()">按钮1：(f(    ))()</button><br />
+<button onclick="b()">按钮2：(b = function(){alert( a );})()</button><br />
+<button onclick="c()">按钮3：(c = function(){a ++ ;})()</button><br />
+<button onclick="d(100)">按钮4：(d = function( x ){a = x; })
+ (100)</button><br />
+ 
+ */
+
+function f( x ){               
+        //定义功能函数，把参数数组的元素以闭包体分别封装在数组中并返回
+    var a = [];	// 定义临时数组
+    for ( var i = 0; i < x.length; i ++ ){ 		// 遍历参数数组
+        var temp = x[i]; 		// 临时每个存储数组元素的值
+        a.push( function(){		// 把数组元素值封装在闭包中投入到临时数组a中
+            alert( temp + ' ' + x[i] ) 	// 闭包中被封装的参数数组元素值
+        });
+    }
+    return a; 							// 返回临时数组a
+}
+function e(){							// 定义普通函数
+    var a = f( ["a", "b", "c"] ); 		// 调用函数f，并向其传递一个数组
+    for ( var i = 0; i < a.length; i ++ ){ 	// 遍历函数f返回的数组
+        a[i](); 					// 调用闭包，查看内部封装的数组元素的值
+    }
+}
+e();							// 调用函数e
+
+function f( x ){
+// 定义功能函数，把参数数组的元素以闭包体分别封装在数组中并返回
+    var a = [];	// 定义临时数组
+    for ( var i = 0; i < x.length; i ++ ){ 		// 遍历参数数组
+        var temp = x[i]; 				// 临时每个存储数组元素的值
+        a.push(							// 把被阻断的闭包投入到临时数组a中
+            ( function( temp, i ){ // 运行函数，阻断内部的闭包与外部环境的联系
+                return function(){  // 返回闭包函数，该函数保存的值是静态的
+                    alert( temp + ' ' + x[i] )
+                }
+            })( temp, i ) 			// 为运行函数传递外部动态值
+        );
+    }
+    return a; 						// 返回临时数组a
+}
+function e(){	// 定义普通函数
+    var a = f( ["a", "b", "c"] ); 	// 调用函数f，并向其传递一个数组
+    for ( var i = 0; i < a.length; i ++ ){ 		// 遍历函数f返回的数组
+        a[i](); 						// 调用闭包，查看内部封装的数组元素的值
+    }
+}
+e();								// 调用函数e
+
+//【示例4】利用同一个闭包体声明多个闭包。同一个闭包，通过分别引用，能够在当前环境中生成多个闭包。
+function f( x ){ 					// 定义普通函数
+    var temp = x;
+    return function( x ){ 			// 返回闭包
+        temp += x;
+        alert( temp );
+    }
+}
+var a = f( 50 ) 					// 生成第一个闭包
+var b = f( 100 ) 					// 生成第二一个闭包
+a( 5 ) 								// 返回55
+b( 10 ) 							// 返回110
+
+</script>
+<body>
+</body>
+</html>

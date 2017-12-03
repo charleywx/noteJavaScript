@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例】在下面代码中定义一个add()函数，该函数能够返回一个新的函数，并把参数值传递给这个新函数，从而实现连加操作。
+var add = function(n){ 
+    return function(m){
+        return n+m;
+    }
+}
+document.writeln(add(2)(3)); //5
+
+Function.prototype.method = function(name, func) {
+    if(!this.prototype[name]) {
+        this.prototype[name] = func;
+        return this;
+    }
+};
+Function.method('curry', function() {
+    var slice = Array.prototype.slice;
+    var args = slice.apply(arguments), that = this;
+    return function() {
+        return that.apply(null, args.concat(slice.apply(arguments)));
+    };
+});
+
+var add = function() {
+    var i, sum = 0;
+    for( i = 0; i < arguments.length; i += 1) {
+        sum += arguments[i];
+    }
+    return sum;
+};
+var add1 = add.curry(2);
+document.writeln(add1(3)); 	// 5
+
+
+</script>
+
+
+<body>
+</body>
+</html>

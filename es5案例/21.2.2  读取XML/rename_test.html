@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+
+var xmldoc = new ActiveXObject("Microsoft.XMLDOM");
+xmldoc.onreadystatechange = function() {
+	if(xmldoc.readyState == 4) document.write(xmldoc.xml);
+}
+xmldoc.load("test.xml");
+
+
+</script>
+<title></title>
+</head>
+
+<body>
+</body>
+</html>

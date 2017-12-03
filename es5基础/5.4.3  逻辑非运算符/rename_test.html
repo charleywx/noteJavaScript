@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】如果对于运算数执行两个逻辑非运算操作，实际上它相当于把运算数转换为布尔值数据类型。
+alert(!5); 				// 返回false。把数值5转换为布尔值，并取反
+alert(!!5); 			// 返回true。把数值5转换为布尔值
+alert(!0); 				// 返回true。把数值0转换为布尔值，并取反
+alert(!!0); 			// 返回false。把数值5转换为布尔值
+
+//【示例2】下面列举一些特殊的运算数的逻辑非运算返回值。
+alert( ! {}); 			// 返回false。如果运算数是对象，则返回false
+alert( ! 0); 			// 返回true。如果运算数是0，则返回true
+alert( ! (n = 5)); 		// 返回false。如果运算数是非0的任何数字，则返回false
+alert( ! null); 		// 返回true。如果运算数是null，则返回true
+alert( ! NaN); 			// 返回true。如果运算数是NaN，则返回false
+alert( ! Infinity); 	// 返回false。如果运算数是Infinity，则返回false
+alert( ! ( - Infinity)); 
+//返回false。如果运算数是-Infinity，则返回false
+alert( ! undefined); 
+//返回true。如果运算数是undefined，则返回true，在早期浏览器中或发生错误
+
+
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

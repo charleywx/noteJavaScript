@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】
+var a = b = c = 2; 					// 定义并初始化变量的值
+d = void (a -= (b *= (c += 5))); 	// 执行void运算符，并把返回值赋予给变量d
+alert(a); 							// 返回-12
+alert(b); 							// 返回14
+alert(c); 							// 返回7
+alert(d); 							// 返回undefined
+
+//【示例2】在下面两行代码中，由于第一行代码没有使用小括号运算符，则void运算符优先执行，返回值undefined再与1执行减法运算，所以返回值为NaN。在第二行代码中由于使用小括号运算符明确void的运算数，减法运算符先被执行，然后再执行void运算，最后返回值是undefined。
+alert(void 2 - 1); 					// 返回NaN
+alert(void (2 - 1)); 				// 返回undefined
+
+//【示例3】在下面代码中，undefined是一个变量，由于void运算符返回值是undefined，所以该变量的值就等于undefined。由于早期IE浏览器对undefined数据类型支持不是很好，如果直接调用undefined就会出错，但是如果使用变量undefined来代替直接量undefined就能够避开这个Bug。
+var undefined = void null;
+
+var undefined = function(){}();
+
+var undefined = void 0;
+
+
+//【示例4】void运算符也能像函数一样使用，如void(0)也是合法的。在特殊环境下一些复杂的语句可能不方便使用void关键字形式，而必须要使用void的函数形式。
+void(i=0); 							// 返回undefined
+void(i=0, i++);					// 返回undefined
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

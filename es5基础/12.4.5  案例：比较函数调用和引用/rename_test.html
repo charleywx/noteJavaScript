@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】下面示例中，变量a与变量b完全相同，因为它们引用同一个函数。
+function f(){				// 定义函数f
+    var x = 5; 				// 定义局部变量x
+    return x; 				// 返回变量x的值
+}
+var a = f; 					// 把函数f赋值给变量a
+var b = f; 					// 把函数f赋值给变量b
+alert( a === b ); 			// a与b相同吗
+
+//【示例2】下面示例中，变量a与变量b不完全相同，因为它们引用同一个函数的不同的调用对象。
+function f(){				// 定义函数f
+    var x = 5; 				// 定义局部变量x
+    return function(){		// 返回闭包函数
+        return x; 			// 返回变量x的值
+    }
+}
+var a = f();				// 调用函数f，并赋值给变量a
+var b = f();				// 调用函数f，并赋值给变量b
+alert( a === b ); 			// a与b相同吗
+
+function f(){					// 定义函数f
+    var x = 5; 					// 定义局部变量x
+    return x; 					// 返回变量x的值
+}
+var a = f();					// 调用函数f，并赋值给变量a
+var b = f();					// 调用函数f，并赋值给变量b
+alert( a === b ); 				// 返回true
+
+//【示例3】判断下面示例中变量a和b是否相等？
+function F(){					// 定义函数对象F
+    this.x = 5; 				// 定义函数属性
+}
+var a = new F();				// 实例化函数对象F
+var b = new F();				// 实例化函数对象F
+alert( a === b ); 				// 相等吗
+
+//【示例4】判断下面示例中变量a和b是否相等？
+function F(){					// 定义函数对象F
+    this.x = function(){		// 定义函数的方法
+        return 5;
+    }
+}
+var a = new F();				// 实例化函数对象F
+var b = new F();				// 实例化函数对象F
+alert( a === b ); 				// 相等吗
+
+</script>
+<body>
+</body>
+</html>

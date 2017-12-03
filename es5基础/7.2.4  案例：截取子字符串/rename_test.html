@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+//【示例1】在下面示例中使用lastIndexOf()获取字符串的最后一个点号的下标位置，然后从其后的位置开始截取4个字符：
+var s = "http:// www.mysite.cn/index.html";
+var b = s.substr( s.lastIndexOf( "." )+1, 4 ); 
+	// 截取最后一个点号后4个字符
+alert( b ); 						// 返回子字符串"html"
+
+//【示例2】
+var s = "http:// www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 	// 获取起始点下标
+var b = s.indexOf( "/", a ); 	// 获取结束点后下标
+var c = s.substring( a, b ); 
+	// 返回字符串www.mysite.cn，使用substring()方法
+var d = s.slice( a, b ); 		// 返回字符串www.mysite.cn，使用slice()方法
+
+//【示例3】
+var s = "http:// www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 		// 获取起始点下标
+var b = s.indexOf( "/", a ); 		// 获取结束点后下标
+var c = s.substring( b, a ); 		// 返回字符串www.mysite.cn
+var d = s.slice( b, a ); 			// 返回空字符串
+
+//【示例4】
+var s = "http:// www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 		// 获取起始点下标
+var b = s.indexOf( "/", a ); 		// 获取结束点后下标
+var c = s.substring( -b, -a ); 	// 返回空字符串
+var d = s.slice( -b, -a ); 		// 返回子字符串mysite.cn 
+</script>
+</head>
+
+<body>
+</body>
+</html>

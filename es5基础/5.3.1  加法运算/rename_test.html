@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script>
+
+//【示例1】特殊运算数的运算结果比较特殊，需要特别留意。
+var n = 5; 					// 定义并初始化任意一个数值
+alert(NaN + n);			// 返回NaN。NaN与任意运算数相加，结果都是NaN
+alert(Infinity + n); 		
+//返回Infinity。Infinity与任意运算数相加，结果都是Infinity
+alert(Infinity + Infinity); 
+//返回Infinity。Infinity与  Infinity相加，结果是Infinity
+alert(( - Infinity) + ( - Infinity)); 
+//返回-Infinity。负Infinity相加，结果是负Infinity
+alert(( - Infinity) + Infinity); 
+//返回NaN。正负Infinity相加，结果是NaN
+//【示例2】加运算符能够根据运算数的数据类型，尽可能的把数字转换成可以执行相加或相连运算的数值或字符串。
+alert( 1 + 1); 				// 返回2。如果运算数都是数值，则进行相加运算
+alert( 1 + "1");
+//返回"11"。如果运算数中有一个是字符串，则把数值转换位字符串，然后进行相连运算
+alert( "1" + "1");			// 返回"11"。如果运算数都是字符串，则进行相连运算
+//【示例3】下面两个表达式中，由于空字符串的位置不同，运算结果也是不同。在第一行代码中，3.0和4.3都是数值类型，因此加号运算符就执行相加操作，由于第3个运算数是字符串，则把第一个加号运算结果转换为字符串并与空字符串进行相连操作。而第二行代码中则不同，第一个加号运算符首先把数值3.0转换为字符串，然后执行连接操作，所以结果也就不同。
+alert(3.0 + 4.3 + "")		// 返回"7.3"
+alert(3.0 + "" + 4.3) 		// 返回"34.3"
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script type="text/javascript">
+
+
+//【示例】Base接口承诺了3个基本功能：function1()、function2()、function3()，则Java可以这样书写：
+interface Base{							// 接口，约定三个基本功能
+    void function1();
+    void function2();
+    void function3();
+}
+
+class App implements Base{					// 定义类，实现3个基本功能
+    void   function1(){
+        System.out.println( "function1" );
+    }
+    void   function2(){
+        System.out.println( "function2" );
+    }
+    void   function3(){
+        System.out.println( "function3" );
+    }
+}
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
