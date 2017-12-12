@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.trim()函数删除字符串两端空格</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var oldStr = "  我是 待处理的 字符串        ";       // 定义待处理的字符串
+		var newStr = $.trim(oldStr);                            // 去除字符串两端的空格
+		var str = "处理之前的字符串："+oldStr+"<br/>";                 // 输出处理之前的字符串内容
+		str += "处理之前字符串长度为："+oldStr.length+"<br/><br/>";    // 输出处理之前字符串的长度
+		str += "处理之后的字符串："+newStr+"<br/>";                    // 输出处理之后的字符串
+		str += "处理之后字符串长度为："+newStr.length+"<br/><br/>";    // 输出处理之后字符串的长度
+		$("div").html(str);             // 将最终结果显示到div元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

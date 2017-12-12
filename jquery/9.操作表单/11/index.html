@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>切换单选按钮选中</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$("#bbtn").click(function(){
+			$("input:radio").eq(0).prop("checked",true);     // 选中香蕉
+	});
+	$("#gbtn").click(function(){
+			$("input:radio").eq(1).prop("checked",true);     // 选中葡萄
+	});
+})
+</script>
+</head>
+
+<body>
+<h3>选择你喜欢吃的水果</h3>
+<input type="radio" name="fruits" value="香蕉" />香蕉
+<input type="radio" name="fruits" value="葡萄" />葡萄<br/>
+<input type="button" id="bbtn" value="香蕉" />&nbsp;<input type="button" id="gbtn" value="葡萄" />
+</body>
+</html>

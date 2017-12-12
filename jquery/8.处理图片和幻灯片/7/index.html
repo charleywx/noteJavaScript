@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery实现图片库轮换效果</title>
+<style>
+.show{
+	display:block;
+}
+.hide{
+	display:none;
+}
+</style>
+<script language="javascript" type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			slideShow();
+		});
+		function slideShow(){
+			var $current = $("#pics .show");  // 获取class为show的元素对象
+			var $next = $current.next().length?$current.next():$current.siblings().first();   // 得到当前图片对象的下一个元素对象
+			$current.hide().removeClass("show");    // 将当前元素隐藏并移除show样式
+			$next.fadeIn().addClass("show");        // 下一个元素对象淡入并增加show样式
+			setTimeout(slideShow,2000);             // 每2000毫秒执行一次slideShow方法
+		}	
+	</script>
+</head>
+<body>
+<div id="pics">
+	<img src="images/02.gif" alt="个人版" class="show" />
+	<img src="images/04.jpg" alt="个人版" class="hide"/>
+	<img src="images/06.jpg" alt="珍藏版" class="hide"/>
+	<img src="images/011.jpg" alt="企业版" class="hide"/>
+	<img src="images/111.gif" alt="程序员专业开发资源库" class="hide"/>
+</div>
+
+</body>
+</html>

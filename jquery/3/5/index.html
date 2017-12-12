@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>jQuery对象转换为DOM对象</title>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	var $jQueryObj = $("#div1");
+	alert("使用jQuery方法获取第一个div节点的内容："+$jQueryObj.html());
+	var domObj = document.getElementById("div2");
+	alert("使用DOM方法获取第二个div节点的内容："+domObj.innerHTML);
+})
+	
+</script>
+</head>
+
+<body>
+<div id="div1">《JavaScript从入门到精通》</div>
+<div id="div2">《JavaScript入门经典》</div>
+
+</body>
+</html>

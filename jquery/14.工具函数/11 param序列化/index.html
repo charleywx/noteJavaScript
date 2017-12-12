@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.param()函数对数组进行序列化</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var info = {name:"轻鸿",book:"《jQuery从入门到精通》"};
+		var type = {people:{bookname:"《jQuery从入门到精通》",page:530},
+			info:{sex:"女",email:"mingrisoft@mingrisoft.com"}
+		};
+		var new_info = $.param(info);     // 对info进行序列化
+		var new_type = $.param(type);     // 对type进行序列化
+		var new_type_decode = decodeURIComponent($.param(type));   // 对type进行序列化之后再解码
+		// 将结果保存在str字符串中
+		var str = "<h4>info序列化之后的结果为：</h4>";
+		str+=new_info+"<br/>";
+		str+="<h4>type序列化之后的结果为：</h4>";
+		str+=new_type+"<br/>";
+		str+="<h4>type序列化解码之后的结果为：</h4>";
+		str+=new_type_decode+"<br/>";
+		$("div").html(str);             // 将最终结果显示到div元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

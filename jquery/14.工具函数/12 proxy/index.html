@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.proxy()函数改变事件函数的作用域</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var obj = {
+			name:"轻鸿",
+			test:function(){
+				alert(this.name);
+			}
+		};
+		$("#button").click(obj.test);  // 访问到的是按钮的name
+		$("#button").click($.proxy(obj.test,obj));     // 可以正常访问obj的name
+		$("#button").click($.proxy(obj,"test"));       // 可以正常访问obj的name
+	});
+</script>
+</head>
+<body>
+<input type="button" id="button" name="btnName" value="测试" />
+</body>
+</html>

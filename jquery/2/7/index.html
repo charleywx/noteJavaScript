@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用window.setTimeout()方法关闭窗口</title>
+<script language="javascript">
+	function closeWindow(){
+		document.write("3秒钟后关闭该窗口！");
+		setTimeout("window.close()","3000");
+	}
+</script>
+</head>
+
+<body>
+<input type="button" name="button" value="关闭窗口"  onclick="closeWindow()" />
+</body>
+</html>

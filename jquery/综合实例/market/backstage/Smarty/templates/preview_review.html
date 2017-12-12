@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>评论预览</title>
+</head>
+<body style="background-color: #fcfcfc">
+
+<div style="text-align: center;">
+    <DIV style="width: 715px;height:470px;background: url('../images/k470.png') no-repeat;">
+        <div style="padding-top: 10px;">
+            <h2>用户评论</h2>
+            <div>用户名:<{$review[0].customer_name}></div>
+            <div>分数:<{$review[0].score}></div>
+            <div>评论:<{$review[0].message}></div>
+            <div>评论时间:<{$review[0].addtime}></div>
+            <input type="button" value="返回" onclick="javascript:history.go(-1)">
+        </div>
+        <DIV>
+        </div>
+
+</body>
+</html>

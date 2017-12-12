@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery制作下拉菜单</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="js/jquery.pack.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".mu li").hover(function(){
+		$(this).find("blockquote").slideDown('fast');   // 滑动显示下拉菜单
+	}, function(){
+	$(this).find("blockquote").slideUp('fast');         // 滑动隐藏下拉菜单
+	});
+})		
+	</script>
+</head>
+<body>
+		<div id="Nav">
+			<ul class="mu">
+				<li><a class="go" href="http://www.mrbccd.com" title="编程词典">编程词典</a>
+				<blockquote><div class="ChildNavIn"><a class="First" href="#" target="_blank">PHP编程词典</a><a class="" href="#" target="_blank">Java编程词典</a><a class="" href="#" target="_blank">VB编程词典</a><a class="" href="#" target="_blank">VC编程词典</a><a class="" href="#" target="_blank">C#编程词典</a><a class="" href="#" target="_blank">ASP.NET编程词典</a><a class="" href="#" target="_blank">Java Web编程词典</a></div></blockquote>
+			  </li>
+		  </ul>
+	
+    <div class="clear"></div>
+</div>
+
+</body>
+</html>

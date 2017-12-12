@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>滚动渐变</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  <style>
+  #fade{
+	position:relative;
+  }
+  #fade .to{
+	display:none;
+	position:absolute;
+	left:0;
+  }
+  </style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+  $(function($){
+	$("#fade").hover(function(){
+			$(this).find("img:eq(1)").stop(true,true).fadeIn();    // 
+		},function(){
+			$(this).find("img:eq(1)").fadeOut();
+		})
+  });
+</script>
+</head>
+<body>
+
+<span id="fade">
+<img src="images/a1.gif"/>
+<img src="images/b1.gif" class="to"/>
+</span>
+
+</body>
+</html>
+

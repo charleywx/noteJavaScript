@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jQuery操作表格综合练习</title>
+<style>
+.hover{
+	background-color:lightblue;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+// 鼠标移动行变色
+    $("#table1 tr").hover(function(){  
+        $(this).children("td").addClass("hover")  
+    },function(){  
+        $(this).children("td").removeClass("hover")  
+    })  
+   
+
+//奇偶行不同颜色 
+    $("#table2 tbody tr:odd").css("background-color", "#bbf");  
+    $("#table2 tbody tr:even").css("background-color","#ffc");   
+    $("#table2 tbody tr:odd").addClass("odd")  
+    $("#table2 tbody tr:even").addClass("even")  
+
+//隐藏一行
+    $("#table3 tbody tr:eq(3)").hide();  
+
+//隐藏一列 $("td:eq(3)",this) 这个tr范围内的
+    $("#table4 tr").each(function(){$("td:eq(3)",this).hide()});   
+
+
+// 删除除第一行外的所有行  
+    $("#table5 tr:not(:nth-child(1))").remove();  
+
+
+// 删除除第一列外的所有列  
+    $("#table6 tr td:not(:nth-child(1))").remove();  
+
+//设置table7,第2个tr的第一个td的值。    
+    $("#table7 tr:eq(1) td:nth-child(1)").html("我是插入的值");    
+    //获取table7,第2个tr的第一个td的值。    
+    $("#table7 tr:eq(1) td:nth-child(1)").html();   
+
+//在第二个tr后插入一行  
+    $("<tr><td>我是插入的行</td><td>《VB开发实战》</td><td>《VB从入门到实践》</td><td>《VB典型模块大全》</td></tr>").insertAfter($("#table7 tr:eq(1)"));
+})
+</script>
+</head>
+<body>
+<table id="table1">  
+    <tr><th colspan="4">表1：鼠标移动行变色</th></tr>  
+     <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+    <tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+    <tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+</table>  
+<br/><br/>
+<table id="table2">  
+   <thead>  
+        <tr><th colspan="4">表2：隔行换色</th></tr>  
+    </thead>  
+    <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table>  
+<br/><br/>
+<table id="table3">  
+    <thead>  
+         <tr><th colspan="4">表3：隐藏第4行</th></tr>
+    </thead>  
+     <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table>  
+<br/><br/>
+<table id="table4">  
+    <thead>  
+         <tr><th colspan="4">表4：隐藏第4列</th></tr>
+    </thead>  
+     <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table> 
+<br/><br/>
+<table id="table5">  
+    <thead>  
+         <tr><th colspan="4">表5：删除第一行之外的所有行</th></tr>
+    </thead>  
+     <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table> 
+<br/><br/>
+<table id="table6">  
+    <thead>  
+         <tr><th colspan="4">表6：删除第一列之外的所有列</th></tr>
+    </thead>  
+     <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table> 
+<br/><br/>
+<table id="table7">  
+    <thead>  
+         <tr><th colspan="4">表7：设置第2行第1列的值；在第2行后面插入一行</th></tr>
+    </thead>  
+    <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table> 
+</body>
+</html>

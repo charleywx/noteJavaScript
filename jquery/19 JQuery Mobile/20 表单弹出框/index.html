@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>表单弹出框的实现</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.user-scalable=no" />
+<link href="../css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+<div id="pageone" data-role="page">
+<div data-role="popup" id="popupLogin" data-theme="b" class="ui-corner-all">
+<form>
+	<div style="padding:10px 20px">
+		<h3>图书查找</h3>
+		搜索：<input type="search" name="search" id="search" value="" data-theme="a"/><br/>
+		作者：<input type="text" name="author" id="author" value="" data-theme="a"/><br/>
+		书名：<input type="text" name="bookname" id="bookname" value="" data-theme="a"/><br/>
+		<input type="submit" name="submit" value="查找" data-theme="a" />
+	</div>
+</form>
+
+
+</div>
+<a href="#popupLogin" data-role="button" data-rel="popup" data-inline="true">自定义表单</a>
+</div>
+
+</body>
+</html>

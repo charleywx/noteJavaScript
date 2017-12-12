@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>使用$.ajax()方法获取数据</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#button").click(function(){
+			$.ajax({type:"GET",
+			  url:"index.php",
+			  success:function(data,textStatus){
+			      $("#responseText").html(data);     // 将用户提交的用户名与留言内容显示
+			  }
+			});
+		})
+	})
+</script>
+</head>
+
+<body>
+<form name="form" action="">
+	<input type="button" id="button" value="获取服务端内容"/><br/><br/>
+	<div id="responseText"></div>
+</form>
+</body>
+</html>

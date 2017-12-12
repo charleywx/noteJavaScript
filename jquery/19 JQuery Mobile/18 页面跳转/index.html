@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>在jQuery Mobile中调用方法</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.user-scalable=no" />
+<link href="../css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $.mobile.changePage('about.html',{
+        transition:'slideup'
+    });
+});
+</script>
+</head>
+
+<body>
+<div data-role="page">
+<div data-role="header"><h1>在jQuery Mobile中调用方法</h1></div>
+	<div data-role="content">
+		<p>页面跳转中...</p>
+	</div>
+<div data-role="footer"><h4>2014 www.mingrisoft.com</h4></div>
+</div>
+
+</body>
+</html>

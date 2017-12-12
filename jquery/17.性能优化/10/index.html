@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在指定的查找范围内获取span元素</title>
+<style>
+.mySpan{
+	color:red;
+	font-size:14px
+	width:100px;
+	padding-top:10px;
+}
+</style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	window.$wobj = {    // 在全局范围内定义一个windows对象
+		$obj1:$("#ccspan",".container1"),       // 在class为container1的元素中查找id为ccspan的元素
+	}
+	testVar();
+	function testVar(){
+		$wobj.$obj1.html("这是span元素的内容");       // 设置span元素的内容
+	}
+});
+</script>
+</head>
+<body>
+<h4>在指定的查找范围内获取span元素</h4>
+<div class="container1">
+<span id="ccspan" class="mySpan" title="title1"></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.isFunction()函数检测指定参数是否为函数</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	function example(){
+		alert("我是一个名为example的函数！");
+	}
+	$(function(){
+		var str = "example是否为函数："+$.isFunction(example)+"<br/>"; //判断example是否为函数
+		$("div").html(str);             // 将最终结果显示到div元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理新闻</title>
+</head>
+<SCRIPT src="../js/jquery.js"></SCRIPT>
+<body style="background-color: #fcfcfc">
+<!--右侧-->
+<div>
+    <DIV style="width: 715px;height:770px;background: url('../images/k770.png') no-repeat;">
+    <h2 align="center">新闻列表</h2>
+    <br />
+    <br />
+    <DIV style="padding-left: 40px;">
+        <DIV class="tadiv" style="padding-left: 0px;">
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 30%; FLOAT: left; text-align:center; HEIGHT: 25px;border:1px solid;">标题</DIV>
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 30%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">添加时间</DIV>
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 30%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">操作 </DIV>
+        </DIV>
+
+        <{section name=id loop=$bcjyzs}>
+        <DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 30%; FLOAT: left; text-align:center;HEIGHT: 23px; border:1px solid;border-top:none;overflow: hidden;"><{$bcjyzs[id].title}></DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 30%; FLOAT: left; text-align:center;HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;overflow: hidden;"><{$bcjyzs[id].addtime}></DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 30%; FLOAT: left; text-align:center; HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;"><a href="?edit=t&id=<{$bcjyzs[id].entity_id}>" >编辑&nbsp;|&nbsp;<a href="news_control.php?del=t&id=<{$bcjyzs[id].entity_id}>">删除</a></DIV>
+        </DIV>
+   <{/section}>
+    </DIV>
+    <br />
+    <br />
+    <br />
+    <div style="clear:both;"></div>
+    <{if $edit == 't'}>
+    <div style="padding-left: 40px;">
+        <form name="edit_admin" method="post" action="news_control.php"  style="margin:0px; padding:0px;" onsubmit="return chkeditnews(this)">
+
+            <p>标题：
+                <input type="text" name="title" id="title" value="<{$bcjyz.title}>" size="60"/><br/><br/>
+                内容:
+          <{$editor}>
+
+                <br/><br/>
+                <input type="hidden" name="bcjyzid" value="<{$bcjyz.entity_id}>">
+                <input type="submit" value="提交" name="submite"/>
+            </p>
+        </form>
+    </div>
+    <{/if}>
+</div>
+
+<script language="javascript">
+
+    function chkeditnews(form){
+        if(form.title.value == ''){
+            alert("title is not null!");
+            form.title.focus();
+            return false;
+        }
+        return true
+    }
+
+</script>
+</body>
+</html>

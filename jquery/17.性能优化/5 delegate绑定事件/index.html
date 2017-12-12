@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>为指定的元素添加事件处理程序</title>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$("body").delegate("p","click",function(){    // 为所有元素绑定click事件处理程序（即body内的所有p元素）
+		alert($(this).text());   // 这里的this指向触发事件的<p>元素
+	});
+});
+</script>
+</head>
+<body>
+<h4>为指定的元素添加事件处理程序</h4>
+<div id="n1">
+<p id="n2"><span>《jQuery从入门到精通》</span></p>
+<p id="n3"><span>《PHP从入门到精通》</span></p>
+<p id="n4"><span>《Java从入门到精通》</span></p>
+</div>
+<p id="n5">《PHP编程词典（珍藏版）》</p>
+</body>
+</html>

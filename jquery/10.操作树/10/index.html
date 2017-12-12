@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>表格的隔行换色</title>
+
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#tb tbody tr:odd").css("background-color", "lightblue");  
+    $("#tb tbody tr:even").css("background-color","yellow");   
+    $("#tb tbody tr:odd").addClass("odd")  
+    $("#tb tbody tr:even").addClass("even")  
+})
+</script>
+</head>
+<body>
+
+<table id="tb">  
+   <thead>  
+        <tr><th colspan="4">表格隔行换色</th></tr>  
+    </thead>  
+    <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td><td>《C#典型模块大全》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td><td>《PHP典型模块大全》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td><td>《Java典型模块大全》</td></tr> 
+		<tr><td>《VC参考大全》</td><td>《VC开发实战》</td><td>《VC从入门到实践》</td><td>《VC典型模块大全》</td></tr> 
+    </tbody>  
+</table> 
+</body>
+</html>

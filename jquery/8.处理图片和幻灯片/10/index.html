@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用scrollTo插件实现图片的随机滚动</title>
+<style>
+	#container{
+		overflow:hidden;
+		width:755px;
+		height:320px;
+		margin-bottom:15px;
+	}
+	#scroll{
+		width:3775px;
+		height:320px;
+		overflow:hidden;
+	}
+	#scroll img{
+		float:left;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.scrollto.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#container').click(function(){
+			var numbers = $(this).find('div>img').length;    // 获取图片个数
+			var next = Math.floor(Math.random()*numbers);    // 随机出一张图片的索引
+			$(this).scrollTo('#scroll>img:eq('+next+')',{duration:1000});  // 滚动到随机出的图片
+		});	
+	})
+		
+	</script>
+</head>
+<body>
+<div id="container">
+	<div id="scroll">
+		<img src="images/01.gif" alt="个人版" />
+		<img src="images/02.jpg" alt="个人版" />
+		<img src="images/03.jpg" alt="珍藏版" />
+		<img src="images/04.jpg" alt="企业版" />
+		<img src="images/05.gif" alt="程序员专业开发资源库" />
+	</div>
+</div>			
+
+</body>
+</html>

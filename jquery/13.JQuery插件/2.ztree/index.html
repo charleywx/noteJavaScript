@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> 最简单的树 -- 标准 JSON 数据 </TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/demo.css" type="text/css">
+	<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ztree.core-3.5.js"></script>
+	<style>
+	ul.ztree{
+		width:280px;
+	}
+	</style>
+	<SCRIPT type="text/javascript">
+		<!--
+		var setting = {	};
+
+		var zNodes =[
+			{ name:"Java类图书 - 展开", open:true,
+				children: [
+					{ name:"基础类图书 - 折叠",
+						children: [
+							{ name:"Java从入门到精通"},
+							{ name:"Java范例完全自学手册"},
+							{ name:"Java范例宝典"}
+						]},
+					{ name:"提高类图书 - 折叠",
+						children: [
+							{ name:"Java开发典型模块大全"},
+							{ name:"Java必须知道的300个问题"}
+						]},
+					{ name:"综合类图书 - 没有子节点", isParent:true}
+				]},
+			{ name:"PHP类图书 - 折叠",
+				children: [
+					{ name:"基础类图书 - 展开", open:true,
+						children: [
+							{ name:"PHP从入门到精通"},
+							{ name:"PHP快速入门及项目实践"},
+							{ name:"PHP范例完全自学手册"},
+							{ name:"PHP范例宝典"}
+						]},
+					{ name:"提高类 - 折叠",
+						children: [
+							{ name:"实战突击：PHP项目开发案例整合"},
+							{ name:"PHP项目案例分析"},
+							{ name:"PHP必须知道的300个问题"}
+						]},
+					{ name:"综合类图书 - 折叠",
+						children: [
+							{ name:"PHP开发实战"},
+							{ name:"PHP典型模块开发全程实录"}
+						]}
+				]},
+			{ name:"JavaScript类 - 没有子节点", isParent:true}
+
+		];
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#utree"), setting, zNodes);
+		});
+		//-->
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+<h1>最简单的树 -- 标准 JSON 数据</h1>
+<ul id="utree" class="ztree"></ul>
+</BODY>
+</HTML>

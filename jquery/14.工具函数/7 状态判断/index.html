@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.isEmptyObject()函数检测对象是否为空</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    $.isArray()
+    $.isFunction()
+    $.isEmptyObject()
+    $.isPlainObject() //是否为原始对象
+    $.contains(A,B)   //DOM节点 A是否包含B
+<script type="text/javascript">
+	$(function(){
+		var one_obj = {};       // 定义待处理的字符串
+		var two_obj = {"书名":"《jQuery从入门到精通》"};
+		var str = "one_obj是否为空："+$.isEmptyObject(one_obj)+"<br/>"; // 判断第一个对象是否为空并输出
+		str += "two_obj是否为空："+$.isEmptyObject(two_obj)+"<br/>";    // 输出处理之前字符串的长度
+		$("div").html(str);             // 将最终结果显示到div元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

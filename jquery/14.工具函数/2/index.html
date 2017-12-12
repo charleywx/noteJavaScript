@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.each()函数遍历数组</title>
+<style>
+	ul{
+		margin:0px;
+		padding:0px;
+		border-left:1px;border-right:1px;
+		list-style-type:none;
+		width:500px;
+	}
+	ul li{
+		padding:8px;
+		border-bottom:1px;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var bookData = [["PHP从入门到精通","PHP范例宝典","PHP必须知道的300个问题"],["Java从入门到精通","Java范例宝典","Java必须知道的300个问题"],["JavaScript入门经典","JavaScript程序设计","jQuery从入门到精通"]]        // 定义JSON数据
+		var li_lines = "";   // 定义li内容字符串
+		$.each(bookData,function(i,item){   // 循环遍历数组
+			li_lines += "<li>";    
+			$.each(item,function(j,value){  // 遍历二维数组
+				li_lines += value+"&nbsp;&nbsp;";    // 将书名添加至li元素中
+			})
+			li_lines += "</li>";
+		})
+		$("ul").append(li_lines);             // 将li元素添加值ul元素中
+	});
+</script>
+</head>
+<body>
+<ul></ul>
+</body>
+</html>

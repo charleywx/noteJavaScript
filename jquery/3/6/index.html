@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>jQuery对象转换为DOM对象</title>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	var $jQueryObj = $("div");
+	alert("使用jQuery方法获取div节点的内容："+$jQueryObj.html());
+	var domObj = $jQueryObj[0];
+	alert("使用DOM方法获取div节点的内容："+domObj.innerHTML);
+})
+	
+</script>
+</head>
+
+<body>
+<div>我就是你们争相恐后要获取的div的内容</div>
+</body>
+</html>

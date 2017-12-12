@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Mobile弹出自定义对话框</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.user-scalable=no"/>
+    <link href="../css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+<div id="pageone" data-role="page">
+
+    <div data-role="popup" id="popupCustom" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+        <div data-role="header" data-theme="b" class="ui-corner-top"><h2>删除信息</h2></div>
+        <div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+            <h3 class="ui-title">确认要删除这条信息？</h3>
+            <p>此操作无法恢复！</p>
+            <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">取消</a>
+            <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="b"
+               data-transition="flow">删除</a>
+        </div>
+    </div>
+
+    <a href="#popupCustom" data-role="button" data-rel="popup" data-inline="true" data-rel="back">自定义对话框</a>
+
+</div>
+
+</body>
+</html>

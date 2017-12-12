@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改jQuery Mobile中的默认配置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.user-scalable=no" />
+<link href="../css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).bind("mobileinit",function(){
+		$.extend($.mobile,{
+			loadingMessage:"页面加载中...",
+			pageLoadErrorMessage:"无法找到该页面！"
+		});
+	});
+</script>
+<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+<div data-role="page">
+<div data-role="header"><h1>jQuery Mobile API</h1></div>
+	<div data-role="content">
+		<h3>修改默认配置值</h3>
+		<p><a href="callme.html">跳转到不存在的页面</a></p>
+	</div>
+</div>
+
+</body>
+</html>

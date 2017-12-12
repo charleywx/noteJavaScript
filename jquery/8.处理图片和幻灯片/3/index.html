@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>特定样式的Colorbox</title>
+		<style>
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		<link rel="stylesheet" href="colorbox.css" />
+		<script src="../js/jquery-1.11.1.min.js"></script>
+		<script src="../js/jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>编程词典珍藏版</h1>
+		<h2>弹性效果</h2>
+		<p><a class="group1" href="../img/content/2_01.png" title="编程词典珍藏版">图片1</a></p>
+		<p><a class="group1" href="../img/content/2_02.png" title="海量超值资源">图片2</a></p>
+		<p><a class="group1" href="../img/content/2_03.png" title="让你大开眼界">图片3</a></p>
+		
+		<h2>淡入淡出的效果</h2>
+		<p><a class="group2" href="../img/content/2_01.png" title="编程词典珍藏版">图片1</a></p>
+		<p><a class="group2" href="../img/content/2_02.png" title="海量超值资源">图片2</a></p>
+		<p><a class="group2" href="../img/content/2_03.png" title="让你大开眼界">图片3</a></p>
+		
+		<h2>固定宽度和高度</h2>
+		<p><a class="group3" href="../img/content/2_01.png" title="编程词典珍藏版">图片1</a></p>
+		<p><a class="group3" href="../img/content/2_02.png" title="海量超值资源">图片2</a></p>
+		<p><a class="group3" href="../img/content/2_03.png" title="让你大开眼界">图片3</a></p>
+		
+		<h2>图片自动播放</h2>
+		<p><a class="group4"  href="../img/content/2_01.png" title="编程词典珍藏版">图片1</a></p>
+		<p><a class="group4"  href="../img/content/2_02.png" title="海量超值资源">图片2</a></p>
+		<p><a class="group4"  href="../img/content/2_03.png" title="让你大开眼界">图片3</a></p>
+	</body>
+</html>

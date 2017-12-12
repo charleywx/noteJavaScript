@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.each()函数遍历指定数组</title>
+<style>
+	ul{
+		margin:0px;
+		padding:0px;
+		border-left:1px;border-right:1px;
+		list-style-type:none;
+		width:400px;
+	}
+	ul li{
+		padding:8px;
+		border-bottom:1px;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+		var numArr = [2,3,66,45,30];
+		var str = "";  
+		$.each(numArr,function(k,value){   // 循环遍历数组
+			str += value+" ";    // 将值添加到
+		})
+		$("div").append(str);             // 将li元素添加值ul元素中
+	});
+</script>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+</html>

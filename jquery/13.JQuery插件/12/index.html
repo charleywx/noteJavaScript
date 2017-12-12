@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>验证表单并美化</title>
+<style>
+.star{
+	color:red;
+}
+.dt{
+	padding-top:10px;
+}
+em{
+	color:red;
+}
+em.error{
+	background:url("images/error.png") no-repeat 0px 0px;
+	padding-left:16px;
+}
+em.success{
+	background:url("images/right.png") no-repeat 0px 0px;
+	padding-left:16px;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#vform").validate({
+			messages:{
+				username:{required:"请输入用户名"},
+				pwd:{required:"请输入密码"},
+				sex:{required:"请输入性别"},
+				email:{
+					required:"请输入E-mail地址",
+					email:"请输入正确的E-mail格式"
+				}
+			},
+			errorElement:"em",            // 用来创建错误提示信息标签
+			success:function(label){      // 验证成功后执行的回调函数
+				label.text(" ").addClass("success");     // 清空消息提示并加上自定义success类
+			}
+		});
+	});
+</script>
+</head>
+
+<body>
+	<form id="vform" name="vform" method="post" action="#">
+		<h3 align="center">用户注册</h3>
+		<div class="dt">用户名：<em>*</em> <input type="text" id="username" name="username" size=20 class="required" /></div>
+		<div class="dt">密&nbsp;&nbsp;码： <em>*</em> <input type="password" id="pwd" name="pwd" size=20 class="required" /></div>
+		<div class="dt">性&nbsp;&nbsp;别： <em>*</em> <input  type="text" id="sex" name="sex" size=4 maxlength=3 class="required"/></div>
+		<div class="dt">邮&nbsp;&nbsp;箱： <em>*</em> <input type="text" id="email" name="email" size=20  class="required email"/></div>
+		<div class="dt">
+			<input type="submit" name="sub" value="注册" />
+		</div>
+	</form>
+</body>
+</html>

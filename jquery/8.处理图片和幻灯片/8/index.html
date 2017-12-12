@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用innerFade插件实现高级渐变效果</title>
+<link rel="stylesheet" href="../css/reset.css"  type="text/css" media="all" />
+<link rel="stylesheet" href="../css/fonts.css"  type="text/css" media="all" />
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.innerfade.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(
+		function(){
+			$('#pics').innerfade({
+				speed: 'slow',       // 图片淡入速度
+				timeout: 2000,       // 图片切换速度
+				type: 'sequence',    // 按照顺序显示图片
+				containerheight: '220px'  // 容器高度
+			});
+		}
+	);	
+	</script>
+</head>
+<body>
+			
+<ul id="pics">					
+	<li>
+		<a href="http://www.mrbccd.com" target="_blank"><img src="images/01.gif" alt="个人版" /></a>
+	</li>
+	<li>
+		<a href="http://www.mrbccd.com" target="_blank"><img src="images/02.jpg" alt="个人版" /></a>
+	</li>					
+	<li>
+		<a href="http://www.mrbccd.com" target="_blank"><img src="images/03.jpg" alt="珍藏版" /></a>
+	</li>					
+	<li>
+		<a href="http://www.mrbccd.com" target="_blank"><img src="images/04.jpg" alt="企业版" /></a>
+	</li>		
+	<li>
+		<a href="http://www.mrbccd.com" target="_blank"><img src="images/05.gif" alt="程序员专业开发资源库" /></a>
+	</li>				
+</ul>
+</body>
+</html>

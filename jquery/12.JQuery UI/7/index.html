@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../js/jquery-ui-1.11.1.custom/jquery-ui.css" />
+<script src="../js/jquery-ui-1.11.1.custom/external/jquery/jquery.js"></script>
+<script src="../js/jquery-ui-1.11.1.custom/jquery-ui.js"></script>
+<title>进度条（Progressbar）的使用</title>
+<style>
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+  </style>
+  <script>
+  $(function() {
+    var $progressbar = $( "#progressbar" );     
+      $progressLabel = $( ".progress-label" );   
+    $progressbar.progressbar({
+      value: false,
+      change: function() {       // 进度条改变时触发
+        $progressLabel.text( $progressbar.progressbar( "value" ) + "%" );    // 进度条文字显示value%
+      },
+      complete: function() {     // 进度条加载到100时
+        $progressLabel.text( "完成！" );     // 进度条显示“完成！”
+      }
+    });
+ 
+    function progress() {
+      var val = $progressbar.progressbar( "value" ) || 0;     // 进度条的value值
+      $progressbar.progressbar( "value", val + 1 );           // 给进度条的value值加1
+      if ( val < 99 ) {                                       // 当value小于99时
+        setTimeout( progress, 100 );     // 每100毫秒执行一次progress函数
+      }
+    }
+    setTimeout( progress, 3000 );        // 每3000毫秒执行一次progress函数
+  });
+  </script>
+</head>
+<body>
+<div id="progressbar"><div class="progress-label">加载...</div></div>
+</body>
+</html>

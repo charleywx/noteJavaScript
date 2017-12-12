@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用data()方法存取JSON数据</title>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$("p").data("pdata");   // 定义一个名为pdata的数据存储变量
+	$("#result").append($("p").data("pdata") == null?"未设置时的值为：null":$("p").data("pdata"));     // 显示初始化数据
+	$("p").data("pdata",{bookname:"《jQuery入门到精通》",author:"小辛",email:"mingrisoft@mingrisoft.com"});  // 设置数据
+	$("#result").append("<br/>赋值后的结果为：书名："+$("p").data("pdata").bookname+",作者："
+	+$("p").data("pdata").author+"邮箱："+$("p").data("pdata").email);    // 显示设置之后的数据
+	$("p").removeData("pdata");    // 移除数据
+	// 显示移除之后的数据
+	$("#result").append($("p").data("pdata") == null?"<br/>移除之后的值为：null":$("p").data("pdata"));   
+});
+</script>
+</head>
+<body>
+<h4>使用data()方法存取JSON数据</h4>
+<p></p>
+<div id="result"></div>
+</body>
+</html>

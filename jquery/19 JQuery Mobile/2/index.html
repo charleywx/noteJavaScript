@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Mobile实现多页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.user-scalable=no"/>
+    <link href="../css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+<div id="pageone" data-role="page">
+    <div data-role="header"><h2>jQuery类书籍</h2></div>
+    <div data-role="content"><p>《jQuery从入门到精通》、《jQuery开发基础教程》</p></div>
+    <p><a href="#pagetwo" data-role="button">PHP类书籍</a></p>
+    <div data-role="footer">
+        <h4>这是第一个页面的尾部信息</h4>
+    </div>
+</div>
+
+<div id="pagetwo" data-role="page">
+    <div data-role="header"><h2>PHP类书籍</h2></div>
+    <div data-role="content"><p>《PHP从入门到精通》、《PHP必须知道的300个问题》</p></div>
+    <p><a href="#pageone" data-role="button">jQuery类书籍</a></p>
+    <div data-role="footer">
+        <h4>这是第二个页面的尾部信息</h4>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>JavaScript事件</title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        function getEventType() {
+            alert(event.type);      // 弹出提示框，显示事件类型
+            alert(event.button);    // 1左键，2中键，3右键
+            // 0没有按键，1左键，2右键，3左右键，4中键，5左中键，6右中键，7左中右键
+            alert(event.clientX);    // 鼠标X坐标
+            alert(event.x);    // 鼠标X坐标
+        }
+    </script>
+
+</head>
+
+<body onmousedown="getEventType(event)">
+<h3 class="title">JavaScript事件类型</h3>
+<p>在页面中单击某个位置，会弹出对话框，显示被触发的事件类型。</p>
+</body>
+</html>

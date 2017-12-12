@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>隐藏搜索文本框文字</title>
+<style>
+.text1{
+	color:#777;
+}
+</style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("input.text1").val("请输入要搜索的内容");    // 给文本框赋值
+	   textFill($('input.text1'));     // 控制文本框内容的显示或隐藏              
+	});
+    function textFill(input){
+		var originalvalue = input.val();        // 获取文本框内容，保存于变量中
+		input.focus( function(){                // 获得焦点时触发
+			if( $.trim(input.val()) == originalvalue ){ // 如果文本框的值为初始值
+				input.val('');    // 清空文本框内容 
+			}
+		});
+		input.blur( function(){                 // 失去焦点时触发
+			if( $.trim(input.val()) == '' ){    // 如果文本框为空
+				input.val(originalvalue);       // 给文本框赋予原始值
+			}
+		});
+	}
+
+</script>
+</head>
+<body>
+<div>
+<h4>隐藏搜索文本框文字</h4>
+<input type="text" value="" class="text1"/>
+</div>
+</body>
+</html>

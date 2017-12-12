@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../js/jquery-ui-1.11.1.custom/jquery-ui.css" />
+<script src="../js/jquery-ui-1.11.1.custom/external/jquery/jquery.js"></script>
+<script src="../js/jquery-ui-1.11.1.custom/jquery-ui.js"></script>
+<title>滑块（Slider）的使用</title>
+<style>
+  #red, #green, #blue {
+    float: left;
+    clear: left;
+    width: 300px;
+    margin: 15px;
+  }
+  #swatch {
+    width: 120px;
+    height: 100px;
+    margin-top: 18px;
+    margin-left: 350px;
+    background-image: none;
+  }
+  #red .ui-slider-range { background: #ef2929; }
+  #red .ui-slider-handle { border-color: #ef2929; }
+  #green .ui-slider-range { background: #8ae234; }
+  #green .ui-slider-handle { border-color: #8ae234; }
+  #blue .ui-slider-range { background: #729fcf; }
+  #blue .ui-slider-handle { border-color: #729fcf; }
+  </style>
+  <script>
+  function hexFromRGB(r, g, b) {
+  // 将颜色值转换成十六进制数值保存在数组中
+    var hex = [
+      r.toString( 16 ),
+      g.toString( 16 ),
+      b.toString( 16 )
+    ];
+    $.each( hex, function( nr, val ) {
+      if ( val.length === 1 ) {       // 如果val长度为1
+        hex[ nr ] = "0" + val;        // 在hex[nr]前补0
+      }
+    });
+    return hex.join( "" ).toUpperCase();    // 返回颜色值
+  }
+  // 更新颜色
+  function refreshSwatch() {
+    var red = $( "#red" ).slider( "value" );      // 红色滑动条的值
+      green = $( "#green" ).slider( "value" );    // 绿色滑动条的值
+      blue = $( "#blue" ).slider( "value" );      // 蓝色滑动条的值
+      hex = hexFromRGB( red, green, blue );       // 转换为颜色值
+    $( "#swatch" ).css( "background-color", "#" + hex );    // 给id为swatch的元素设置背景颜色为hex
+  }
+  $(function() {
+    $( "#red, #green, #blue" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshSwatch,       // 滑块滑动时触发refreshSwatch函数
+      change: refreshSwatch       // 滑块的值改变时触发refreshSwatch函数
+    });
+	// 设置滑块初始颜色值
+    $( "#red" ).slider( "value", 255 );    
+    $( "#green" ).slider( "value", 140 );
+    $( "#blue" ).slider( "value", 60 );
+  });
+  </script>
+</head>
+<body class="ui-widget-content" style="border:0;">
+<p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+  <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+  颜色选择器
+</p>
+<div id="red"></div>
+<div id="green"></div>
+<div id="blue"></div>
+<div id="swatch" class="ui-widget-content ui-corner-all"></div>
+</body>
+</html>

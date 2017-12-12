@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理用户</title>
+</head>
+<SCRIPT src="../js/jquery.js"></SCRIPT>
+<body style="background-color: #fcfcfc">
+<!--右侧-->
+<div>
+    <div style="width: 715px;height:470px;background: url('../images/k470.png') no-repeat;">
+        <h2 align="center">用户列表</h2>
+        <br />
+        <br />
+        <DIV style="padding-left: 44px;">
+            <DIV class="tadiv" style="padding-left: 0px;">
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 32%; FLOAT: left; text-align:center; HEIGHT: 25px; border:1px solid;">用户名</DIV>
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 32%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">添加时间</DIV>
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 32%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">操作 </DIV>
+            </DIV>
+            <{section name=id loop=$bcjyzs}>
+            <DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 32%; FLOAT: left; text-align:center;HEIGHT: 23px; border:1px solid;border-top:none;overflow: hidden;"><{$bcjyzs[id].admin_user}></DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 32%; FLOAT: left; text-align:center; HEIGHT: 23px; border:1px solid;border-top:none;border-left:none;overflow: hidden;"> <{$bcjyzs[id].addtime}></DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 32%; FLOAT: left; text-align:center; HEIGHT: 23px; border:1px solid;border-top:none;border-left:none;"><a href="?edit=t&id=<{$bcjyzs[id].entity_id}>" >编辑&nbsp;|&nbsp;<a href="admin_control.php?del=t&id=<{$bcjyzs[id].entity_id}>">删除</a></DIV>
+            </DIV>
+            <{/section}>
+        </DIV>
+        <br />
+        <br />
+        <br />
+        <br/>
+        <{if $edit == 't'}>
+        <div >
+            <form name="edit_admin" method="post" action="admin_control.php"  style="margin:0px; padding:0px;" onsubmit="return chkeditadmin(this)">
+
+                <p>用户名：
+                    <input type="text" name="admin_user" id="admin_user" value="<{$bcjyz.admin_user}>" size="60"/><br/><br/>
+                    密码:
+                    <input type="text" name="admin_pass" id="admin_pass" />
+
+                    <br/><br/>
+                    <input type="hidden" name="bcjyzid" value="<{$bcjyz.entity_id}>">
+                    <input type="submit" value="修改" name="submite"/>
+                </p>
+            </form>
+        </div>
+        <{/if}></div>
+</div>
+
+<script language="javascript">
+
+    function chkeditadmin(form){
+        if(form.admin_user.value == ''){
+            alert("用户名不能为空!");
+            form.admin_user.focus();
+            return false;
+        }
+        if(form.admin_pass.value==''){
+            alert('密码不能为空!');
+            form.admin_pass.focus();
+            return false;
+        }
+        return true
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用子查询优化选择器的性能</title>
+<style>
+ul{
+	list-style:none;
+}
+</style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	var $divC = $("#container");     // 获取id为container的div元素
+	var $ulC = $divC.find(".duc");   // 在最外层对象中查找
+	var $li1 = $ulC.find(".li1");    
+	var $p = $li1.find("p");         // 在最近一层中查找
+	var $li2 = $ulC.find(".li2");   
+	var $li3 = $ulC.find(".li3");
+	var message = "最终数据：";
+	message += "<br/>"+$p.html();    // 获取p节点内容
+	message += "<br/>"+$li2.html();  // 获取内容
+	message += "<br/>"+$li3.html();  // 获取内容
+	$("#result").append(message);    // 将结果在页面中显示
+	
+});
+</script>
+</head>
+<body>
+<h4>使用子查询优化选择器的性能</h4>
+<div id="container">
+<ul class="duc">
+	<li class="li1"><p>《Java从入门到精通》</p></li>
+	<li class="li2">《PHP从入门到精通》</li>
+	<li class="li3">《jQuery从入门到精通》</li>
+</ul>
+</div>
+<div id="result"></div>
+</body>
+</html>

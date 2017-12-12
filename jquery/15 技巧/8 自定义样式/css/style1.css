@@ -1,0 +1,11 @@
+body{
+	background-color:lightyellow;
+}
+div{
+	font-size:10pt;
+}
+.content{
+	padding-top:12px;
+	width:500px;
+	font-size:14px;
+}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>减少对DOM元素直接操作</title>
+<style>
+ul{
+	list-style-type:none;
+	width:400px;
+}
+</style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	// 定义数组
+	var bookList = ["《jQuery从入门到精通》","《PHP从入门到精通》","《Java从入门到精通》","《C#从入门到精通》"]; 
+	var str = "";  // 初始化字符串
+	$.each(bookList,function(i){     // 遍历数组元素
+		str+="<li>"+bookList[i]+"</li>";   // 一次性完成元素的累加
+	})
+	$("#result").append(str);       // 将结果显示在页面中
+});
+</script>
+</head>
+<body>
+<h4>减少对DOM元素直接操作</h4>
+
+<ul id="result"></ul>
+</body>
+</html>

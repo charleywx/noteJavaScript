@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建rel属性不为空的自定义选择器</title>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/custom.js"></script>
+<style>
+.one{
+	width:260px;
+	background-color:yellow;
+}
+.two{
+	width:260px;
+	background-color:lightblue;
+}
+</style>
+<script>
+$(function(){
+	$("div:withRel()").addClass("two");
+});
+</script>
+</head>
+<body>
+<div rel="1">这是第一个DIV元素</div>
+<div class="one">这是第二个DIV元素</div>
+<div rel="3">这是第三个DIV元素</div>
+<div class="one">这是第四个DIV元素</div>
+<div class="one">这是第五个DIV元素</div>
+</body>
+</html>

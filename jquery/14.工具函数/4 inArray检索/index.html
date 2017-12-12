@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.inArray()函数检索数组中指定元素的位置</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var bookData = ["PHP","Java","JavaScript","VB","VC","ASP.NET","C#","jQuery"];   // 定义待搜索数据的数组
+		var suitableIndex = $.inArray("jQuery",bookData);              // 在数组中搜索是否含有”jQuery“字符串的元素
+		var str = "筛选前的数据："+bookData.join()+"<br/><br/>";      // 输出原数组的数据
+		if(suitableIndex != -1){
+			str += "符合条件元素的索引值为："+suitableIndex+"<br/><br/>";  // 输出符合条件元素的索引值
+			str += "筛选后的数据："+bookData[suitableIndex];          // 输出符合元素的值
+		}
+		$("div").append(str);             // 将li元素添加值ul元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>定义全局变量</title>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	window.$wobj = {    // 在全局范围内定义一个windows对象
+		$tmpObj:$("#content")       // 获取id为content的div元素
+	}
+	function testVar(){
+		$wobj.$tmpObj.bind("click",function(){    // 为元素绑定click事件
+			alert("明日科技！");             // 弹出消息提示
+		});
+		$wobj.$tmpObj.css("width","300px");       // 为元素设置宽度
+		$wobj.$tmpObj.css("background-color","lightblue");   // 为元素设置背景色
+	}
+	testVar();
+});
+</script>
+</head>
+<body>
+<h4>定义全局变量</h4>
+<div id="content">《jQuery从入门到精通》</div>
+</body>
+</html>
+
+$(document).ready() 页面渲染时执行
+$(window).load() 页面加载完成之后执行

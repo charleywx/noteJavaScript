@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.grep()函数筛选数组中的元素</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var numArray = [12,25,44,1,77,100,205];          // 定义待筛选数组
+		var suitableArray = $.grep(numArray,function(element,index){   // 对数组元素进行筛选
+			return element<100 && element>20;          // 筛选value小于100且大于20的元素
+		})
+		var str = "筛选前数据：" + numArray.join() + "<br/><br/>";    // 输出筛选前的数据
+		str += "筛选后的数据：";
+		str += suitableArray.join();     // 输出筛选后的数据
+		$("div").append(str);             // 将结果显示在div中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

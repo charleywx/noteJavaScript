@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在指定的查找范围内获取DOM元素</title>
+<style>
+.mydiv{
+	color:red;
+	font-size:14px
+	width:100px;
+	padding-top:10px;
+}
+</style>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	window.$wobj = {    // 在全局范围内定义一个windows对象
+		$obj1:$("#div1",".container1"),       // 在class为container1的元素中查找id为div1的元素
+		$obj2:$("#div2")       // 获取id为div2的div元素
+	}
+	testVar();
+	function testVar(){
+		$wobj.$obj1.html("第一个DIV元素");       // 设置div的内容
+		$wobj.$obj2.html("第二个DIV元素");       // 设置div的内容
+	}
+});
+</script>
+</head>
+<body>
+<h4>在指定的查找范围内获取DOM元素</h4>
+<div class="container1">
+<div id="div1" class="mydiv" title="title1"></div>
+</div>
+<div class="container2">
+<div id="div2" class="mydiv" title="title2"></div>
+</div>
+</body>
+</html>

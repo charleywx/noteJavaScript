@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>最基本的树形结构</title>
+<style>
+ul li{ 
+	width:150px;
+	font-size:13px; 
+	color:#222; 
+	line-height:18px; 
+	cursor:pointer;
+	list-style:none; 
+	background:url(images/node.gif); 
+	background-repeat:no-repeat; 
+	padding:0 0 3px 20px;
+}
+.menu>li{ 
+	list-style:none; 
+	background:url(images/open.gif); 
+	background-repeat:no-repeat; 
+	padding:0 0 3px 20px;
+}
+.menu .close{
+	background:url(images/folder.gif) no-repeat;
+}
+</style>
+</head>
+<body>
+<h2>编程语言图书</h2>
+<ul class="menu">
+	<li><u>PHP类</u></li>
+	<ul>
+		<li>PHP从入门到精通</li>
+		<li>PHP开发实战宝典</li>
+		<li>PHP典型模块大全</li>
+	</ul>
+	<li><u>JAVA类</u></li>
+	<ul>
+		<li>JAVA项目开发实战</li>
+		<li>JAVA从入门到实践</li>
+		<li>JAVA开发实战</li>
+	</ul>
+	<li><u>C语言类</u></li>
+	<ul>
+		<li>C语言从入门到精通</li>
+		<li>C语言从入门到实践</li>
+	</ul>
+	<li><u>数据库类</u></li>
+	<ul>
+		<li>MySQL数据库编程</li>
+		<li>Oracle数据库编程</li>
+	</ul>
+</ul>
+</body>
+</html>

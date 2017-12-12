@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>控制是否允许鼠标右键菜单显示</title>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+    // 判断是否有checked属性
+	$(document).bind("contextmenu",function(e){
+		if($("#enabledRadio").prop("checked")){   // 允许右键时
+			return true;
+		}
+		if($("#disabledRadio").prop("checked")){  // 不允许右键时
+			return false;
+		}
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<div id="container">
+<h3>《jQuery从入门到精通》</h3>
+<input type="radio" name="control" id="enabledRadio" />允许右键 <input type="radio" name="control" id="disabledRadio" />禁止右键
+</div>
+</body>
+</html>

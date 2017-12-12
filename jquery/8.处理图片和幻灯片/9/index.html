@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片滚动显示</title>
+<style>
+#pics{
+	overflow:hidden;
+	width:755px;
+}
+#inner{
+	height:320px;
+	width:3775px;
+	overflow:hidden;
+	position:relative;
+}
+#inner img{
+	float:left;
+	width:755px;
+	height:320px;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#inner').click(function(){
+			var scrollAmount = $(this).width() - $(this).parent().width(); // 滚动长度
+			var left = $(this).css('left');
+			var currentPos = Math.round(Math.abs(parseFloat(left != "auto" ? left:0)));   // 当前位置
+			var remainScroll = scrollAmount - currentPos;              // 剩余转动距离
+			var nextScroll = Math.floor($(this).parent().width());     // 转动到下一个的距离
+			if(remainScroll < nextScroll){                            
+				nextScroll = remainScroll;
+			}
+			if(currentPos < scrollAmount){        
+				$(this).animate({'left':'-=' + nextScroll},'slow');    // 向左转动nextScroll数量的距离
+			}else{       // 转过了scrollAmount长度之后
+				$(this).animate({'left':'0'},'fast');   // 转到起始位置，速度为fast             
+			}
+		});	
+	})
+		
+	</script>
+</head>
+<body>
+			
+<div id="pics">					
+	<div id="inner">
+		<img src="images/01.gif" alt="个人版" />
+		<img src="images/02.jpg" alt="个人版" />
+		<img src="images/03.jpg" alt="珍藏版" />
+		<img src="images/04.jpg" alt="企业版" />
+		<img src="images/05.gif" alt="程序员专业开发资源库" />
+	</div>			
+</div>
+</body>
+</html>

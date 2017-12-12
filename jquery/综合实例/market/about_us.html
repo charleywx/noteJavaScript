@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品之家</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<LINK href="css/mobanwang.css" type=text/css rel=stylesheet>
+<link type="text/css" href="css/lrtk.css" rel="stylesheet" />
+<SCRIPT src="js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
+<SCRIPT src="js/mobanwang.js" type=text/javascript></SCRIPT>
+<SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+</head>
+
+<body>
+<div class="top">
+    <div class="l"><a href="index.php"></a></div>
+    <div class="r">
+        <div class="m1" onmouseout="b1()" onmouseover="a1()"><a href="about_us.html"></a>
+            <ul style="display:none;" id="dhx" class="aa">
+                <li><a href="about_us.html">关于我们</a></li>
+                <li><a href="contact_us.html">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="m2"><a href="product_list.php" id="a2"></a>
+            <ul style="display:none;" id="dhx1" class="aa">
+                <li><a href="product_list.php">产品展示</a></li>
+            </ul>
+        </div>
+        <div class="m3" onmouseout="b3()" onmouseover="a3()"><a href="news.php"></a>
+            <ul style="display:none;" id="dhx2" class="aa">
+                <li><a href="news.php">业内新闻</a></li>
+            </ul>
+        </div>
+
+        <div class="m4"><a href="agent.php"></a></div>
+<script>
+function a1(){ 
+document.getElementById("dhx").style.display="";
+	}
+function b1(){ 
+document.getElementById("dhx").style.display="none";
+	}
+	function a2(){ 
+document.getElementById("dhx1").style.display="";
+	}
+function b2(){ 
+document.getElementById("dhx1").style.display="none";
+	}
+	function a3(){
+	document.getElementById("dhx2").style.display="";
+	}
+function b3(){ 
+document.getElementById("dhx2").style.display="none";
+	}
+
+function chksearch(form){
+    if(form.keyword.value==''){
+        alert('please input keyword！');
+        form.keyword.focus();
+        return false;
+    }
+}
+</script> 
+</div>
+</div>
+<div class="head">
+<div class="l">
+<div class="t1">
+<div class="t3"><P><U>关于我们</U></P></div><br/>
+<ul><li class="bl"><a href="about_us.html">公司介绍</a></li>
+<li class="bb"><a href="contact_us.html">联系我们</a></li>
+</ul>
+<BR/><BR/>
+
+<div class="c">
+			<form action="product_list.php" method="post"  onsubmit="return chksearch(this)">
+                <div class="p3"><div class="p3_1"><input name="keyword" type="text" value="请输入产品名称关键字" onfocus="if(this.value=='请输入产品名称关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入产品名称关键字'}" style="color:#bdc0c5;"></div>
+				<div class="p3_2"><input type="image" name="submit" src="images/zoom1.jpg" style="display: block; float: left; height: 26px; width: 26px;"/></div>
+				<input type="hidden" name="product_id" value="<?php echo $_GET['id']?>"></div>
+				</form>
+            </div>
+    <div class="f">
+        电话:0431-84978981<BR/>
+        地址:长春市高新区锦河街155号电子信息楼三层301室
+    </div>
+</div>
+</div>
+<div class="r">
+<div class="c">公司理念</div>
+<div class="nr">
+  <img src="images/pic.jpg" width="229" height="185" />
+  <P> 企业性质：吉林省明日科技有限公司成立于1999年12月，是以计算机软件技术为核心，致力于行业管理软件开发、数字化出版物制作、计算机网络系统综合应用等领域（涉及生产、管理、控制、仓储、物流、营销、服务）的高科技企业。
+      企业宗旨：通过数字化改变人们的学习方式，真正实现在实践中学习，在娱乐中学习，在充满挑战和乐趣的实践活动中实现价值，享受成功。用数字化推动学习方式的改变和社会进步！把基于数字化技术的最佳实践，普及到大众的学习与生活的活动中。创造社会大价值，实现企业大成功。
+      企业发展战略目标：利用三年时间，成为国内最具影响力的软件信息服务商，全力打造国内软件开发教育服务第一品牌和国内软件开发资源的最佳供应商；利用五年时间将明日科技发展成为省内最具创新实力的IT龙头企业，国内IT教育服务第一品牌，国内数字教育软件第一品牌，用实际行动迎接中国数字化产业的腾飞。
+      企业精神：坚韧、创新、博学、笃行。
+      坚韧：伟大的工作根植于坚韧不断的工作。明日人不但有坚定的信念，更有遇到困难和挫折，不气馁不放弃，坚持、坚持、再坚持，不达目的誓不罢休的精神。
+      创新：竞争优势的本质是创新。明日人要增强忧患意识，不断创新，创新思路、创新产品、创新服务。这样才能抓住机遇，在激烈的竞争中求得发展，打造受人尊重的企业。
+      博学：数字化技术的发展日新月异，明日的产品是数字化学习产品，需要提供用户最新最有价值的知识和方法。明日人必须不断学习，丰富专业知识，努力掌握最新信息和的前沿技术，才能适应企业竞争的需要，为用户提供最有价值的服务。
+      笃行：再好的设想、方案，如果不去付诸行动，只能是一纸空文。明日人说到做到，看准了的就立即行动，用行动检验和完善方案，实现理想。注重实效，做就做好，信奉细节决定成败，从每件小事、每个细节做起，而且做就做细、做精、做强。<BR/>
+  </div>
+</div>
+</div>
+<div class="food">
+    <a href="index.php"><div class="l"></div></a>
+    <div class="l1"><BR/><a href="www.mingribook.com/contact.php">联系我们</a> | <a href="www.mingrisoft.com">公司网站</a> | <a href="www.mingribook.com/map.php">企业地图</a><BR/>
+        电话:0431-84978981<BR/>
+        <a href="www.mingribook.com">长春市高新区锦河街155号电子信息楼三层301室</a><br/>© Copyright 吉林省明日科技有限公司.</div>
+    <div class="r"><p>明日科技出品的编程词典系列产品是面向各级程序开发人员的编程资源库，它是吉林省明日科技有限公司从十多年编程教育过程中提炼出海量的精品源码、项目模块、典型范例和技巧、精彩视频教程，是集学习和开发于一体的专业编程资源库。</p></div>
+</div>
+</body>
+</html>

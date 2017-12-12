@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>编辑评价</title>
+    <SCRIPT src="../js/jquery.js"></SCRIPT>
+</head>
+<body style="background-color: #fcfcfc">
+
+<!--右侧-->
+<div>
+    <DIV style="width: 715px;height:570px;;background: url('../images/k570.png') no-repeat;">
+        <h2 align="center">评价列表</h2>
+        <br />
+        <br />
+        <DIV style="padding-left: 40px;">
+            <DIV class="tadiv" style="padding-left: 0px;">
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px;border:1px solid;">用户名</DIV>
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">分数</DIV>
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">添加时间</DIV>
+                <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">操作 </DIV>
+            </DIV>
+           <{section name=id loop=$product_reviews}>
+            <DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center;HEIGHT: 23px; border:1px solid;border-top:none;overflow: hidden;"><{$product_reviews[id].customer_name}></DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center;HEIGHT: 23px; border:1px solid;border-top:none;border-left:none;overflow: hidden;"><{$product_reviews[id].score}></DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center;HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;overflow: hidden;"><{$product_reviews[id].addtime}></DIV>
+                <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;"><a href="preview_review.php?entity_id=<{$product_reviews[id].entity_id}>">预览</a>  | &nbsp;|&nbsp;<a href="reviews_control.php?del=t&id=<{$product_reviews[id].entity_id}>&product_id=<{$pid}>">删除</a></DIV>
+            </DIV>
+           <{/section}>
+        </DIV>
+        <br />
+        <br />
+        <br />
+        <br/>
+    </div>
+
+</body>
+</html>

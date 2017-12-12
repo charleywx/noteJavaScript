@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>表格插入行与删除行</title>
+<style>
+.hover{
+	background-color:lightblue;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//在最后一行插入行  
+    $("<tr><td>《VB开发实战》</td><td>《VB从入门到实践》</td><td>《VB典型模块大全》</td></tr>").insertAfter($("#tb tr:last"));
+	// 删除第一行
+	$("#tb tbody tr:first").remove();
+})
+</script>
+</head>
+<body>
+
+<table id="tb">  
+    <thead>  
+         <tr><th colspan="4">表格插入行与删除行</th></tr>
+    </thead>  
+    <tbody>  
+        <tr><td>《C#参考大全》</td><td>《C#开发实战》</td><td>《C#从入门到实践》</td></tr>  
+		<tr><td>《PHP参考大全》</td><td>《PHP开发实战》</td><td>《PHP从入门到实践》</td></tr>  
+		<tr><td>《Java参考大全》</td><td>《Java开发实战》</td><td>《Java从入门到实践》</td></tr> 
+    </tbody>  
+</table> 
+</body>
+</html>

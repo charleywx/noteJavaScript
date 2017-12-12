@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用$.isPlainObject()函数检测对象是否为原始对象</title>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    // 使用{}和new创建的对象为原始对象
+	$(function(){
+		var obj1 = {"name":"轻鸿"};     // 使用{}创建对象
+		var obj2 = new Object();        // 使用new关键字创建对象
+		var obj3 = "null";              
+		var str = "obj1是否为原始对象："+$.isPlainObject(obj1)+"<br/>"; // 判断obj1是否为原始对象
+		str+="obj2是否为原始对象："+$.isPlainObject(obj2)+"<br/>";   // 判断obj2是否为原始对象
+		str+="obj3是否为原始对象："+$.isPlainObject(obj3)+"<br/>";   // 判断obj3是否为原始对象
+		$("div").html(str);             // 将最终结果显示到div元素中
+	});
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

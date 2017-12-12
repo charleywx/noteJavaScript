@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理产品</title>
+</head>
+<SCRIPT src="../js/jquery.js"></SCRIPT>
+<body style="background-color: #fcfcfc">
+<!--右侧-->
+<div style="background-color: #fcfcfc">
+    <DIV style="width: 715px;height:770px;background: url('../images/k770.png') no-repeat;">
+    <h2 align="center" style="padding-top: 10px;">产品列表</h2>
+    <br />
+    <br />
+    <DIV style="padding-left: 40px;">
+        <DIV class="tadiv" style="padding-left: 0px;">
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px;border:1px solid;">产品名称</DIV>
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px;;border:1px solid;border-left:none;">价格</DIV>
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">添加时间</DIV>
+            <DIV style="LINE-HEIGHT: 25px; WIDTH: 28%; FLOAT: left; text-align:center; HEIGHT: 25px; ;border:1px solid;border-left:none;">操作 </DIV>
+        </DIV>
+
+        <{section name=id loop=$bcjyzs}>
+        <DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center;HEIGHT: 23px; border:1px solid;border-top:none;overflow: hidden;"><{$bcjyzs[id].product_name}></DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center;HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;overflow: hidden;"><{$bcjyzs[id].price}></DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 22%; FLOAT: left; text-align:center; HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;overflow: hidden;"> <{$bcjyzs[id].addtime}></DIV>
+            <DIV style="LINE-HEIGHT: 23px; WIDTH: 28%; FLOAT: left; text-align:center; HEIGHT: 23px;  border:1px solid;border-top:none;border-left:none;"><a href="edit_reviews.php?product_id=<{$bcjyzs[id].entity_id}>">产品评价</a>  |  <a href="?edit=t&id=<{$bcjyzs[id].entity_id}>&productpath=<{$bcjyzs[id].picture}>" >编辑&nbsp;|&nbsp;<a href="products_control.php?del=t&id=<{$bcjyzs[id].entity_id}>&oldpath=<{$bcjyzs[id].picture}>&oldcover=<{$bcjyzs[id].cover}>&oldsmallcover=<{$bcjyzs[id].smallcover}>">删除</a></DIV>
+        </DIV>
+       <{/section}>
+    </DIV>
+    <br />
+    <br />
+    <br />
+    <div style="clear:both;"></div>
+    <{if $edit == 't'}>
+    <div style="padding-left: 40px;">
+        <form name="edit_product" method="post" action="products_control.php" enctype="multipart/form-data" style="margin:0px; padding:0px;" onsubmit="return chkeditproduct(this)">
+
+            <p>产品名称：
+                <input type="text" name="product_name" id="name" value="<{$bcjyz[0].product_name}>" size="60"/><br/><br/>
+                封面图:
+                <input name="cover" type="file" id="cover" size="50"/><br/><br/>
+                <br/><br/>
+                封面小图:
+                <input name="smallcover" type="file" id="smallcover" size="50"/><br/><br/>
+                价格：
+                <input type="text" name="price" id="price" value="<{$bcjyz[0].price}>" size="60"/><br/><br/>
+                重量：
+                <input type="text" name="weight" id="weight" value="<{$bcjyz[0].weight}>" size="60"/><br/><br/>
+                发货方式：
+                <input type="text" name="methods" id="methods" value="<{$bcjyz[0].methods}>" size="60"/><br/><br/>
+                产品描述：
+               <{$editor}>
+                <br/><br/>
+                防伪码:<input type="text" name="auth_code" id="auth_code" value="<{$bcjyz[0].auth_code}>" size="60"/><br/><br/>
+                细节图：
+                <input name="picture" type="file" id="picture" size="50"/><br/><br/>
+                <input name="oldsmallcover" type="hidden" size="50" value="<{$bcjyz[0].smallcover}>"/><br/><br/>
+                <input name="oldcover" type="hidden" size="50" value="<{$bcjyz[0].cover}>"/><br/><br/>
+                <input name="oldpicture" type="hidden" size="50" value="<{$bcjyz[0].picture}>"/><br/><br/>
+                <input type="hidden" name="bcjyzid" value="<{$bcjyz[0].entity_id}>">
+                <input type="hidden" name="oldpath" value="<{$bcjyz[0].picture}>"/>
+                <input type="submit" value="提交" name="submite"/>
+            </p>
+        </form>
+    </div>
+    <{/if}> </div>
+</div>
+
+<script language="javascript">
+
+    function chkeditproduct(form){
+        if(form.product_name.value == ''){
+            alert("请输入产品名称!");
+            form.product_name.focus();
+            return false;
+        }
+        if(form.description.value==''){
+            alert('请输入产品描述!');
+            form.description.focus();
+            return false;
+        }
+        if(form.picture.value){
+            str = form.picture.value.split(".");
+            extname = str[str.length-1];
+            if(!(extname == 'jpg' || extname == 'gif' || extname == 'png' || extname == 'bmp')){
+                alert("您上传的文件格式不对！");
+                form.picture.focus();
+                return false;
+            }
+        }
+        return true
+    }
+
+</script>
+</body>
+</html>
