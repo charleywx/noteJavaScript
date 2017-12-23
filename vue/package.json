@@ -1,0 +1,14 @@
+{
+  "name": "com.charley.vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "charley",
+  "license": "ISC",
+  "devDependencies": {
+    "vue": "^2.5.9"
+  }
+}
